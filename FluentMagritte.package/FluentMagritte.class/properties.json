@@ -1,0 +1,14 @@
+{
+	"category" : "FluentMagritte-Tests",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
+	"name" : "FluentMagritte",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }
