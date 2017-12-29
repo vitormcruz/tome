@@ -9,8 +9,8 @@ baseline: spec
 		spec package: 'LangExtensions'.
 		spec package: 'LangExtensions-Tests' with: [ spec requires: 'LangExtensions'].
 		
-		spec 
-			group: 'default' with: #('core' 'tests');
-			group: 'core' with: #('LangExtensions');
-			group: 'tests' with: #('LangExtensions-Tests') ].
+		spec group: 'default' with: #('core' 'tests');
+			  group: 'core' with: #('LangExtensions');
+			  group: 'tests' with: #('LangExtensions-Tests') 
+	].
 
