@@ -6,11 +6,13 @@ baseline: spec
 	spec for: #'common' do: [
 		spec blessing: #'baseline'.
 		spec repository: 'github://vitormcruz/st_langextensions/pharo'.
-		spec package: 'LangExtensions'.
-		spec package: 'LangExtensions-Tests' with: [ spec requires: 'LangExtensions'].
+		spec package: #'LangExtensions-Core'.
+		spec package: #'LangExtensions-Tests' "with: [ spec requires: 'LangExtensions-Core']".
 		
-		spec group: 'default' with: #('core' 'tests');
-			  group: 'core' with: #('LangExtensions');
-			  group: 'tests' with: #('LangExtensions-Tests') 
+"		spec 
+			group: 'default' with: #('core' 'tests');
+			group: 'core' with: #('LangExtensions');
+			group: 'tests' with: #('LangExtensions-Tests') 
+"			
 	].
 
