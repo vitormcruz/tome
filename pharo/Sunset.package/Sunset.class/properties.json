@@ -1,0 +1,14 @@
+{
+	"category" : "Sunset",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
+	"name" : "Sunset",
+	"pools" : [
+		 ],
+	"super" : "TestCase",
+	"type" : "normal" }

@@ -1,0 +1,3 @@
+*FluentMagritte
+magritteDescriptionClass
+	^ MADateAndTimeDescription.
