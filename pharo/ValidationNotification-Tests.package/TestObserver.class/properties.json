@@ -1,0 +1,13 @@
+{
+	"classtraitcomposition" : "ValidationObserverTrait classTrait",
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "TestObserver",
+	"commentStamp" : "",
+	"super" : "Object",
+	"traitcomposition" : "ValidationObserverTrait",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "ValidationNotification-Tests"
+}
