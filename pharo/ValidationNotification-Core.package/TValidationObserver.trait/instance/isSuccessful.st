@@ -1,0 +1,4 @@
+testing
+isSuccessful
+
+	self subclassResponsibility.

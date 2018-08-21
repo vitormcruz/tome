@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "<historical>",
 	"super" : "ProcessLocalVariable",
-	"category" : "ValidationNotification-Core-ValidationNotification-Core",
+	"category" : "ValidationNotification-Core",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

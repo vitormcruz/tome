@@ -1,0 +1,1 @@
+I autoregister me as a listener for errors and simply store all the errors issued.

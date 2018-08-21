@@ -5,7 +5,11 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"error",
+		"issuer",
+		"context"
+	],
 	"name" : "ValidationErrorAnnouncement",
 	"type" : "normal"
 }

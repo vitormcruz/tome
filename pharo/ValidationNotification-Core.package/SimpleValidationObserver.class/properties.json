@@ -1,0 +1,15 @@
+{
+	"classtraitcomposition" : "TValidationObserver classTrait",
+	"classvars" : [ ],
+	"instvars" : [
+		"errors"
+	],
+	"name" : "SimpleValidationObserver",
+	"commentStamp" : "vitormcruz 8/15/2018 10:59",
+	"super" : "Object",
+	"traitcomposition" : "TValidationObserver @ {#validationInitialize->#initialize}",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "ValidationNotification-Core"
+}
