@@ -1,3 +1,0 @@
-*FluentMagritte
-magritteDescriptionClass
-	^ MADateDescription.

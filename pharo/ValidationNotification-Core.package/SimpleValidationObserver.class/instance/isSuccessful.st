@@ -1,4 +1,0 @@
-testing
-isSuccessful
-
-	^ errors isEmpty.
