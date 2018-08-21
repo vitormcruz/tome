@@ -5,7 +5,7 @@ baseline: spec
         
 	spec for: #'common' do: [
 		spec blessing: #'baseline'.
-		spec repository: 'github://vitormcruz/st_validation_notification/pharo'.
+		spec repository: 'https://vitormcruz@bitbucket.org/vitormcruz/unnamed_mess_of_stuff'.
 		
 		spec baseline: 'LangExtensions' with: [ spec repository: 'github://vitormcruz/st_langextensions/pharo'; loads: #('core') ].
 		
