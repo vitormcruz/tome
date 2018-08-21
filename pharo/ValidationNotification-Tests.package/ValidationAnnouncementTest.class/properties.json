@@ -2,12 +2,12 @@
 	"classtraitcomposition" : "TAssertable classTrait",
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "TestCollectionExtensions",
+	"name" : "ValidationAnnouncementTest",
 	"commentStamp" : "",
 	"super" : "TestCase",
 	"traitcomposition" : "TAssertable",
 	"type" : "normal",
 	"classinstvars" : [ ],
 	"pools" : [ ],
-	"category" : "LangExtensions-Tests"
+	"category" : "ValidationNotification-Tests"
 }

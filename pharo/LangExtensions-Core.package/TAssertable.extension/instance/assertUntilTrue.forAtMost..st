@@ -1,4 +1,4 @@
-*LangExtensions-Core-asserting
+*LangExtensions-Core
 assertUntilTrue: assertionBlock forAtMost: waitTimeInMiliseconds
 "For waitTimeInMiliseconds wait until assertion block resolves to true"
 
@@ -11,4 +11,4 @@ assertUntilTrue: assertionBlock forAtMost: waitTimeInMiliseconds
 	assertionBlockBody := assertionBlock sourceNode body.
 	blockStart := assertionBlockBody sourceInterval first.
 	blockEnd := assertionBlockBody sourceInterval last.
-	self assert: assertionBlock value description: 'Failed to evaluate ', (assertionBlockBody source copyFrom: blockStart to: blockEnd).
+	self assert: assertionBlock value description: 'Failed to evaluate "', (assertionBlockBody source copyFrom: blockStart to: blockEnd), '"'.

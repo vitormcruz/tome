@@ -1,11 +1,13 @@
 {
-	"commentStamp" : "vitormcruz 12/12/2017 16:14",
-	"super" : "TestCase",
-	"category" : "LangExtensions-Tests",
-	"classinstvars" : [ ],
-	"pools" : [ ],
+	"classtraitcomposition" : "TAssertable classTrait",
 	"classvars" : [ ],
 	"instvars" : [ ],
 	"name" : "TestAssertionExtensions",
-	"type" : "normal"
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"traitcomposition" : "TAssertable",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "LangExtensions-Tests"
 }
