@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "Announcement",
+	"category" : "ValidationNotification-Core",
+	"classinstvars" : [
+		"localAnnouncerFechBlock"
+	],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "ValidationAnnouncement",
+	"type" : "normal"
+}

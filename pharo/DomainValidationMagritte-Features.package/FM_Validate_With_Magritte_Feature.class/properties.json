@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "Feature",
+	"category" : "DomainValidationMagritte-Features",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "FM_Validate_With_Magritte_Feature",
+	"type" : "normal"
+}

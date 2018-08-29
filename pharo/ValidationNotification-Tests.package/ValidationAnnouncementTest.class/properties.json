@@ -1,0 +1,13 @@
+{
+	"classtraitcomposition" : "TAssertable classTrait",
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "ValidationAnnouncementTest",
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"traitcomposition" : "TAssertable",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "ValidationNotification-Tests"
+}

@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "ValidationAnnouncement",
+	"category" : "ValidationNotification-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"error",
+		"issuer",
+		"context"
+	],
+	"name" : "ValidationErrorAnnouncement",
+	"type" : "normal"
+}

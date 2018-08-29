@@ -1,0 +1,13 @@
+{
+	"classtraitcomposition" : "TAssertable classTrait",
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "TestAssertionExtensions",
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"traitcomposition" : "TAssertable",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "LangExtensions-Tests"
+}

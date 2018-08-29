@@ -1,0 +1,4 @@
+testing
+isSuccessful
+
+	^ errors isEmpty.

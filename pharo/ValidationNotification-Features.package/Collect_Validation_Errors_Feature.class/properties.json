@@ -1,0 +1,13 @@
+{
+	"classtraitcomposition" : "TValidationObserver classTrait",
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "Collect_Validation_Errors_Feature",
+	"commentStamp" : "",
+	"super" : "Feature",
+	"traitcomposition" : "TValidationObserver",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "ValidationNotification-Features"
+}

@@ -1,0 +1,13 @@
+{
+	"classtraitcomposition" : "TAssertable classTrait",
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "FeatureTest",
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"traitcomposition" : "TAssertable",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "SBDD-Tests"
+}

@@ -1,0 +1,23 @@
+tests
+test_creating_descriptions
+	| examples |
+	
+	examples := { 
+					  Class -> MAClassDescription.
+					  Collection -> MAContainer. 
+				  	  String -> MAStringDescription.
+					  Boolean -> MABooleanDescription.
+					  Color -> MAColorDescription.
+					  File -> MAFileDescription.
+					  "Directory -> MADirectoryDescription. What to do??"
+					  DateAndTime -> MADateAndTimeDescription.
+					  Date -> MADateDescription.
+					  Duration -> MADurationDescription.
+					  Number -> MANumberDescription.
+					  Time -> MATimeDescription.
+					  "TimeStamp -> MATimeStampDescription. What to do??"
+					} asDictionary.
+
+	examples keysAndValuesDo: [ :type :descType |
+			self assert: ((#anAccessor isAnAccessorFor: type) isKindOf: descType). 
+	].

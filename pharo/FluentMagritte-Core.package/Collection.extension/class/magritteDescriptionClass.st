@@ -1,0 +1,3 @@
+*FluentMagritte-Core
+magritteDescriptionClass
+	^ MAContainer.

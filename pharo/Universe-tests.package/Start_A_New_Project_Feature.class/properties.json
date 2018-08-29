@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "vitormcruz 8/1/2018 14:44",
+	"super" : "Feature",
+	"category" : "Universe-tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "Start_A_New_Project_Feature",
+	"type" : "normal"
+}
