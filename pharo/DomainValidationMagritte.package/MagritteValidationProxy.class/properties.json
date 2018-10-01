@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "DomainValidationMagritte",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"subject",
+		"domainValidationModel"
+	],
+	"name" : "MagritteValidationProxy",
+	"type" : "normal"
+}

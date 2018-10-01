@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MAElementDescription",
+	"category" : "DomainValidationMagritte-Magritte-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "MAMessageDescription",
+	"type" : "normal"
+}

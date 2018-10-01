@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "FM_Validate_With_Magritte_Feature",
+	"name" : "Validate_Domain_With_Magritte_Feature",
 	"type" : "normal"
 }
