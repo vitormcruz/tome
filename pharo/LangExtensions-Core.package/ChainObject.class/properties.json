@@ -1,12 +1,12 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "vitormcruz 9/20/2018 13:23",
 	"super" : "Object",
 	"category" : "LangExtensions-Core",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"target"
+		"subject"
 	],
 	"name" : "ChainObject",
 	"type" : "normal"
