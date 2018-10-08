@@ -6,4 +6,7 @@ initialize
 	'.
 
 	ClySystemEnvironmentPlugin compile: 'isTestMethod: aMethod
-	^ aMethod isTestMethod.'
+	^ aMethod isTestMethod.'.
+	
+	ClySystemEnvironmentPlugin compile: 'isTestMethod: aMethod
+	^ aMethod isTestMethod.'.
