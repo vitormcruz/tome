@@ -17,7 +17,7 @@ Validate_Method_Parameters_Scenario
 														  ('"forEmployee: ''John'' setSalary: -100"' 'Salary is mandatory and must be a positive integer')
 														 )) columnNames: #('message_send' 'errors'))
 		    executeWithExtractedParams: [:description :messageSent :expectedErrorsString | 
-		        describedClass := OpalCompiler new source: 'DescribedClass new ' , messageSent, '; yourself'; evaluate.
-			  	self assert: describedClass errors equals: (self extractInternalErrorsFrom: expectedErrorsString )
+		        describedClass := Smalltalk compiler source: 'DVM_DescribedClassForTest new ' , messageSent, '; yourself'; evaluate.
+			  	  self assert: describedClass errors asSet equals: (self extractInternalErrorsFrom: expectedErrorsString) asSet
 		    ].
 

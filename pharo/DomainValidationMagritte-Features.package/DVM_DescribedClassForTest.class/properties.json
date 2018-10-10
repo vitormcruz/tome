@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "DescribedClass",
+	"name" : "DVM_DescribedClassForTest",
 	"type" : "normal"
 }
