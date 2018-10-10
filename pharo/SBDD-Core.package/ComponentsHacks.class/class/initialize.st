@@ -8,5 +8,5 @@ initialize
 	ClySystemEnvironmentPlugin compile: 'isTestMethod: aMethod
 	^ aMethod isTestMethod.'.
 	
-	ClySystemEnvironmentPlugin compile: 'isTestMethod: aMethod
+	ClySUnitEnvironmentPlugin compile: 'isTestMethod: aMethod
 	^ aMethod isTestMethod.'.
