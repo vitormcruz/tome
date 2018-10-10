@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "MABasicObject",
+	"category" : "DomainValidationMagritte-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"paramsDesciptions"
+	],
+	"name" : "MAMessageDescription",
+	"type" : "normal"
+}
