@@ -1,3 +1,3 @@
 description
 whereParams: aCollection 
-	paramsDesciptions := aCollection asMagritteContainer.
+	paramsDesciptions := aCollection asOrderedCollection.

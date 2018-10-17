@@ -7,7 +7,8 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"maStringDescription",
-		"validation"
+		"validation",
+		"premisses"
 	],
 	"name" : "ValidationForString",
 	"type" : "normal"
