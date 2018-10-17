@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "MABasicObject",
+	"super" : "MAObject",
 	"category" : "DomainValidationMagritte-Core",
 	"classinstvars" : [ ],
 	"pools" : [ ],

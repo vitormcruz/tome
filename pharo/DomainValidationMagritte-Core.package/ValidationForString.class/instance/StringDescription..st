@@ -1,4 +1,7 @@
 instance creation
-StringDescription: aMAStringDescription 
+stringDescription: aMAStringDescription 
+
+	premisses := OrderedCollection new.
+	
 
 	maStringDescription := aMAStringDescription.

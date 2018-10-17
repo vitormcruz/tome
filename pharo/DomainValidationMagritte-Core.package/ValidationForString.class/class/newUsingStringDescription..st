@@ -1,4 +1,4 @@
 intance creation
 newUsingStringDescription: aMAStringDescription 
 	
-	^ super new StringDescription: aMAStringDescription.
+	^ super new stringDescription: aMAStringDescription.
