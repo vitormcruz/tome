@@ -1,5 +1,5 @@
 tests
-test_required_validation_generation
+test_required_true_validation_generation
 
 	| fakeObjectValidated generatedValidation |
 	fakeObjectValidated := Object new.

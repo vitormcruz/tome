@@ -6,8 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"descriptionOfProperty",
-		"validatedParamName"
+		"validatedParamName",
+		"validationSelector",
+		"valueExpectedInValidation"
 	],
 	"name" : "GeneratedValidation",
 	"type" : "normal"

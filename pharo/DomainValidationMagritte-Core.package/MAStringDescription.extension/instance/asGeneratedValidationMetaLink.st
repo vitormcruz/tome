@@ -1,10 +1,7 @@
 *DomainValidationMagritte-Core
 asGeneratedValidationMetaLink
-	^ MetaLink new metaObject: [ :instrumentedObject :parameter | 
-										(self properties asGeneratedValidationsForParamNamed: accessor readSelector)
-											inject: true
-											into: [ :resultValidation :validation | 
-														resultValidation | (validation validate: parameter for: instrumentedObject) ] ];
+	^ MetaLink new
+		metaObject: [ :instrumentedObject :arguments | self executeValidationsOn: instrumentedObject for: (arguments at: 1) ];
 		selector: #value:value:;
 		arguments: #(#object #arguments);
 		control: #before
