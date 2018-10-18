@@ -1,9 +1,10 @@
 *DomainValidationMagritte-Core
 asGeneratedValidationMetaLink
-
-	^ MetaLink new metaObject: [ :objectUnderValidation :describedObject | 
-										 self properties asGeneratedValidations inject: true into: [:resultValidation :validationBlock | 
-				  																									  resultValidation | (validationBlock value: objectUnderValidation value: describedObject) ]];
-						selector: #value:value:;
-						arguments: #(#arguments #object);
-						control: #before.
+	^ MetaLink new metaObject: [ :instrumentedObject :parameter | 
+										(self properties asGeneratedValidationsForParamNamed: accessor readSelector)
+											inject: true
+											into: [ :resultValidation :validation | 
+														resultValidation | (validation validate: parameter for: instrumentedObject) ] ];
+		selector: #value:value:;
+		arguments: #(#object #arguments);
+		control: #before

@@ -6,3 +6,5 @@ setUp
 										  flattened;
 										  select: #notNil;
 										  do: #uninstall.
+										
+	validationObserver := TestObserver new.
