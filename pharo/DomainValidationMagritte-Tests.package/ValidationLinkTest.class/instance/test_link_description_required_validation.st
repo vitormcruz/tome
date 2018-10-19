@@ -1,5 +1,5 @@
 tests
-test_apply_description_required_validation_link
+test_link_description_required_validation
 	| validationMetaLink objectValidated |
 
 	validationMetaLink := MAStringDescription new	accessor: #p1; required: true; asGeneratedValidationMetaLink.

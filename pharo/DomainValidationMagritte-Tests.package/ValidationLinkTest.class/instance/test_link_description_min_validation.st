@@ -1,5 +1,5 @@
 tests
-test_apply_description_min_validation_link
+test_link_description_min_validation
 	| validationMetaLink objectValidated |
 
 	validationMetaLink := MANumberDescription new	accessor: #p1; min: 20; asGeneratedValidationMetaLink.
