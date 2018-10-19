@@ -1,6 +1,7 @@
 accessors
 descriptionOfProperty: anAssociation 
 
-	validationSelector := ('isAValid{1}ValidationPremisseFor:' format: {anAssociation key asCamelCase.}) asSymbol. 
+	validationName := anAssociation key.
+	validationSelector := ('isAValid{1}ValidationPremisseFor:' format: {validationName asCamelCase}) asSymbol. 
 	valueExpectedInValidation := anAssociation value.
 	
