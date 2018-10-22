@@ -1,3 +1,3 @@
-as yet unclassified
+test  support
 extractInternalErrorsFrom: aString 
 	^ aString findTokens: {', '. 'and'}

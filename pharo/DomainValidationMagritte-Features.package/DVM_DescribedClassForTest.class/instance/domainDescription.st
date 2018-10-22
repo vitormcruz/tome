@@ -1,7 +1,7 @@
-as yet unclassified
+magritte-description
 domainDescription
 	<magritteDescription>
 		
-	^ MAMethodDescription new whereParams: {(#foremployee: isOfType: String) required: true.
-										             (#setSalary: isOfType: Number) required: true.}.
+	^ MAMethodDescription new whereParams: { MAStringDescription new accessor: #foremployee:; required: true.
+										             MANumberDescription new accessor: #setSalary:; required: true. }.
 	
