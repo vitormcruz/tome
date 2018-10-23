@@ -1,3 +1,0 @@
-*FluentMagritte-Core
-magritteDescriptionClass
-	^ MABooleanDescription.
