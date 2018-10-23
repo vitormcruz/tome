@@ -2,4 +2,4 @@ initialization
 initialize
 
 	self validationInitialize.
-	errors := Dictionary new.
+	validationNotifications := OrderedCollection new.
