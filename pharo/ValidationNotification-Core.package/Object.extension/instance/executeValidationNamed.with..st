@@ -1,2 +1,0 @@
-*ValidationNotification-Core
-executeValidationNamed: validationName with: validationBlock

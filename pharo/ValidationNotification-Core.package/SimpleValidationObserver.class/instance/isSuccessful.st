@@ -1,4 +1,4 @@
 testing
 isSuccessful
 
-	^ errors isEmpty.
+	^ self errors isEmpty.
