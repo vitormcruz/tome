@@ -6,9 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"error",
 		"issuer",
-		"context"
+		"context",
+		"errorString"
 	],
 	"name" : "ValidationErrorAnnouncement",
 	"type" : "normal"

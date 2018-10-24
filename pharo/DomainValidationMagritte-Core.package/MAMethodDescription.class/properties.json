@@ -6,7 +6,7 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"paramsDesciptions"
+		"paramsDescriptions"
 	],
 	"name" : "MAMethodDescription",
 	"type" : "normal"
