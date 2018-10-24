@@ -1,11 +1,11 @@
 {
-	"commentStamp" : "<historical>",
-	"super" : "PackageManifest",
+	"commentStamp" : "",
+	"super" : "TestCase",
 	"category" : "DomainValidationMagritte-Tests",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "ManifestDomainValidationMagritteTests",
+	"name" : "MAMethodDescriptionTest",
 	"type" : "normal"
 }

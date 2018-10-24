@@ -1,4 +1,4 @@
 as yet unclassified
-handleAnnouncer: announcement
+handleAnnouncer: validationAnnouncement
 
-	announcement fillDictionary: errors.
+	validationNotifications add: validationAnnouncement.

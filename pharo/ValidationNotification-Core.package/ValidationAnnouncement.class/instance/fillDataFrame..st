@@ -1,4 +1,4 @@
 notification
-fillDictionary: aDictionary
+fillDataFrame: aDataFrame
 
 	self subclassResponsibility.

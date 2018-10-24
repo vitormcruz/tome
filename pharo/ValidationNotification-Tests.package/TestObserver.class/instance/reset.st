@@ -1,4 +1,4 @@
 accessing
 reset
 	
-	errors removeAll.
+	validationNotifications removeAll.
