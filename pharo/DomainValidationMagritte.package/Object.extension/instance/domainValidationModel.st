@@ -1,4 +1,0 @@
-*DomainValidationMagritte
-domainValidationModel
-
-	self magritteDescription asValidationModel.

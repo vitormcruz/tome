@@ -1,4 +1,4 @@
 initialization
 initialize
 
-	self linkDomainValidation.
+	"self linkDomainValidation."

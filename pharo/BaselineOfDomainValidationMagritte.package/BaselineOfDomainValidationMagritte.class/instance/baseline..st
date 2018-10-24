@@ -4,13 +4,22 @@ baseline: spec
 	<baseline>
         
 	spec for: #'common' do: [
-		spec blessing: #'baseline'.
-		spec repository: 'https://vitormcruz@bitbucket.org/vitormcruz/unnamed_mess_of_stuff'.
-		spec package: #'DomainValidationMagritte'.
-		spec package: #'DomainValidationMagritte-Features' with: [ spec requires: 'LangExtensions-Core'].
+		spec blessing: #'baseline';
+		     repository: 'https://gitlab.com/vitormcruz/sandbox-st.git';
 		
-		spec group: 'default' with: #('core' 'tests');
-			  group: 'core' with: #('ValidationNotification-Core');
-			  group: 'tests' with: #('ValidationNotification-Tests')	
+		     baseline: 'LangExtensions' with: [ spec repository: 'https://gitlab.com/vitormcruz/sandbox-st:develop'; 
+															     loads: #(core) ];
+															
+		     project: 'Magritte3' with: [ spec repository: 'http://www.smalltalkhub.com/mc/Magritte/Magritte3/main'; 
+														  className: 'ConfigurationOfMagritte3'; 
+														  versionString: '3.5.1';
+														  loads: #(Core) ];
+		
+			  package: 'DomainValidationMagritte-Core' with: [ spec requires: 'Magritte3' ];
+			  package: 'DomainValidationMagritte-Tests' with: [ spec requires: 'LangExtensions' ];
+		     package: 'DomainValidationMagritte-Features' with: [ spec requires: 'LangExtensions' ];
+ 			  group: 'default' with: #('core' 'tests');
+			  group: 'core' with: #('DomainValidationMagritte-Core');
+			  group: 'tests' with: #(core 'DomainValidationMagritte-Features' 'DomainValidationMagritte-Tests')	
 	].
 
