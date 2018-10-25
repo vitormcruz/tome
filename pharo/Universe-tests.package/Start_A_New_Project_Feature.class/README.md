@@ -1,0 +1,1 @@
+I define and implement the various features of the automatic creation of a new Project.
