@@ -1,0 +1,1 @@
+A validation error must be able to answer to the asString message.
