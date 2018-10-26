@@ -1,4 +1,4 @@
 testing
-isSuccessful
+isValidationSuccessful
 
 	self subclassResponsibility.

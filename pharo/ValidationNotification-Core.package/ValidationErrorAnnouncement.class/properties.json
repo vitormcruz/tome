@@ -8,7 +8,7 @@
 	"instvars" : [
 		"issuer",
 		"context",
-		"errorString"
+		"error"
 	],
 	"name" : "ValidationErrorAnnouncement",
 	"type" : "normal"

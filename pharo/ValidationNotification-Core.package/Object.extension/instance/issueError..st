@@ -1,4 +1,4 @@
 *ValidationNotification-Core
-issueError: aString
+issueError: aValidationError
 
-	^ self issueError: aString withinContext: nil
+	^ self issueError: aValidationError withinContext: thisContext sender.

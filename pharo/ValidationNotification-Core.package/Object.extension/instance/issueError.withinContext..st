@@ -1,4 +1,4 @@
 *ValidationNotification-Core
-issueError: aString withinContext: aDictionary
+issueError: aValidationError withinContext: aContext
 
-	ValidationAnnouncement announcer announce: (ValidationErrorAnnouncement newForError: aString issuedBy: self withinContext: nil).
+	ValidationAnnouncement announcer announce: (ValidationErrorAnnouncement newForError: aValidationError issuedBy: self withinContext: aContext).

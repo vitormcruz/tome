@@ -8,7 +8,7 @@ test_link_description_method_validation
 	(DVM_ClassToPlugValidations >> #p1:p2:) ast link: validationMetaLink.
 	objectValidated := DVM_ClassToPlugValidations new.	
 	objectValidated p1: nil p2: 19.
-	self assertBlock: [ validationObserver isSuccessful not ].
+	self assertBlock: [ validationObserver isValidationSuccessful not ].
 	self assertCollection: validationObserver errors asArrayOfRows 
 		  hasSameElements: { {'p1.required'. objectValidated. nil.}.
 								  {'p2.min'.       objectValidated. nil.} }.

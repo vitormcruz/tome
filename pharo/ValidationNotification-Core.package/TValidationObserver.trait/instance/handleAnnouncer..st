@@ -1,4 +1,4 @@
-as yet unclassified
+announcement handling
 handleAnnouncer: announcement
 
 	self subclassResponsibility. 

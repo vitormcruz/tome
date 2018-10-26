@@ -6,5 +6,5 @@ test_link_description_min_validation
 	(DVM_ClassToPlugValidations >> #p1:) ast link: validationMetaLink.
 	objectValidated := DVM_ClassToPlugValidations new.	
 	objectValidated p1: 19.
-	self assertBlock: [ validationObserver isSuccessful not ].
+	self assertBlock: [ validationObserver isValidationSuccessful not ].
 	self assert: validationObserver errors equals: {('p1.min' -> {('issuer' -> objectValidated)} asDictionary)} asDictionary

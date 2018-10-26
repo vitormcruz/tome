@@ -1,2 +1,2 @@
 *ValidationNotification-Core
-issueMandatoryObligation: aString withinContext: aDictionary
+issueMandatoryObligation: aValidationError withinContext: aContext
