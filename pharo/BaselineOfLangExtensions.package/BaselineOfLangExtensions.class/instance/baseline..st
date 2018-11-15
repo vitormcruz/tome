@@ -5,7 +5,7 @@ baseline: spec
         
 	spec for: #'common' do: [
 		spec blessing: #'baseline';
-			  repository: 'https://gitlab.com/vitormcruz/sandbox-st.git';
+			  repository: 'https://gitlab.com/vitormcruz/sandbox-st/pharo/';
 		     package: 'ComplexCondition-Core' with: [ spec repository: 'http://www.squeaksource.com/ComplexCondition'; 
 																	     file: 'ComplexCondition-espin.1' ];
 															
