@@ -5,9 +5,9 @@ baseline: spec
         
 	spec for: #'common' do: [
 		spec blessing: #'baseline';
-		     repository: 'https://gitlab.com/vitormcruz/sandbox-st.git';
+		     repository: 'gitlab://vitormcruz/sandbox-st';
 		
-		     baseline: 'LangExtensions' with: [ spec repository: 'https://gitlab.com/vitormcruz/sandbox-st:develop'; 
+		     baseline: 'LangExtensions' with: [ spec repository: 'gitlab://vitormcruz/sandbox-st:develop'; 
 															     loads: #(core) ];
 															
 		     project: 'Magritte3' with: [ spec repository: 'http://www.smalltalkhub.com/mc/Magritte/Magritte3/main'; 

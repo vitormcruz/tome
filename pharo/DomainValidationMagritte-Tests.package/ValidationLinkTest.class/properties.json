@@ -1,13 +1,15 @@
 {
-	"commentStamp" : "",
-	"super" : "TestCase",
-	"category" : "DomainValidationMagritte-Tests",
-	"classinstvars" : [ ],
-	"pools" : [ ],
+	"classtraitcomposition" : "TAssertable classTrait",
 	"classvars" : [ ],
 	"instvars" : [
 		"validationObserver"
 	],
 	"name" : "ValidationLinkTest",
-	"type" : "normal"
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"traitcomposition" : "TAssertable",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "DomainValidationMagritte-Tests"
 }
