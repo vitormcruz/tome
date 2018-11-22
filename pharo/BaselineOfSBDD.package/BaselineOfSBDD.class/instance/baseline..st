@@ -5,7 +5,7 @@ baseline: spec
         
 	spec for: #'common' do: [
 		spec blessing: #'baseline';   
-		repository: 'https://gitlab.com/vitormcruz/sandbox-st.git';   
+		repository: 'gitlab://vitormcruz/sandbox-st';   
 		baseline: 'DataFrame' with: [ spec repository: 'github://PolyMathOrg/DataFrame:master'; 
 												   	 loads: #('Core') ];   
 														

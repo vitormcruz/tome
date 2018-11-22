@@ -1,15 +1,13 @@
 *DomainValidationMagritte-Core
 asGeneratedValidationMetaLink
 	^ MetaLink new
-		metaObject: [ :instrumentedObject :selector :arguments | 
+		metaObject: [ :instrumentedObject :operation :arguments | 
 							| vo |
-							self halt.
 							vo := SimpleValidationObserver new.
 							self executeValidationsOn: instrumentedObject for: (arguments at: 1).
-							vo isValidationSuccessful ifTrue: [ instrumentedObject perform: selector withArguments: arguments ].
+							vo isValidationSuccessful ifTrue: [ operation value: arguments ].
 													
 						];
 		selector: #value:value:value:;
-		arguments: #(#object #selector #arguments);
-		control: #instead;
-		level: 0.
+		arguments: #(#object #operation #arguments);
+		control: #instead.
