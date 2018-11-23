@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "DVM_ClassToPlugValidations",
+	"name" : "DVM_ClassToLinkValidations",
 	"type" : "normal"
 }

@@ -1,8 +1,8 @@
 initialization
 setUp
 
-	DVM_ClassToPlugValidations chain selectors;
-										  collect: [ :s | (DVM_ClassToPlugValidations >> s) ast links ]; 
+	DVM_ClassToLinkValidations chain selectors;
+										  collect: [ :s | (DVM_ClassToLinkValidations >> s) ast links ]; 
 										  flattened;
 										  select: #notNil;
 										  do: #uninstall.
