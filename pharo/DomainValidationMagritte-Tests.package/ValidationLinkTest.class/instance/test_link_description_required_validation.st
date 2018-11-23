@@ -1,10 +1,12 @@
 tests
 test_link_description_required_validation
-	| validationMetaLink objectValidated |
 
-	validationMetaLink := MAStringDescription new	accessor: #p1; required: true; asGeneratedValidationMetaLink.
-	(DVM_ClassToLinkValidations >> #p1:) ast link: validationMetaLink.
-	objectValidated := DVM_ClassToLinkValidations new.	
-	objectValidated p1: nil.
-	self assertBlock: [ validationObserver isValidationSuccessful not ].
-	self assert: validationObserver errors equals: {('p1.required' -> {('issuer' -> objectValidated)} asDictionary)} asDictionary
+	self applyLink: (MAStringDescription new	accessor: #p1; required: true; asGeneratedValidationMetaLink)
+		  intoObject: DVM_ClassToLinkValidations new 
+		  andDoWithIt: [ :objectInstrumented : contextHolder |
+            objectInstrumented p1: nil.
+				self assertBlock: [ validationObserver isValidationSuccessful not ].
+				self assertCollection: validationObserver errors asArrayOfRows  
+				     hasSameElements: { { DVM_ClassToLinkValidations name, '.p1.required'. objectInstrumented. contextHolder contents. } }.		      
+		  ]
+
