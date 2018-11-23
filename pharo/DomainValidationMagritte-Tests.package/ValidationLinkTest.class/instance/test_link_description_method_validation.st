@@ -5,8 +5,8 @@ test_link_description_method_validation
 	validationMetaLink := MAMethodDescription new	whereParams: { MAStringDescription new accessor: #p1; required: true.
 																					MANumberDescription new accessor: #p2; min: 20 }; asGeneratedValidationMetaLink.
 																					
-	(DVM_ClassToPlugValidations >> #p1:p2:) ast link: validationMetaLink.
-	objectValidated := DVM_ClassToPlugValidations new.	
+	(DVM_ClassToLinkValidations >> #p1:p2:) ast link: validationMetaLink.
+	objectValidated := DVM_ClassToLinkValidations new.	
 	objectValidated p1: nil p2: 19.
 	self assertBlock: [ validationObserver isValidationSuccessful not ].
 	self assertCollection: validationObserver errors asArrayOfRows 
