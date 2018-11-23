@@ -1,4 +1,4 @@
 as yet unclassified
-expectedErrorForValidation: aString andParameter: anObject
+expectedErrorForValidation: errorString andParameter: aSymbol
 
-	^ { 'param1.', aString -> {'issuer' -> fakeObjectValidated } asDictionary } asDictionary
+	^ { { fakeObjectValidated class name, '.', aSymbol, '.', errorString. fakeObjectValidated. fakeContext } }.

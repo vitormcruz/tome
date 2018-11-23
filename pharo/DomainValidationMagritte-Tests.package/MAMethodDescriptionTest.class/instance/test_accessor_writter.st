@@ -1,5 +1,5 @@
 tests
-test_sccessor_writter
+test_accessor_writter
 
 	self should: [MAMethodDescription new accessor: #anything] 
 		  raise: Error 
