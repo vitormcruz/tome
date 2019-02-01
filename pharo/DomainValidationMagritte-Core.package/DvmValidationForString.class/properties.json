@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "DomainValidationMagritte-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"maStringDescription",
+		"validation",
+		"premisses"
+	],
+	"name" : "DvmValidationForString",
+	"type" : "normal"
+}

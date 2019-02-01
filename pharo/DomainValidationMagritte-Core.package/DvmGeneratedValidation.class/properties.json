@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "DomainValidationMagritte-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"validatedParamName",
+		"validationSelector",
+		"valueExpectedInValidation",
+		"validationName"
+	],
+	"name" : "DvmGeneratedValidation",
+	"type" : "normal"
+}
