@@ -1,8 +1,8 @@
 scenarioSpecification
-scenario: scenarionName withSteps: aCollection examples: aDataFrame executeWithExtractedParams: aBlockClosure
+scenario: scenarionName withSteps: aStepCollection examples: anExampleOrderedCollection executeWithExtractedParams: aBlockClosure
 
-    ^ aDataFrame rowsAsColumnAssociatedWithData do: [ :params | 
+    ^ anExampleOrderedCollection asColumnAssociatedWithData do: [ :exampleParams | 
               self scenario: scenarionName
-                   withSteps: (aCollection collect: [ :parametrizedStep | self fillStep: parametrizedStep withParams: params ])
+                   withSteps: (aStepCollection collect: [ :parametrizedStep | self fillStep: parametrizedStep withParams: exampleParams ])
                    executeWithExtractedParams: aBlockClosure 
       ]
