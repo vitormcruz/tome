@@ -12,11 +12,11 @@ Validate_Method_Parameters_Scenario
 						   'then the following errors will be found: {errors}'.
 		    				}
 						
-		    examples:  ((DataFrame fromRows: #(('"forEmployee: ''John'' setSalary: 2000"' 'no error')
-														  ('"forEmployee: nil setSalary: nil"' 'Employee name is mandatory, Salary is mandatory and must be a positive integer')
-													  	  ('"forEmployee: ''John'' setSalary: 0"' 'Salary is mandatory and must be a positive integer')
-														  ('"forEmployee: ''John'' setSalary: -100"' 'Salary is mandatory and must be a positive integer')
-														 ))columnNames: #('message_send' 'errors'))
+		    examples:  #(('message_send' 'errors')
+							  ('"forEmployee: ''John'' setSalary: 2000"' 'no error')
+						  	  ('"forEmployee: nil setSalary: nil"' 'Employee name is mandatory, Salary is mandatory and must be a positive integer')
+							  ('"forEmployee: ''John'' setSalary: 0"' 'Salary is mandatory and must be a positive integer')
+							  ('"forEmployee: ''John'' setSalary: -100"' 'Salary is mandatory and must be a positive integer'))
 														
 		    executeWithExtractedParams: [:description :messageSent :expectedErrorsString | 
 		        describedClass := Smalltalk compiler source: 'DVM_DescribedClassForTest new ' , messageSent, '; yourself'; evaluate.
