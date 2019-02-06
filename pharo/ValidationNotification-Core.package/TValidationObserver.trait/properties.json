@@ -1,5 +1,7 @@
 {
-	"name" : "TValidationObserver",
 	"commentStamp" : "<historical>",
-	"category" : "ValidationNotification-Core"
+	"classinstvars" : [ ],
+	"category" : "ValidationNotification-Core",
+	"instvars" : [ ],
+	"name" : "TValidationObserver"
 }
