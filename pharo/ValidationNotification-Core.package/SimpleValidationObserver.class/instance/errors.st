@@ -1,9 +1,6 @@
 accessing
 errors
-	"Return all current errors in a DataFrame object"
+	"Return all current errors"
 	
-	validationNotifications ifEmpty: [ ^ DataFrame new ].
-	
-	^ DataFrame fromTable: (validationNotifications chain 
-																  collect: #asValidationErrorRow; 
-																  ifNotEmpty: [:it | it addFirst: #(errorName issuer context); yourself ]).
+	validationNotifications ifEmpty: [ ^ {  } ].
+	^ validationNotifications collect: #asValidationErrorRow.

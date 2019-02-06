@@ -8,7 +8,7 @@ test_N_error_issued
 	self issueError: 'Test error 2'.
 	self issueError: 'Test error 3'.
 	self assertBlock: [ validationObserver isValidationSuccessful not ].
-	self assertCollection: validationObserver errors asArrayOfRows 
+	self assertCollection: validationObserver errors 
 		  hasSameElements: { {'Test error 1'. self.  thisContext}.
  								   {'Test error 2'. self.  thisContext}.
 								   {'Test error 3'. self.  thisContext} }.
