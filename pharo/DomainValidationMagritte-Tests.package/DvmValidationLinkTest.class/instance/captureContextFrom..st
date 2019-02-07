@@ -1,15 +1,14 @@
 support
 captureContextFrom: aMetaLink 
 	
-	| contextCaptured |
+	| contextCaptured originalMetaObject originalSelector|
 	
-	"TODO: Change this 'in' "
 	contextCaptured := ValueHolder new.	
-	aMetaLink metaObject in: [ :originalMetaObject |
-		aMetaLink metaObject: [ :instrumentedObject :operation :arguments :context |
-			contextCaptured contents: context.
-			originalMetaObject value: instrumentedObject value: operation value: arguments value: context.
-		].		
-	].
-
+	originalSelector := aMetaLink selector.
+	originalMetaObject := aMetaLink metaObject.
+	aMetaLink selector: 'value:value:value:value:';
+				metaObject: [ :operation :instrumentedObject :arguments :context |
+					contextCaptured contents: context.
+					originalMetaObject perform: originalSelector withArguments: {operation. instrumentedObject. arguments. context.}.
+				].
 	^ contextCaptured.

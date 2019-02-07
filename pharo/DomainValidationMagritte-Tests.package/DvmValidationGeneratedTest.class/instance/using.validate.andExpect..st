@@ -3,5 +3,5 @@ using: aGeneratedValidation validate: anObjectToValidate andExpect: anErrorStrut
 
 	validationObserver reset.
 	aGeneratedValidation validate: anObjectToValidate for: fakeObjectValidated fromContext: fakeContext.
-	self assertCollection: validationObserver errors asArrayOfRows asSet 
+	self assertCollection: validationObserver errors asSet 
 	     hasSameElements: anErrorStruture.

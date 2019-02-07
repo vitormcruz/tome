@@ -13,6 +13,6 @@ test_link_description_binary_param_keyword_method_validation
 	objectInstrumented p1: nil p2: 19.
 	
  	self assertBlock: [ validationObserver isValidationSuccessful not ].
-	self assertCollection: validationObserver errors asArrayOfRows 
+	self assertCollection: validationObserver errors 
 	     hasSameElements: {{ DvmClassToLinkValidations name, '.p1.required'. objectInstrumented. contextHolder contents. }.
 								  { DvmClassToLinkValidations name, '.p2.min'. objectInstrumented. contextHolder contents. } }.
