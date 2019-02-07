@@ -1,5 +1,5 @@
 *DomainValidationMagritte-Core
-executeValidationsOn: instrumentedObject for: parameters fromContext: context
+executeValidationsOn: instrumentedObject for: parameters withingContext: context
 
 	^ (self properties asGeneratedValidationsForParamNamed: accessor readSelector)
 		inject: true

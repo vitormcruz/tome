@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "DomainValidationMagritte-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"#tests => BooleanSlot",
+		"#tests2 => BooleanSlot",
+		"#tests3 => BooleanSlot"
+	],
+	"name" : "TestClassWithSlots",
+	"type" : "normal"
+}
