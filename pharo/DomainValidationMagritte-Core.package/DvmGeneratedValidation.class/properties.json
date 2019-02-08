@@ -9,7 +9,8 @@
 		"validatedParamName",
 		"validationSelector",
 		"valueExpectedInValidation",
-		"validationName"
+		"validationName",
+		"paramNumber"
 	],
 	"name" : "DvmGeneratedValidation",
 	"type" : "normal"
