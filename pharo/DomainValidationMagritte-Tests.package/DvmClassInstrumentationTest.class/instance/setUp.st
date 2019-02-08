@@ -3,10 +3,10 @@ setUp
 										
 	validationObserver := TestObserver new.
 	
-	DvmDescribedClassForTest chain selectors;
-										  collect: [ :s | (DvmDescribedClassForTest >> s) ast links ]; 
+	DvmDescribedClassForInstrumentation chain selectors;
+										  collect: [ :s | (DvmDescribedClassForInstrumentation >> s) ast links ]; 
 										  flattened;
 										  select: #notNil;
 										  do: #uninstall.
 										
-	DvmDescribedClassForTest initialize.
+	DvmDescribedClassForInstrumentation initialize.

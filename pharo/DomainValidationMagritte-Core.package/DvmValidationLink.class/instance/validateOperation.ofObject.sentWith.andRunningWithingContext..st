@@ -1,4 +1,4 @@
-as yet unclassified
+link api
 validateOperation: operation ofObject: instrumentedObject sentWith: parameters andRunningWithingContext: context
 	""
 
