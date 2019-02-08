@@ -2,6 +2,9 @@ tests
 using: aGeneratedValidation validate: anObjectToValidate andExpect: anErrorStruture
 
 	validationObserver reset.
-	aGeneratedValidation validate: anObjectToValidate for: fakeObjectValidated fromContext: fakeContext.
-	self assertCollection: validationObserver errors asSet 
-	     hasSameElements: anErrorStruture.
+	aGeneratedValidation validateFor: fakeObjectValidated
+								withParamsProvided: {anObjectToValidate}
+								fromContext: fakeContext.
+								
+	self assertCollection: validationObserver errors asSet
+		  hasSameElements: anErrorStruture
