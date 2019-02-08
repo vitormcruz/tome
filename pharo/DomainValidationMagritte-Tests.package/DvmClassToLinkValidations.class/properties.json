@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "vitormcruz 10/22/2018 14:57",
 	"super" : "Object",
-	"category" : "DomainValidationMagritte-Tests",
+	"category" : "DomainValidationMagritte-Tests-Link",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

@@ -1,13 +1,13 @@
 {
 	"commentStamp" : "",
 	"super" : "Object",
-	"category" : "DomainValidationMagritte-Tests",
+	"category" : "DomainValidationMagritte-Tests-Instrument",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
 		"prop1"
 	],
-	"name" : "DvmDescribedClassForTest",
+	"name" : "DvmDescribedClassForInstrumentation",
 	"type" : "normal"
 }
