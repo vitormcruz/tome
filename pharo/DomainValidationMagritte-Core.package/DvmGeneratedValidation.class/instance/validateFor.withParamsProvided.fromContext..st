@@ -1,6 +1,12 @@
 validation
 validateFor: instrumentedObject withParamsProvided: parameters fromContext: context
+	| parameter |
 	
-	^ (valueExpectedInValidation perform: validationSelector with: (parameters at: paramNumber)) 
-		ifFalse: [ instrumentedObject issueError: (instrumentedObject class name, '.', validatedParamName , '.', validationName) asString withinContext: context ]; 
-		yourself.
+	parameter := parameters at: paramNumber.
+	(validation value: parameter) ifFalse: [ 
+	    instrumentedObject issueError: (self errorMessage: instrumentedObject)
+                          withinContext: context 
+   ].
+
+	^ instrumentedObject.
+	

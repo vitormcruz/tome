@@ -1,3 +1,0 @@
-generated-validation
-doGeneratedValidation
-	validation value.
