@@ -5,11 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"maStringDescription",
-		"validation",
-		"premisses"
-	],
-	"name" : "DvmValidationForString",
+	"instvars" : [ ],
+	"name" : "DvmValidationPropertyMapper",
 	"type" : "normal"
 }

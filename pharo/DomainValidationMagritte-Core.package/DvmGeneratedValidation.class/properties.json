@@ -7,10 +7,10 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"validatedParamName",
-		"validationSelector",
-		"valueExpectedInValidation",
 		"validationName",
-		"paramNumber"
+		"paramNumber",
+		"validation",
+		"validationPremisse"
 	],
 	"name" : "DvmGeneratedValidation",
 	"type" : "normal"
