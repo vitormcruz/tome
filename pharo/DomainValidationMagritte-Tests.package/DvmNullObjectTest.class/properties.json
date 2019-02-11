@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "Object",
-	"category" : "DomainValidationMagritte-Core",
+	"super" : "TestCase",
+	"category" : "DomainValidationMagritte-Tests-Instrument",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "NilObject",
+	"name" : "DvmNullObjectTest",
 	"type" : "normal"
 }

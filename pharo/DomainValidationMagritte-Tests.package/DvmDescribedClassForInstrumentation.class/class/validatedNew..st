@@ -5,5 +5,5 @@ validatedNew: aInstanceCreationBlock
 	
 	validationObserver := SimpleValidationObserver new.
 	newInstance := aInstanceCreationBlock value.
-	validationObserver isValidationSuccessful ifTrue: [ ^ newInstance  ] ifFalse: [ ^ NilObject new ].
+	validationObserver isValidationSuccessful ifTrue: [ ^ newInstance  ] ifFalse: [ ^ NullObject new ].
 	
