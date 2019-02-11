@@ -1,4 +1,4 @@
 tests
 testInstantiatingInvalidObject
 
-	self assertBlock: [ (DvmDescribedClassForInstrumentation withProp1: nil) isKindOf: NilObject].
+	self assertBlock: [ (DvmDescribedClassForInstrumentation withProp1: nil) isKindOf: NullObject].
