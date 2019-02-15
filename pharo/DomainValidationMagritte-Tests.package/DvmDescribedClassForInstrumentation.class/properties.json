@@ -1,13 +1,15 @@
 {
-	"commentStamp" : "",
-	"super" : "Object",
-	"category" : "DomainValidationMagritte-Tests-Instrument",
-	"classinstvars" : [ ],
-	"pools" : [ ],
+	"classtraitcomposition" : "TValidationInstrumentation classTrait",
 	"classvars" : [ ],
 	"instvars" : [
 		"prop1"
 	],
 	"name" : "DvmDescribedClassForInstrumentation",
-	"type" : "normal"
+	"commentStamp" : "",
+	"super" : "Object",
+	"traitcomposition" : "TValidationInstrumentation",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "DomainValidationMagritte-Tests-Instrument"
 }

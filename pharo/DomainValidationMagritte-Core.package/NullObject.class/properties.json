@@ -1,14 +1,18 @@
 {
-	"commentStamp" : "",
-	"super" : "Object",
-	"category" : "DomainValidationMagritte-Core",
-	"classinstvars" : [ ],
-	"pools" : [ ],
+	"classtraitcomposition" : "TValidationInstrumentation classTrait @ {#initializeValidationInstrumentation->#initialize}",
 	"classvars" : [ ],
 	"instvars" : [
 		"errors",
 		"derivedClass"
 	],
 	"name" : "NullObject",
-	"type" : "normal"
+	"commentStamp" : "",
+	"super" : "Object",
+	"traitcomposition" : "TValidationInstrumentation",
+	"type" : "normal",
+	"classinstvars" : [
+		"errorKeyMap"
+	],
+	"pools" : [ ],
+	"category" : "DomainValidationMagritte-Core"
 }
