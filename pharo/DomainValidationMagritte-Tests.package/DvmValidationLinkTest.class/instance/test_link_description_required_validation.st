@@ -11,5 +11,5 @@ test_link_description_required_validation
    objectInstrumented p1: nil.
 
 	self assertBlock: [ validationObserver isValidationSuccessful not ].
-	self assertCollection: validationObserver errors  
-        hasSameElements: { { DvmClassToLinkValidations name, '.p1.required'. objectInstrumented. contextHolder contents. } }.
+	self assertCollection: validationObserver errorArray  
+        hasSameElements: { { DvmClassToLinkValidations name, '.p1:.p1.required'. objectInstrumented. contextHolder contents. } }.

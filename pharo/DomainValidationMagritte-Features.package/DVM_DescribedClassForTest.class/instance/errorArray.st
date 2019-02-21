@@ -1,3 +1,3 @@
 accessing
-errors
+errorArray
 	 ^ {'no error'}

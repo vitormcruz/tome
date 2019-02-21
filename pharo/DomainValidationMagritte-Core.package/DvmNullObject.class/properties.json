@@ -5,7 +5,7 @@
 		"errors",
 		"derivedClass"
 	],
-	"name" : "NullObject",
+	"name" : "DvmNullObject",
 	"commentStamp" : "",
 	"super" : "Object",
 	"traitcomposition" : "TValidationInstrumentation",

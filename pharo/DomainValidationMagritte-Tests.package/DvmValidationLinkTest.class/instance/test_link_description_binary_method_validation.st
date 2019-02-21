@@ -11,5 +11,5 @@ test_link_description_binary_method_validation
 	objectInstrumented @ 19.
 	
  	self assertBlock: [ validationObserver isValidationSuccessful not ].
-	self assertCollection: validationObserver errors  
-	     hasSameElements: {{ DvmClassToLinkValidations name, '.@.min'. objectInstrumented. contextHolder contents. }}.
+	self assertCollection: validationObserver errorArray  
+	     hasSameElements: {{ DvmClassToLinkValidations name, '.@.@.min'. objectInstrumented. contextHolder contents. }}.

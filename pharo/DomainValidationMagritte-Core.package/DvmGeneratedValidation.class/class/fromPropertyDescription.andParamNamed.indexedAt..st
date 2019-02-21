@@ -3,5 +3,5 @@ fromPropertyDescription: anAssociation andParamNamed: aSymbol indexedAt: anInteg
 
 	^ super new descriptionProperty: anAssociation; 
 					validatedParamName: aSymbol; 
-					paramNumber: anInteger.
+					paramIndex: anInteger.
 	

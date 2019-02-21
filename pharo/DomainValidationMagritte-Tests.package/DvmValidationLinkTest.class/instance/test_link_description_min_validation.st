@@ -10,7 +10,7 @@ test_link_description_min_validation
 	objectInstrumented := DvmClassToLinkValidations new.
 	objectInstrumented p1: 19.
 	self assertBlock: [ validationObserver isValidationSuccessful not ].
-	self assertCollection: validationObserver errors 
-	     hasSameElements: { { DvmClassToLinkValidations name, '.p1.min'. objectInstrumented. contextHolder contents. } }.
+	self assertCollection: validationObserver errorArray 
+	     hasSameElements: { { DvmClassToLinkValidations name, '.p1:.p1.min'. objectInstrumented. contextHolder contents. } }.
 
 
