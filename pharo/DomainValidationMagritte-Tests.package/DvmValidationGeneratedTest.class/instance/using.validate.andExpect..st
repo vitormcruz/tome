@@ -6,5 +6,5 @@ using: aGeneratedValidation validate: anObjectToValidate andExpect: anErrorStrut
 								withParamsProvided: {anObjectToValidate}
 								fromContext: fakeContext.
 								
-	self assertCollection: validationObserver errors asSet
+	self assertCollection: validationObserver errorArray asSet
 		  hasSameElements: anErrorStruture

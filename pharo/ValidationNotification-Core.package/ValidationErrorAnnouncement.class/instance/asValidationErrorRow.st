@@ -1,4 +1,4 @@
 converting
 asValidationErrorRow
 
-	^ {error. issuer. context.}.
+	^ {errorMessage. issuer. context.}.

@@ -8,9 +8,9 @@
 	"instvars" : [
 		"validatedParamName",
 		"validationName",
-		"paramNumber",
 		"validation",
-		"validationPremisse"
+		"validationPremisse",
+		"paramIndex"
 	],
 	"name" : "DvmGeneratedValidation",
 	"type" : "normal"

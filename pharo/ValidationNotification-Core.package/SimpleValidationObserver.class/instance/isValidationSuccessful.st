@@ -1,4 +1,4 @@
 testing
 isValidationSuccessful
 
-	^ self errors isEmpty.
+	^ self errorArray isEmpty.

@@ -14,8 +14,8 @@ test_link_description_N_param_keyword_method_validation
 	objectInstrumented p1: nil p2: 19 p3: 44.
 	
  	self assertBlock: [ validationObserver isValidationSuccessful not ].
-	self assertCollection: validationObserver errors 
-	     hasSameElements: {{ DvmClassToLinkValidations name, '.p1.required'. objectInstrumented. contextHolder contents. }.
-								 { DvmClassToLinkValidations name, '.p2.min'. objectInstrumented. contextHolder contents. }. 
-                          { DvmClassToLinkValidations name, '.p3.min'. objectInstrumented. contextHolder contents. }. 
+	self assertCollection: validationObserver errorArray 
+	     hasSameElements: {{ DvmClassToLinkValidations name, '.p1:p2:p3:.p1.required'. objectInstrumented. contextHolder contents. }.
+								 { DvmClassToLinkValidations name, '.p1:p2:p3:.p2.min'. objectInstrumented. contextHolder contents. }. 
+                          { DvmClassToLinkValidations name, '.p1:p2:p3:.p3.min'. objectInstrumented. contextHolder contents. }. 
 								}.

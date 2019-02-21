@@ -12,7 +12,7 @@ Validate_Method_Parameters_Scenario
 						   'then the following errors will be found: {errors}'.
 		    				}
 						
-		    examples:  #(('message_send' 'errors')
+		    examples:  #(('message_send' #errorArray)
 							  ('"forEmployee: ''John'' setSalary: 2000"' 'no error')
 						  	  ('"forEmployee: nil setSalary: nil"' 'Employee name is mandatory, Salary is mandatory and must be a positive integer')
 							  ('"forEmployee: ''John'' setSalary: 0"' 'Salary is mandatory and must be a positive integer')
@@ -20,6 +20,6 @@ Validate_Method_Parameters_Scenario
 														
 		    executeWithExtractedParams: [:description :messageSent :expectedErrorsString | 
 		        describedClass := Smalltalk compiler source: 'DVM_DescribedClassForTest new ' , messageSent, '; yourself'; evaluate.
-			  	  self assert: describedClass errors asSet equals: (self extractInternalErrorsFrom: expectedErrorsString) asSet
+			  	  self assert: describedClass errorArray asSet equals: (self extractInternalErrorsFrom: expectedErrorsString) asSet
 		    ].
 

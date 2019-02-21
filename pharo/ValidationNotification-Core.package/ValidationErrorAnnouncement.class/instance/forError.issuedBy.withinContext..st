@@ -1,7 +1,7 @@
 instance creation
 forError: aString issuedBy: anObject withinContext: aContext
 
-	error := aString.
+	errorMessage := aString.
 	issuer := anObject.
 	context := aContext.
 	
