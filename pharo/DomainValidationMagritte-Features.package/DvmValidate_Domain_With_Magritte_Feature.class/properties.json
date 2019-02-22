@@ -5,7 +5,9 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"validationObserver"
+	],
 	"name" : "DvmValidate_Domain_With_Magritte_Feature",
 	"type" : "normal"
 }
