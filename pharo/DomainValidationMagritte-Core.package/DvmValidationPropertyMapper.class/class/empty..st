@@ -1,7 +1,7 @@
 accessing-properties
-empty: aBoolean
+empty: validationPremisse
 
 	^ [ :value | 
-		aBoolean ifTrue: [ true ]
-					ifFalse: [ value isNotNil and: [value isNotEmpty]]
+		validationPremisse ifTrue: [ true ]
+								ifFalse: [ value isNotNil and: [value isNotEmpty]]
 	]

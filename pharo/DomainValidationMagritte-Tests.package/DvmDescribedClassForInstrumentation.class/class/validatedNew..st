@@ -5,5 +5,6 @@ validatedNew: aInstanceCreationBlock
 	
 	validationObserver := SimpleValidationObserver new.
 	newInstance := aInstanceCreationBlock value.
-	validationObserver isValidationSuccessful ifTrue: [ ^ newInstance  ] ifFalse: [ ^ DvmNullObject new ].
+	validationObserver onValidationSucess: [ ^ newInstance  ] 
+							 onValidationError: [ :errors | ^ DvmNullObject newBecauseOfErrors: errors  whileCreatingA: self class ].
 	
