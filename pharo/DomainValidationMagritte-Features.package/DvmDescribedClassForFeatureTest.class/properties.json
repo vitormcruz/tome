@@ -1,0 +1,13 @@
+{
+	"classtraitcomposition" : "TValidationInstrumentation classTrait",
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "DvmDescribedClassForFeatureTest",
+	"commentStamp" : "vitormcruz 10/22/2018 14:51",
+	"super" : "Object",
+	"traitcomposition" : "TValidationInstrumentation",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "DomainValidationMagritte-Features"
+}

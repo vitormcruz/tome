@@ -1,3 +1,5 @@
 test  support
 extractInternalErrorsFrom: aString 
-	^ aString findTokens: {', '. 'and'}
+	^ aString chain 
+				 findTokens: {', '. 'and'};
+				 copyWithout: 'no error'.
