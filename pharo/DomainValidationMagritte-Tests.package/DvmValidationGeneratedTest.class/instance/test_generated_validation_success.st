@@ -1,5 +1,5 @@
 tests
-test_generated_required_false_execution_validation
+test_generated_validation_success
 
 	self using: (#required -> false asValidationForParam: #param1 indexedAt: 1) 
 		  validateExpectingSucess: nil.
