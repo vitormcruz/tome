@@ -18,8 +18,8 @@ baseline: spec
 														  loads: #(Core) ];
 		
 			  package: 'DomainValidationMagritte-Core' with: [ spec requires: 'Magritte3' ];
-			  package: 'DomainValidationMagritte-Tests' with: [ spec requires: 'LangExtensions' ];
-		     package: 'DomainValidationMagritte-Features' with: [ spec requires: 'LangExtensions' ];
+			  package: 'DomainValidationMagritte-Tests' with: [ spec requires: #('LangExtensions' 'DomainValidationMagritte-Core') ];
+		     package: 'DomainValidationMagritte-Features' with: [ spec requires: #('LangExtensions' 'DomainValidationMagritte-Core') ];
  			  group: 'default' with: #('core' 'tests');
 			  group: 'core' with: #('DomainValidationMagritte-Core');
 			  group: 'tests' with: #(core 'DomainValidationMagritte-Features' 'DomainValidationMagritte-Tests' 'Mocketry').
