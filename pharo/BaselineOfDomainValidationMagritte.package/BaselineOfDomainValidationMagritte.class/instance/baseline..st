@@ -10,6 +10,9 @@ baseline: spec
 		     baseline: 'LangExtensions' with: [ spec repository: 'gitlab://vitormcruz/sandbox-st:develop'; 
 															     loads: #(core) ];
 														
+		     baseline: 'SBDD' with: [ spec repository: 'gitlab://vitormcruz/sandbox-st:develop'; 
+															     loads: #(core) ];
+														
 		     baseline: 'Mocketry' with: [ spec repository: 'github://dionisiydk/Mocketry:v4.0.6' ];
 															
 		     project: 'Magritte3' with: [ spec repository: 'http://www.smalltalkhub.com/mc/Magritte/Magritte3/main'; 
@@ -18,10 +21,10 @@ baseline: spec
 														  loads: #(Core) ];
 		
 			  package: 'DomainValidationMagritte-Core' with: [ spec requires: 'Magritte3' ];
-			  package: 'DomainValidationMagritte-Tests' with: [ spec requires: #('LangExtensions' 'DomainValidationMagritte-Core') ];
+			  package: 'DomainValidationMagritte-Tests' with: [ spec requires: #('LangExtensions' 'DomainValidationMagritte-Core' 'SBDD' 'Mocketry') ];
 		     package: 'DomainValidationMagritte-Features' with: [ spec requires: #('LangExtensions' 'DomainValidationMagritte-Core') ];
  			  group: 'default' with: #('core' 'tests');
 			  group: 'core' with: #('DomainValidationMagritte-Core');
-			  group: 'tests' with: #(core 'DomainValidationMagritte-Features' 'DomainValidationMagritte-Tests' 'Mocketry').
+			  group: 'tests' with: #(core 'DomainValidationMagritte-Features' 'DomainValidationMagritte-Tests').
 	].
 
