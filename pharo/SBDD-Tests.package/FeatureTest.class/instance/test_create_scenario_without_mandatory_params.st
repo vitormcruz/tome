@@ -1,4 +1,4 @@
-tests
+ tests scenarios execution
 test_create_scenario_without_mandatory_params
 
 	self should: [ Feature new scenario: nil withSteps: nil executeWithExtractedParams: nil ] 

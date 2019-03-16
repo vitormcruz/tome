@@ -1,0 +1,3 @@
+code-critics
+ruleRBCollectSelectNotUsedRuleV1FalsePositive
+	^ #(#(#(#RGMethodDefinition #(#FeatureTest #test_scenario_outline_identification #false)) #'2019-03-15T23:03:37.584689-03:00') #(#(#RGMethodDefinition #(#FeatureTest #test_scenario_outline_execution_on_creation #false)) #'2019-03-15T23:03:51.452689-03:00') #(#(#RGMethodDefinition #(#FeatureTest #tearDown #false)) #'2019-03-15T23:04:28.158689-03:00') )
