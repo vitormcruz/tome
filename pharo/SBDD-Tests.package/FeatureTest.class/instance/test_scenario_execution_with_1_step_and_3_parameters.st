@@ -1,4 +1,4 @@
-tests
+ tests scenarios execution
 test_scenario_execution_with_1_step_and_3_parameters
 
     Feature new scenario: 'scenario_test' 
