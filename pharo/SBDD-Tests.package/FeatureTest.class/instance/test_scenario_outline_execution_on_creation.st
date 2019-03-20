@@ -6,7 +6,7 @@ test_scenario_outline_execution_on_creation
 		<scenarioOutline>
 		<createdForTest>
 		
-		self compile: ''scenarioOutlineTestCreationOk <createdForTest>''
+		^ {self compile: ''scenarioOutlineTestCreationOk <createdForTest> <scenarioGeneratedBy: #scenarioOutlineTestCreation>''}.
 	'.
 
 	self assertBlock: [FeatureSubclassForTest methods chain 

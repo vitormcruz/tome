@@ -1,0 +1,4 @@
+tests - isScenarioOutline
+test_isScenarioOutline_in_a_non_feature_class_with_methods_annoated_as_scenarios_ouline
+
+	self assert: NonFeatureClassWithWroglyScenarioOutlineAnnotations myMethodsOutlineSelectors isEmpty.
