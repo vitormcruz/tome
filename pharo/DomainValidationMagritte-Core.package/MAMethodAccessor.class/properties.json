@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "MAAccessor",
+	"category" : "DomainValidationMagritte-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"readSelector",
+		"writeSelector"
+	],
+	"name" : "MAMethodAccessor",
+	"type" : "normal"
+}

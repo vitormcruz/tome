@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "DynamicVariable",
+	"category" : "DomainValidationMagritte-Tests-Extensions",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "DvmParamDescription",
+	"type" : "normal"
+}
