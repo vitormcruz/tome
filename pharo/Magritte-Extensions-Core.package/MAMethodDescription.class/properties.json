@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MAContainer",
+	"category" : "Magritte-Extensions-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "MAMethodDescription",
+	"type" : "normal"
+}
