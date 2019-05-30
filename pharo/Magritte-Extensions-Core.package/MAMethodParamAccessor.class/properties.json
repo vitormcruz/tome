@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "MAAccessor",
+	"category" : "Magritte-Extensions-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"selectorAccessor",
+		"index"
+	],
+	"name" : "MAMethodParamAccessor",
+	"type" : "normal"
+}
