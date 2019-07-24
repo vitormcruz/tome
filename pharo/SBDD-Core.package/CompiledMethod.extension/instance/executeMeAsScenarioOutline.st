@@ -1,5 +1,5 @@
 *SBDD-Core
-executeMeIfScenarioOutline
+executeMeAsScenarioOutline
 
 	| selectorsMethodsCreated |
 
