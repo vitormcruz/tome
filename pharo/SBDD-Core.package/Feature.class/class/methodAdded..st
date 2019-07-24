@@ -1,4 +1,4 @@
 method change dealing
 methodAdded: aMethodAddedAnnouncement
 
-	aMethodAddedAnnouncement methodAdded executeMeIfScenarioOutline.
+	aMethodAddedAnnouncement methodAdded executeMeAsScenarioOutline.
