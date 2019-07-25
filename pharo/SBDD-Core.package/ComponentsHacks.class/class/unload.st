@@ -3,7 +3,7 @@ unload
 
 	CompiledMethod compile: compiledMethodOriginalIsTestMethodImpl.
 
-	ClySystemEnvironmentPlugin removeSelector: #isTestMethod:.
+	ClySystemEnvironmentPlugin removeSelector: #isTestMethod.
 	
 	ClySUnitEnvironmentPlugin compile: clySUnitEnvironmentPluginIsTestMethodImpl.
 	

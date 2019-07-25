@@ -9,6 +9,6 @@ initialize
 	ClySystemEnvironmentPlugin compile: 'isTestMethod: aMethod
 	^ aMethod isTestMethod.'.
 
-	clySUnitEnvironmentPluginIsTestMethodImpl := (ClySUnitEnvironmentPlugin >> #isTestMethod) sourceCode.	
+	clySUnitEnvironmentPluginIsTestMethodImpl := (ClySUnitEnvironmentPlugin >> #isTestMethod:) sourceCode.	
 	ClySUnitEnvironmentPlugin compile: 'isTestMethod: aMethod
 	^ aMethod isTestMethod.'.
