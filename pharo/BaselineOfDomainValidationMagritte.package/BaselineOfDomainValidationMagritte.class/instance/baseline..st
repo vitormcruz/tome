@@ -21,7 +21,7 @@ baseline: spec
 														
 		     baseline: 'Mocketry' with: [ spec repository: 'github://dionisiydk/Mocketry:v4.0.6' ];
 															
-		     baseline: 'Magritte' with: [ spec repository: 'github://magritte-metamodel/magritte:master'; 
+		     baseline: 'Magritte' with: [ spec repository: 'github://magritte-metamodel/magritte:v3.5.4'; 
  													     loads: #(Core) ];
 		
 			  package: 'DomainValidationMagritte-Core' with: [ spec requires: #('LangExtensions' 'Magritte' 'ValidationNotification') ];
