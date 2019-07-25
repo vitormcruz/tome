@@ -23,12 +23,16 @@ baseline: spec
 															
 		     baseline: 'Magritte' with: [ spec repository: 'github://magritte-metamodel/magritte:v3.5.4'; 
  													     loads: #(Core) ];
+												
+			  package: 'Magritte-Extensions-Core' with: [ spec repository: 'gitlab://vitormcruz/sandbox-st:develop' ];
+			  package: 'Magritte-Extensions-Tests' with: [ spec repository: 'gitlab://vitormcruz/sandbox-st:develop'];										
 		
 			  package: 'DomainValidationMagritte-Core' with: [ spec requires: #('LangExtensions' 'Magritte' 'ValidationNotification') ];
 			  package: 'DomainValidationMagritte-Tests' with: [ spec requires: #('DomainValidationMagritte-Core' 'SBDD' 'Mocketry' 'ValidationNotificationTests') ];
 		     package: 'DomainValidationMagritte-Features' with: [ spec requires: #('LangExtensions' 'DomainValidationMagritte-Core') ];
+		
  			  group: 'default' with: #('core' 'tests');
-			  group: 'core' with: #('DomainValidationMagritte-Core');
-			  group: 'tests' with: #(core 'DomainValidationMagritte-Features' 'DomainValidationMagritte-Tests').
+			  group: 'core' with: #('DomainValidationMagritte-Core' 'Magritte-Extensions-Core');
+			  group: 'tests' with: #(core 'DomainValidationMagritte-Features' 'DomainValidationMagritte-Tests' 'Magritte-Extensions-Tests').
 	].
 
