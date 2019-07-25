@@ -1,5 +1,5 @@
 cleanup
-cleanUp 
+unload 
 
 	CompiledMethod removeSelector: #isTestMethod.
 
@@ -14,4 +14,4 @@ cleanUp
 	
 	^self isTestClass: aMethod methodClass'.
 	
-	super cleanUp.
+	super unload.
