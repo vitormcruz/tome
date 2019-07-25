@@ -1,6 +1,6 @@
 method change dealing
 methodChanged: aMethodChangedAnnouncement
 
-	aMethodChangedAnnouncement newMethod executeMeIfScenarioOutline.
+	aMethodChangedAnnouncement newMethod executeMeAsScenarioOutline.
 	
 	

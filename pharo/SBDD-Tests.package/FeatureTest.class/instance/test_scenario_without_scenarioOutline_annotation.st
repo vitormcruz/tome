@@ -1,5 +1,5 @@
 tests scenario outline
-test_method_without_scenarioOutline_annotation
+test_scenario_without_scenarioOutline_annotation
 
 	FeatureSubclassForTest class compile: '
 	methodWithoutCorrectAnnotation
