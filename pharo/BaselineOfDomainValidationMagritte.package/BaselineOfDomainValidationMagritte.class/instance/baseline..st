@@ -15,18 +15,16 @@ baseline: spec
 															     loads: #(core) ];
 														
 		     baseline: 'ValidationNotification' with: [ spec repository: 'gitlab://vitormcruz/sandbox-st:develop'; 
-															     loads: #(core) ];
+															     			 loads: #(core) ];
 														
 		     project: 'ValidationNotificationTests' copyFrom: 'ValidationNotification' with: [ spec loads: #(tests) ];
 														
 		     baseline: 'Mocketry' with: [ spec repository: 'github://dionisiydk/Mocketry:v4.0.6' ];
 															
-		     project: 'Magritte3' with: [ spec repository: 'http://www.smalltalkhub.com/mc/Magritte/Magritte3/main'; 
-														  className: 'ConfigurationOfMagritte3'; 
-														  versionString: '3.5.1';
-														  loads: #(Core) ];
+		     baseline: 'Magritte' with: [ spec repository: 'github://magritte-metamodel/magritte:master'; 
+ 													     loads: #(Core) ];
 		
-			  package: 'DomainValidationMagritte-Core' with: [ spec requires: #('LangExtensions' 'Magritte3' 'ValidationNotification') ];
+			  package: 'DomainValidationMagritte-Core' with: [ spec requires: #('LangExtensions' 'Magritte' 'ValidationNotification') ];
 			  package: 'DomainValidationMagritte-Tests' with: [ spec requires: #('DomainValidationMagritte-Core' 'SBDD' 'Mocketry' 'ValidationNotificationTests') ];
 		     package: 'DomainValidationMagritte-Features' with: [ spec requires: #('LangExtensions' 'DomainValidationMagritte-Core') ];
  			  group: 'default' with: #('core' 'tests');
