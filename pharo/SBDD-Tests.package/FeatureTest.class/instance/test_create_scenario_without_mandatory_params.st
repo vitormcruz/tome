@@ -1,4 +1,4 @@
- tests scenarios execution
+tests - scenarios execution
 test_create_scenario_without_mandatory_params
 
 	self skip: 'Domain validation must be finished'.

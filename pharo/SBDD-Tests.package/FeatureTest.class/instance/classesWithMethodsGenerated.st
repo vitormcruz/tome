@@ -1,0 +1,4 @@
+utility
+classesWithMethodsGenerated
+
+	^ {FeatureSubclassForTest}.
