@@ -1,11 +1,13 @@
 {
-	"commentStamp" : "",
-	"super" : "TestCase",
-	"category" : "SBDD-Tests",
-	"classinstvars" : [ ],
-	"pools" : [ ],
+	"classtraitcomposition" : "TScenarioOutlineTestUtility classTrait",
 	"classvars" : [ ],
 	"instvars" : [ ],
 	"name" : "CompiledMethodTests",
-	"type" : "normal"
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"traitcomposition" : "TScenarioOutlineTestUtility",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "SBDD-Tests"
 }
