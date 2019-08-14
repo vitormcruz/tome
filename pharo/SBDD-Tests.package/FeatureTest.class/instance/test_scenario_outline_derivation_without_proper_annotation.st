@@ -1,5 +1,5 @@
-tests - scenario outline
-test_scenario_without_scenarioOutline_annotation
+tests - scenario outline derivation
+test_scenario_outline_derivation_without_proper_annotation
 
 	self addACommonMessageNamed: 'methodWithoutCorrectAnnotation' 
 		  toFeatureSubclassWithTextBody: 'self compile: ''shouldNotBeCreatedMethod <createdForTest>'' '.
