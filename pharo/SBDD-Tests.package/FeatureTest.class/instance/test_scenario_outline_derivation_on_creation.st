@@ -1,5 +1,5 @@
-tests - scenario outline
-test_scenario_outline_execution_on_creation
+tests - scenario outline derivation
+test_scenario_outline_derivation_on_creation
 
 	self addScenarioOutlineNamed: 'scenarioOutlineTestCreation' 
 		  toFeatureSubclassWithTextBody: '^ {self compile: ''scenarioOutlineTestCreationOk <createdForTest> <scenarioGeneratedBy: #scenarioOutlineTestCreation>''}.'.
