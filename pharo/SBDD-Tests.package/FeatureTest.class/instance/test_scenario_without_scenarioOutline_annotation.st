@@ -1,4 +1,4 @@
-tests - scenario outline
+tests - scenario outline processing
 test_scenario_without_scenarioOutline_annotation
 
 	self addACommonMessageNamed: 'methodWithoutCorrectAnnotation' 

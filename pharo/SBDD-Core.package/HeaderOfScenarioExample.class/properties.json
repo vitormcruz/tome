@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "SBDD-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"exampleHeader",
+		"examples"
+	],
+	"name" : "HeaderOfScenarioExample",
+	"type" : "normal"
+}

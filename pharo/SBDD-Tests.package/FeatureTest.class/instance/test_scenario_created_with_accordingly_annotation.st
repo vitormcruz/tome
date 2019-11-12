@@ -1,4 +1,4 @@
-tests - scenario outline
+tests - scenario outline processing
 test_scenario_created_with_accordingly_annotation
 
 	self addScenarioOutlineNamed: 'scenarioOutlineCreateScenarioAnnotatedAccordingly' 
