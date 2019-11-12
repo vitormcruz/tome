@@ -1,5 +1,5 @@
-tests - scenario outline processing
-test_scenario_outline_execution_on_change
+tests - scenario outline derivation
+test_scenario_outline_derivation_on_change
 
 	self addScenarioOutlineNamed: 'scenarioOutlineTestChange' 
 		  toFeatureSubclassWithTextBody: '^ {self compile: ''dummy <createdForTest> <scenarioGeneratedBy: #scenarioOutlineTestChange>''}'.

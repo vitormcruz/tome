@@ -1,4 +1,4 @@
-tests - scenario outline processing
+tests - scenario outline derivation
 test_scenario_created_should_return_a_collection
 
 	self should: [self addScenarioOutlineNamed: 'scenarioOutlineTestCreation' 
