@@ -1,4 +1,4 @@
-tests - scenario outline
+tests - scenario outline processing
 test_scenario_outline_execution_on_change
 
 	self addScenarioOutlineNamed: 'scenarioOutlineTestChange' 

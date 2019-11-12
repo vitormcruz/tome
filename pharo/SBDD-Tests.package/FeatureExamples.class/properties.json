@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "Feature",
+	"category" : "SBDD-Tests-Examples",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "FeatureExamples",
+	"type" : "normal"
+}

@@ -1,4 +1,4 @@
-tests - scenario outline
+tests - scenario outline processing
 test_scenario_created_without_accordingly_annotation
 
 	self should: [self addScenarioOutlineNamed: 'scenarioOutlineTestCreation' 
