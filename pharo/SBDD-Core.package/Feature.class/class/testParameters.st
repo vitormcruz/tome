@@ -1,11 +1,7 @@
 tests
 testParameters
+	| parameterizedMatrix |
 
-	^ self class chain methods;
-				    		select: [ :method | (method pragmas collect: #selector) includes: 'scenarioOutline' ]; 
-			 			   inject: ParametrizedTestMatrix new 
-			 	    		into: [ :testMatrix :scenarioBuilderMethod | 
-							 	scenarioBuilderMethod chain 
-															 valueWithReceiver: self arguments: #();
-													       do: [ :scenario | testMatrix addCase: {#scenarioExample -> scenario} ]
-					 		].
+	parameterizedMatrix := ParametrizedTestMatrix new forSelector: #scenarioExample 
+																	 addOptions: self myScenarios.							
+	^ parameterizedMatrix.
