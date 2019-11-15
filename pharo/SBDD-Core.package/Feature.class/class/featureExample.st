@@ -1,6 +1,7 @@
 as yet unclassified
 featureExample
 
+	<scenarioOutline>
 
 	^ self scenarioOutline: 'A User must be a Major'
       		       	  desc: 'Given that John has {a number} years old

@@ -1,14 +1,14 @@
 {
 	"commentStamp" : "",
-	"super" : "ParametrizedTestCase",
+	"super" : "Object",
 	"category" : "SBDD-Core",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"scenarioExamples",
-		"scenarioExample"
+		"header",
+		"examples"
 	],
-	"name" : "TestFeature",
+	"name" : "ExampleRepository",
 	"type" : "normal"
 }

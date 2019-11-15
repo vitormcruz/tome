@@ -1,4 +1,0 @@
-method change dealing
-methodAdded: aMethodAddedAnnouncement
-
-	aMethodAddedAnnouncement methodAdded executeMeAsScenarioOutline.
