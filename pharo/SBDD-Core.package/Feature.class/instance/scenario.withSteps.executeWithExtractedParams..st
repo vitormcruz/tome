@@ -4,4 +4,4 @@ scenario: scenarionName withSteps: aCollection executeWithExtractedParams: aBloc
 	| parameters |
 	
 	parameters := aCollection collect: [ :step | (step allRegexMatches: '".*"') ].
-	^ aBlockClosure valueWithArguments: (parameters flattened collect: [:parameter | parameter copyWithoutAll: '"']).
+	^ aBlockClosure valueWithArguments: (parameters flattened collect: [ :parameter | parameter copyWithoutAll: '"' ]).

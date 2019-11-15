@@ -1,4 +1,4 @@
-as yet unclassified
+var accessors
 withHeader: exampleHeader
 
 	header := exampleHeader.

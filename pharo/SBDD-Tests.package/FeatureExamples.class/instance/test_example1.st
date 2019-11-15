@@ -3,9 +3,9 @@ test_example1
 
 self 
 scenarioOutline: 'A User must be a Major'
-    		  desc:   'Given that John has {a number} years old
-        			     When I try to register him as a User
-           			  Then the result is: {result}'
+    		  desc: 'Given that John has {a number} years old
+        			   When I try to register him as a User
+           			Then the result is: {result}'
                    
        examples: #(  'a number'   'result'  ) asHeaderOfExamples
                  - #(    12         fail     )
