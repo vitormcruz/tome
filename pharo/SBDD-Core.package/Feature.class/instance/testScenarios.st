@@ -1,4 +1,4 @@
-tests
+parameterized tests
 testScenarios
 
 	self scenario: self scenarioExample name

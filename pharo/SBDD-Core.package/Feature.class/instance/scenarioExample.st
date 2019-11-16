@@ -1,3 +1,3 @@
-accessing
+test parameter accessors
 scenarioExample
 	^ scenarioExample.
