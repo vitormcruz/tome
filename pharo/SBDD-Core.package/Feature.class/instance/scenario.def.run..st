@@ -1,4 +1,12 @@
 scenarioSpecification
 scenario: scenarioNameString def: scenarioDefinition run: aBlock
 
-	Transcript show: scenarioNameString; cr; show: scenarioDefinition; cr; show: aBlock asString; cr; cr.
+	| parameters |
+	
+	parameters := scenarioDefinition chain allRegexMatches: '"[\w\d\s]*"';  
+													  flattened;
+													  collect: [ :param | param copyWithoutAll: '"' ]; 
+													  collect: [ :param | [ param asNumber ] on: Exception do: [ param ] ];
+													  subject.
+													
+	^ aBlock valueWithArguments: parameters.
