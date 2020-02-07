@@ -1,4 +1,0 @@
-tests - isScenarioOutline
-test_isScenarioOutline_in_class_without_scenarios_ouline
-
-	self assert: FeatureSubclassWithoutScenarioOutline myMethodsOutlineSelectors isEmpty.

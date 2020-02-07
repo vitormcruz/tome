@@ -1,7 +1,7 @@
-tests
+building suites
 testParameters
 	| parameterizedMatrix |
 
-	parameterizedMatrix := ParametrizedTestMatrix new forSelector: #scenarioExample 
+	parameterizedMatrix := ParametrizedTestMatrix new forSelector: #scenario
 																	 addOptions: self myScenarios.							
 	^ parameterizedMatrix.

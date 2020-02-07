@@ -1,12 +1,14 @@
 tests
 Create_Basic_Project_Feature
 
+	<scenario>
+
 	self scenario: 'Create a Basic new Project' 
-		  withSteps: { 
-         'Given a new project named "NewProject" never created before'.
-         'when I create "NewProject" pointing to "github://someuser/newproject/pharo" repository'.
-         'then a new package BaselineOfNewProject is created with a method called "baseline" categorized in the "baseline" protocol containing the following code source:
-				"baseline: spec 
+		  definition: 'Given a new project named "NewProject" never created before
+         		   when I create "NewProject" pointing to "github://someuser/newproject/pharo" repository
+         		   then a new package BaselineOfNewProject is created with a method called "baseline" categorized 
+		         in the "baseline" protocol containing the following code source:
+				   "baseline: spec 
 			  		
 				  	  <baseline>
 						
@@ -20,9 +22,8 @@ Create_Basic_Project_Feature
 							  group: ''tests'' with: #(''NewProject-Tests'') 
 					  ].
 				"
-			'.
-			'alongside with two other empty packages named "NewProject" "NewProject-Tests" '}
-			executeWithExtractedParams: [:extractedParams | self create_Basic_Project_Def: extractedParams].
+			alongside with two other empty packages named "NewProject" "NewProject-Tests" '
+			run: [:extractedParams | self create_Basic_Project_Def: extractedParams].
 			
 	
    

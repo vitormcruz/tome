@@ -7,7 +7,7 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"scenarioExamples",
-		"scenarioExample"
+		"scenario"
 	],
 	"name" : "Feature",
 	"type" : "normal"

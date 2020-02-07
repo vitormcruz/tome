@@ -1,4 +1,4 @@
-*SBDD-Core
+*SBDD-Tests
 validateScenariosOutlineExecutionResult: scenariosCreated
 
 	[ (scenariosCreated respondsTo: #isEmpty) not ], 
