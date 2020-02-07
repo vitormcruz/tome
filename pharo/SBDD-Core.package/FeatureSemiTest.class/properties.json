@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "Error",
+	"super" : "Feature",
 	"category" : "SBDD-Core",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "ScenarioGeneratedWithoutCorrectAnnotation",
+	"name" : "FeatureSemiTest",
 	"type" : "normal"
 }

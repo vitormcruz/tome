@@ -1,16 +1,15 @@
 tests - scenarios execution
 test_scenario_execution_with_1_step_and_1_parameter_using_examples
 
-	| executions |
+	| executions steps |
 
 	executions := OrderedCollection new.
-   Feature new scenario: 'scenario_test' 
-			   	   withSteps: {'Step with one parameter {param1}'} 
-					examples: #(( param1 )
-									('value1') 
-									('value2') 
-									('value3'))
-					executeWithExtractedParams: [ :param1 | executions add: param1 ].
-	
-	
+   steps := Feature new scenarioOutline: 'scenario_test' 
+			   	            desc: 'Step with one parameter "{param1}"'
+					         examples: #( param1 ) withFollowingData 
+						 		           - #('value1') 
+								           - #('value2') 
+								           - #('value3')
+					         run: [ :param1 | executions add: param1 ].
+	steps do: #run.
    self assertBlock: [ executions asSet = #('value1' 'value2' 'value3') asSet ].
