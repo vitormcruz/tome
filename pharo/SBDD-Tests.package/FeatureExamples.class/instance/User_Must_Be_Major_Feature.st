@@ -1,9 +1,9 @@
 scenario outline
-featureExample
+User_Must_Be_Major_Feature
 
 	<scenarioOutline>
 
-	^ self scenarioOutline: 'A User must be a Major'
+	^ self scenarioOutline: 'User must be Major'
       		       	  desc: 'Given that John has "{a number}" years old
         			            When I try to register him as a User
            			         Then the result is: "{result}"'
