@@ -1,4 +1,0 @@
-utility
-classesWithMethodsGenerated
-
-	self subclassResponsibility.

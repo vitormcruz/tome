@@ -1,14 +1,11 @@
 {
-	"classtraitcomposition" : "TAssertable classTrait + TScenarioOutlineTestUtility classTrait",
+	"classtraitcomposition" : "TAssertable classTrait",
 	"classvars" : [ ],
-	"instvars" : [
-		"feature",
-		"methodNames"
-	],
+	"instvars" : [ ],
 	"name" : "FeatureTest",
 	"commentStamp" : "",
 	"super" : "TestCase",
-	"traitcomposition" : "TAssertable + TScenarioOutlineTestUtility",
+	"traitcomposition" : "TAssertable",
 	"type" : "normal",
 	"classinstvars" : [ ],
 	"pools" : [ ],
