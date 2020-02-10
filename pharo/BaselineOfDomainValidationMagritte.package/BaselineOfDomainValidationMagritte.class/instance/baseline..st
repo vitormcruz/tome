@@ -21,7 +21,7 @@ baseline: spec
 														
 		     baseline: 'Mocketry' with: [ spec repository: 'github://dionisiydk/Mocketry:v4.0.6' ];
 															
-		     baseline: 'Magritte' with: [ spec repository: 'github://magritte-metamodel/magritte:v3.5.4'; 
+		     baseline: 'Magritte' with: [ spec repository: 'github://magritte-metamodel/magritte:v3.6'; 
  													     loads: #(Core) ];
 												
 			  package: 'Magritte-Extensions-Core' with: [ spec repository: 'gitlab://vitormcruz/sandbox-st:develop' ];
