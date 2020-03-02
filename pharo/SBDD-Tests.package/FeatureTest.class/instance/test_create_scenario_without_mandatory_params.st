@@ -1,10 +1,8 @@
 tests - scenarios execution
 test_create_scenario_without_mandatory_params
 
-	self skip: 'Domain validation must be finished'.
-	
-	self should: [ (Feature new scenario: nil definition: nil run: nil) run ] 
+	self should: [ (Feature new scenario: nil def: nil run: nil) run ] 
 		  raise: Error 
-		  withExceptionDo: [ :ex | self assert: ex message 
-												 equals: 'Following errors found while creating a new Feature: scenario mandatory_name, ', 
-	'mandatory_step_declaration and mandatory_scenarioBlock_for_execution' ]
+		  withExceptionDo: [ :ex | self assert: ex messageText
+												 equals: 'Following errors found while creating a new Feature: scenario_mandatory_name, ', 
+	'scenario_mandatory_step_definition, scenario_mandatory_executionBlock' ]

@@ -1,5 +1,5 @@
 scenario outline
-scenario: scenarioName definition: definition run: aBlock
+scenario: scenarioName def: definition run: aBlock
 	^ Scenario withName: scenarioName
 				  definition: definition
 				  executionBlock: aBlock.

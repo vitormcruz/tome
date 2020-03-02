@@ -1,5 +1,5 @@
 scenario outline
-scenarioOutline: scenarioName desc: description examples: examples run: aBlock
+scenarioOutline: scenarioName def: description examples: examples run: aBlock
 	^ examples
 		collect: [ :example | 
 			Scenario withName: scenarioName

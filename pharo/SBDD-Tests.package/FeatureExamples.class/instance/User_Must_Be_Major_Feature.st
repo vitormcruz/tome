@@ -4,11 +4,11 @@ User_Must_Be_Major_Feature
 	<scenarioOutline>
 
 	^ self scenarioOutline: 'User must be Major'
-      		       	  desc: 'Given that John has "{a number}" years old
+      		       	   def: 'Given that John has "{a number}" years old
         			            When I try to register him as a User
            			         Then the result is: "{result}"'
                    
-                 examples: #(  'a number'   'result'  ) withFollowingData 
+                 examples: #(  'a number'   'result'  ) asHeaderFor 
                 	 		  - #(    12         fail    )
                  			  - #(    18         sucess   )
                  			  - #(    25         sucess   )
