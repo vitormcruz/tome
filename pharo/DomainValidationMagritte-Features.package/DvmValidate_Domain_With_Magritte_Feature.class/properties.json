@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "Feature",
+	"super" : "SbddFeature",
 	"category" : "DomainValidationMagritte-Features",
 	"classinstvars" : [ ],
 	"pools" : [ ],

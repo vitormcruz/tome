@@ -2,7 +2,7 @@
 	"classtraitcomposition" : "TAssertable classTrait",
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "FeatureTest",
+	"name" : "SbddFeatureTest",
 	"commentStamp" : "",
 	"super" : "TestCase",
 	"traitcomposition" : "TAssertable",

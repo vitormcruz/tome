@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "vitormcruz 8/1/2018 14:44",
-	"super" : "Feature",
+	"super" : "SbddFeature",
 	"category" : "Universe-tests",
 	"classinstvars" : [ ],
 	"pools" : [ ],

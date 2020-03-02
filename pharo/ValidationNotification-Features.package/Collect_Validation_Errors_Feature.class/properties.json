@@ -4,7 +4,7 @@
 	"instvars" : [ ],
 	"name" : "Collect_Validation_Errors_Feature",
 	"commentStamp" : "",
-	"super" : "Feature",
+	"super" : "SbddFeature",
 	"traitcomposition" : "TValidationObserver",
 	"type" : "normal",
 	"classinstvars" : [ ],
