@@ -1,2 +1,2 @@
 SystemOrganization addCategory: #'SBDD-Tests'!
-SystemOrganization addCategory: #'SBDD-Tests-Manifest'!
+SystemOrganization addCategory: #'SBDD-Tests-Examples'!

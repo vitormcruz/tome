@@ -5,8 +5,8 @@ test_scenario_execution_with_1_step_and_1_parameter_using_examples
 
 	executions := OrderedCollection new.
    steps := Feature new scenarioOutline: 'scenario_test' 
-			   	            desc: 'Step with one parameter "{param1}"'
-					         examples: #( param1 ) withFollowingData 
+			   	            def: 'Step with one parameter "{param1}"'
+					         examples: #( param1 ) asHeaderFor 
 						 		           - #('value1') 
 								           - #('value2') 
 								           - #('value3')

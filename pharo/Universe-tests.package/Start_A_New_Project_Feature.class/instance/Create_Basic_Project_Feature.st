@@ -4,7 +4,7 @@ Create_Basic_Project_Feature
 	<scenario>
 
 	self scenario: 'Create a Basic new Project' 
-		  definition: 'Given a new project named "NewProject" never created before
+		  def: 'Given a new project named "NewProject" never created before
          		   when I create "NewProject" pointing to "github://someuser/newproject/pharo" repository
          		   then a new package BaselineOfNewProject is created with a method called "baseline" categorized 
 		         in the "baseline" protocol containing the following code source:

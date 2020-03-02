@@ -1,4 +1,4 @@
 *SBDD-Core
-withFollowingData
+asHeaderFor
 
 	^ ExampleRepository withHeader: self.

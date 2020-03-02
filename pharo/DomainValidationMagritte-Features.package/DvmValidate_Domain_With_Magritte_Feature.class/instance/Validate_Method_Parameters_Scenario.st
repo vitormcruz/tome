@@ -4,14 +4,14 @@ Validate_Method_Parameters_Scenario
 	<scenarioOutline>
 
 	^ self scenarioOutline:   'Validate method parameters scenario' 
-		    desc: 'Given the following message: forEmployee: aString setSalary: aPositiveInteger
+		    def: 'Given the following message: forEmployee: aString setSalary: aPositiveInteger
 				  		   and that it has the following description:
 						   	  "aString must be a non null string and aPositiveInteger must be a mandatory positive integer"
 						   if I try to send the following message {message_send}.
 						   then the following errors will be found: "{errors}".'
 		    				
 						
-		    examples:  #(    'message_send'                             #errors       ) withFollowingData
+		    examples:  #(    'message_send'                             #errors       ) asHeaderFor
 							 - #('"forEmployee: ''John'' setSalary: 2000"'  'no error'     )
 						 	 - #('"forEmployee: nil setSalary: nil"'        'Employee name is mandatory, Salary is mandatory and must be a positive integer')
 							 - #('"forEmployee: ''John'' setSalary: 0"'     'Salary is mandatory and must be a positive integer')
