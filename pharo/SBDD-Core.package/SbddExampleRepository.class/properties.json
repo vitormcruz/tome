@@ -6,10 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"name",
-		"definition",
-		"executionBlock"
+		"header",
+		"examples"
 	],
-	"name" : "Scenario",
+	"name" : "SbddExampleRepository",
 	"type" : "normal"
 }

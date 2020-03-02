@@ -4,7 +4,7 @@ test_scenario_execution_with_1_step_and_1_parameter_using_examples
 	| executions steps |
 
 	executions := OrderedCollection new.
-   steps := Feature new scenarioOutline: 'scenario_test' 
+   steps := SbddFeature new scenarioOutline: 'scenario_test' 
 			   	            def: 'Step with one parameter "{param1}"'
 					         examples: #( param1 ) asHeaderFor 
 						 		           - #('value1') 

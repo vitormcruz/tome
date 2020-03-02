@@ -1,4 +1,4 @@
 *SBDD-Core
 asHeaderFor
 
-	^ ExampleRepository withHeader: self.
+	^ SbddExampleRepository withHeader: self.
