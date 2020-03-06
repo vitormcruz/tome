@@ -1,1 +1,0 @@
-I represent an object created in error. I store the object created with the errors reported.

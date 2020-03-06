@@ -5,5 +5,5 @@ newValidating: aBlockClosure
 	
 	validationObserver := SimpleValidationObserver new.
 	blockResult := aBlockClosure value.
-	validationObserver onValidationSucess: [ ^ blockResult ] 
-							 onValidationError: [ :errors | ErrorObject forObject: blockResult withErrors: errors ].
+	^ validationObserver onValidationSucess: [ blockResult ] 
+							   onValidationError: [ :errors | InvalidObjectHolder forObject: blockResult withErrors: errors ].
