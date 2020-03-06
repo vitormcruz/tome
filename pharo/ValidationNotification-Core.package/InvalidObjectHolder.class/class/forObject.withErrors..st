@@ -1,5 +1,5 @@
 instance creation
 forObject: anObject withErrors: aCollection 
 
-	^ super new objectInError: anObject; 
+	^ super new invalidObject: anObject; 
 					errors: aCollection.

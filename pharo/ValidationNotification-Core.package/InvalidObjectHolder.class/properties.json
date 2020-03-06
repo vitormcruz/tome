@@ -1,14 +1,14 @@
 {
-	"commentStamp" : "vitormcruz 3/6/2020 12:29",
+	"commentStamp" : "vitormcruz 3/6/2020 16:59",
 	"super" : "Object",
 	"category" : "ValidationNotification-Core",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"objectInError",
-		"errors"
+		"errors",
+		"invalidObject"
 	],
-	"name" : "ErrorObject",
+	"name" : "InvalidObjectHolder",
 	"type" : "normal"
 }
