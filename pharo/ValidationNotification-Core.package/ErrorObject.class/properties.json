@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "vitormcruz 3/6/2020 12:29",
+	"super" : "Object",
+	"category" : "ValidationNotification-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"objectInError",
+		"errors"
+	],
+	"name" : "ErrorObject",
+	"type" : "normal"
+}
