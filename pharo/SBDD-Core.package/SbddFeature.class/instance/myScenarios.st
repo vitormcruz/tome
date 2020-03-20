@@ -1,7 +1,8 @@
 building suites
 myScenarios
 
-	^ self chain methods;
+	^ self class 
+			 chain methods;
 				  	 select: [ :method | (method pragmas collect: #selector) includes: 'scenarioOutline' ]; 
-					 collect: [ :scenarioOutline | scenarioOutline valueWithReceiver: (self new) arguments: #() ];
+					 collect: [ :scenarioOutline | scenarioOutline valueWithReceiver: self arguments: #() ];
 					 flattened.
