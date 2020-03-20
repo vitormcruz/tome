@@ -1,4 +1,4 @@
 parameterized tests
-testScenarios
+testScenario
 
 	self scenario run.
