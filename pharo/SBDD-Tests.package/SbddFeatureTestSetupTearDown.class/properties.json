@@ -1,11 +1,14 @@
 {
 	"commentStamp" : "",
-	"super" : "TestCase",
+	"super" : "SbddFeature",
 	"category" : "SBDD-Tests",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
-	"name" : "SbddFeatureTest",
+	"instvars" : [
+		"setupVar",
+		"tearDownBlock"
+	],
+	"name" : "SbddFeatureTestSetupTearDown",
 	"type" : "normal"
 }

@@ -8,7 +8,8 @@
 	"instvars" : [
 		"name",
 		"definition",
-		"executionBlock"
+		"executionBlock",
+		"testObject"
 	],
 	"name" : "SbddScenario",
 	"type" : "normal"
