@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "TestCase",
-	"category" : "SBDD-Tests",
+	"super" : "OrderedCollection",
+	"category" : "SBDD-Tests-Examples",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "SbddFeatureTest",
+	"name" : "SBDDDummyCPFRepository",
 	"type" : "normal"
 }
