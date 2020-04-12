@@ -1,4 +1,0 @@
-*DomainValidationMagritte-Core
-linkDomainValidations
-
-	self magritteDescriptionExtended installDerivedValidationsInto: self.

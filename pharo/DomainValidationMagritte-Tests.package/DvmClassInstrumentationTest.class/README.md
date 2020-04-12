@@ -1,1 +1,0 @@
-I am used to test the actual instrumentation of a described class with the according validations.

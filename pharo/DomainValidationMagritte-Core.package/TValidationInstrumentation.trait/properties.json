@@ -1,7 +1,0 @@
-{
-	"commentStamp" : "",
-	"classinstvars" : [ ],
-	"category" : "DomainValidationMagritte-Core",
-	"instvars" : [ ],
-	"name" : "TValidationInstrumentation"
-}

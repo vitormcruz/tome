@@ -1,4 +1,0 @@
-accessing
-errorArray
-
-	self subclassResponsibility.

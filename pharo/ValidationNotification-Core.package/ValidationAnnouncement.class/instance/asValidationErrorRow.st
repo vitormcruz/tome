@@ -1,4 +1,0 @@
-converting
-asValidationErrorRow
-
-	self subclassResponsibility.

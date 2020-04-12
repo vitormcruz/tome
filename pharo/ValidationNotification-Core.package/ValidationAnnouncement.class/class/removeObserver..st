@@ -1,2 +1,0 @@
-removing
-removeObserver: validationObserver
