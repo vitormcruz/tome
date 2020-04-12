@@ -1,2 +1,0 @@
-*ValidationNotification-Core
-issueMandatoryObligation: aValidationError withinContext: aContext

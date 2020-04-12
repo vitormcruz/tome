@@ -1,4 +1,0 @@
-accessing
-writeSelector
-
-	^ selectorAccessor writeSelector.

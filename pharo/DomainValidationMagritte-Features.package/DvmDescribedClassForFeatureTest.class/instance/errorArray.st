@@ -1,3 +1,0 @@
-accessing
-errorArray
-	 ^ {'no error'}

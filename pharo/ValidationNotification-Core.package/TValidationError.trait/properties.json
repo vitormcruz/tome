@@ -1,7 +1,0 @@
-{
-	"commentStamp" : "vitormcruz 10/24/2018 13:32",
-	"classinstvars" : [ ],
-	"category" : "ValidationNotification-Core",
-	"instvars" : [ ],
-	"name" : "TValidationError"
-}

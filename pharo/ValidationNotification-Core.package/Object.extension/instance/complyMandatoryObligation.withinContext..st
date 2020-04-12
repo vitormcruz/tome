@@ -1,2 +1,0 @@
-*ValidationNotification-Core
-complyMandatoryObligation: aValidationError withinContext: aDictionary

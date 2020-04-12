@@ -1,3 +1,0 @@
-accessing
-readSelector
-	^ selectorAccessor readSelector.

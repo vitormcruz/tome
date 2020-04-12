@@ -1,3 +1,0 @@
-*ValidationNotification-Core
-creationFailed
-	^ false.
