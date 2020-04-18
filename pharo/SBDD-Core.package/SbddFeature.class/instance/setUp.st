@@ -1,7 +1,8 @@
 running
 setUp
-	<deprecated:  'Fix for parametrized tests. Wait until, fiz in the image.'>
+	<deprecated:  'Fix for parametrized tests. Wait until fix in the image.'>
 	
+	self initialize.
 	self parametersToUse do: [ :aParameter | aParameter applyTo: self ].
 	
 	"If I am executed without calling buildSuite in the class. I will use the first set of options.

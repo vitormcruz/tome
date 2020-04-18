@@ -1,0 +1,4 @@
+accessing
+scenarioDefinition
+
+	^ scenarioDefinition.

@@ -6,8 +6,11 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"scenarioExamples",
-		"scenario"
+		"scenarioName",
+		"scenarioDefinition",
+		"scenarioBuildStrategy",
+		"scenarioBlockExecution",
+		"scenarioSelectorOriginator"
 	],
 	"name" : "SbddFeature",
 	"type" : "normal"

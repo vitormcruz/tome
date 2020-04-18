@@ -1,6 +1,6 @@
-scenario outline
-scenario: scenarioName def: definition run: aBlock
-	^ SbddScenario withName: scenarioName
-				      definition: definition
-				      executionBlock: aBlock
-						testObject: self.
+scenario builder
+scenario: aString def: aStringDefinition run: aBlock
+
+	^ scenarioBuildStrategy scenario: aString 
+									def: aStringDefinition 
+									run: aBlock.

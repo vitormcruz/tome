@@ -3,5 +3,6 @@ myScenarios
 
 	^ self chain methods;
 				  	 select: [ :method | (method pragmas collect: #selector) includes: 'scenarioOutline' ]; 
-					 collect: [ :scenarioOutline | scenarioOutline valueWithReceiver: self new arguments: #() ];
-					 flattened.
+					 inject: OrderedCollection new into: [ :finalCollection :scenarioBuilderMethod | 
+						finalCollection addAll: (scenarioBuilderMethod valueWithReceiver: self newForScenarioBuilding arguments: #()) 
+					 ].
