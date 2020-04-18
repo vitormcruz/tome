@@ -1,3 +1,0 @@
-building suites
-scenario
-	^ scenario.

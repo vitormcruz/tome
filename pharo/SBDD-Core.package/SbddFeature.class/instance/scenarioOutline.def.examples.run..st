@@ -1,9 +1,6 @@
-scenario outline
-scenarioOutline: scenarioName def: description examples: examples run: aBlock
-	^ examples
-		collect: [ :example | 
-			SbddScenario withName: scenarioName
-						   definition: (description format: example)
-						   executionBlock: aBlock 
-						   testObject: self
-		]
+scenario builder
+scenarioOutline: aString def: aStringDescription examples: examples run: aBlock
+
+	^ scenarioBuildStrategy scenarioOutline: aString 
+							      def: aStringDescription 
+								   examples: examples run: aBlock.

@@ -10,6 +10,5 @@ run
 									collect: [ :param | param copyWithoutAll: '"' ];
 									collect: [ :param | [ param asNumber ] on: Exception do: [ :err | param ] ];
 									subject.
-	testObject setUp.
-	[ ^ executionBlock valueWithPossibleArgs: parameters ] ensure: [ testObject tearDown ].
-	testObject tearDown.
+
+	^ executionBlock valueWithPossibleArgs: parameters .

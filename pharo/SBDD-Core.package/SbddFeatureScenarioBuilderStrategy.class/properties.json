@@ -6,10 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"name",
-		"definition",
-		"executionBlock"
+		"sbddFeatureInstance"
 	],
-	"name" : "SbddScenario",
+	"name" : "SbddFeatureScenarioBuilderStrategy",
 	"type" : "normal"
 }

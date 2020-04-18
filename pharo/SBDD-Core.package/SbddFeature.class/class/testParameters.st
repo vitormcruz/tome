@@ -1,7 +1,5 @@
 building suites
 testParameters
-	| parameterizedMatrix |
 
-	parameterizedMatrix := ParametrizedTestMatrix new forSelector: #scenario
-																	 addOptions: self myScenarios.							
-	^ parameterizedMatrix.
+	^ self myScenarios inject: ParametrizedTestMatrix new 
+						    into: [ :testMatrix :aCase | testMatrix addCase: aCase ]
