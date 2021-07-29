@@ -3,7 +3,7 @@ name: Tome CI
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  Run Tests:
+  Run_Tests:
     runs-on: ubuntu-latest
     container: vitormcruz/pharo:9
     steps:
