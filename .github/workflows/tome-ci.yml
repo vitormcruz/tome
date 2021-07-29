@@ -3,11 +3,14 @@ name: Tome CI
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-
-  Test:
-
+  Run Tests:
     runs-on: ubuntu-latest
-
+    container: vitormcruz/pharo:9
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - name: Load Tome and Test it
+      - run: |
+        ls -la
+        ./pharo /Pharo.image eval "Metacello new repository: 'tonel://tome'; baseline: 'SBDD'; load: #(core tests)"
+
 
