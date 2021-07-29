@@ -8,9 +8,13 @@ jobs:
     container: vitormcruz/pharo:9
     steps:
       - uses: actions/checkout@v2
+        with:
+          path: tome/
       - name: Load Tome and Test it
         run: |
           ls -la
-          ./pharo /Pharo.image eval "Metacello new repository: 'tonel://tome'; baseline: 'SBDD'; load: #(core tests)"
+          cd pharo
+          ls -la
+          ./pharo /Pharo.image eval "Metacello new repository: 'tonel:///tome'; baseline: 'SBDD'; load: #(core tests)"
 
 
