@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "SBDDDummyCPFRepository",
+	"name" : "SBDDDummyUserRepository",
 	"type" : "normal"
 }

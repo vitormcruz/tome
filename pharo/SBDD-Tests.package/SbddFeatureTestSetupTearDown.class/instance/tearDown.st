@@ -1,4 +1,5 @@
 running
-tearDown 
+tearDown
 
-	tearDownBlock ifNotNil: [ tearDownBlock value ].
+	super tearDown.
+	tearDownCollection removeAll.

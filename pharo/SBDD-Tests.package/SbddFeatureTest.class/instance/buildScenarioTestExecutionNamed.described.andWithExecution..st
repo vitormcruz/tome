@@ -3,7 +3,7 @@ buildScenarioTestExecutionNamed: aStringName described: aStringDescription andWi
 
    | testCase |
 
-	testCase := (SbddFeature newForScenarioBuilding 
+	testCase := (SbddFeature new 
 									 scenario: aStringName  
 								 	 def: aStringDescription  
 					 				 run: aBlock) asDictionary.

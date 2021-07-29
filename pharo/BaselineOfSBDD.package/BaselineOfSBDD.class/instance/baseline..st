@@ -6,8 +6,11 @@ baseline: spec
 	spec for: #'common' do: [
 		spec blessing: #'baseline';   
 		repository: 'gitlab://vitormcruz/sandbox-st';   
+		
+ 	   baseline: 'LangExtensions' with: [ spec repository: 'gitlab://vitormcruz/sandbox-st:develop'; 
+											 		 loads: #(core) ];
 														
-		package: 'SBDD-Core';   
+		package: 'SBDD-Core' with: [ spec requires: 'LangExtensions' ];
 		package: 'SBDD-Tests' with: [ spec requires: 'SBDD-Core' ];   
 		
 		group: 'default' with: #('core');

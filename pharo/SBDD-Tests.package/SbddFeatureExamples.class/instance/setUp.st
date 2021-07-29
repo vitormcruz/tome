@@ -1,4 +1,4 @@
 running
 setUp
 	super setUp.
-	cpfRepository := SBDDDummyCPFRepository new. 
+	userRepository := SBDDDummyUserRepository new. 

@@ -1,4 +1,5 @@
 running
 setUp
 
-	setupVar := true.
+	super setUp.
+	setUpCollection removeAll.

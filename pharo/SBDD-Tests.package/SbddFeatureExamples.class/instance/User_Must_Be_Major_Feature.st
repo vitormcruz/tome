@@ -1,7 +1,7 @@
 scenario outline
 User_Must_Be_Major_Feature
 
-	<scenarioOutline>
+	<scenario>
 
 	^ self scenarioOutline: 'User must be Major'
       		       	   def: 'Given that John has "{a number}" years old

@@ -1,7 +1,7 @@
 scenario outline
 User_Must_Be_Unique_by_CPF
 
-	<scenarioOutline>
+	<scenario>
 
 	^ self scenarioOutline: 'User must be unique by it''s CPF number'
       		       	   def: 'Given that John was registered with CPF: "001"
@@ -14,9 +14,9 @@ User_Must_Be_Unique_by_CPF
   
 	            		   run: [ :johnCPF  :newUserCPF  :resultExpected |
 				
-								  cpfRepository add: johnCPF.
+								  userRepository add: (SBDDDummyUser new cpf: johnCPF; name: 'John').
 								
-	 	           		 	  self assert: ( [ cpfRepository add: newUserCPF.
+	 	           		 	  self assert: ( [ userRepository add: (SBDDDummyUser new cpf: newUserCPF; name: 'Darla').
 														'sucess' 
 													  ] ifError: [ 'fail' ] )
 										 equals: resultExpected.

@@ -1,4 +1,0 @@
-initialization
-initializeForScenarioBuilding
-
-	scenarioBuildStrategy := SbddFeatureBuildScenarioStrategy newWith: self.
