@@ -4,11 +4,11 @@
 	"category" : "SBDD-Tests",
 	"classinstvars" : [ ],
 	"pools" : [ ],
-	"classvars" : [ ],
-	"instvars" : [
-		"setupVar",
-		"tearDownBlock"
+	"classvars" : [
+		"setUpCollection",
+		"tearDownCollection"
 	],
+	"instvars" : [ ],
 	"name" : "SbddFeatureTestSetupTearDown",
 	"type" : "normal"
 }

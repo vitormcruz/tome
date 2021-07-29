@@ -1,13 +1,14 @@
 {
 	"commentStamp" : "",
-	"super" : "SbddFeature",
+	"super" : "Object",
 	"category" : "SBDD-Tests-Examples",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"userRepository"
+		"name",
+		"cpf"
 	],
-	"name" : "SbddFeatureExamples",
+	"name" : "SBDDDummyUser",
 	"type" : "normal"
 }
