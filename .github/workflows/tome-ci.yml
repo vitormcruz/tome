@@ -13,6 +13,7 @@ jobs:
           ls -la
           cd /
           ls -la __w/tome
-          ./pharo /Pharo.image eval "Metacello new repository: 'tonel://__w/tome/tome/pharo'; baseline: 'SBDD'; load: #(core tests)"
+          pharo /opt/pharo/Pharo.image eval --save "Metacello new repository: 'tonel://tome/pharo'; baseline: 'SBDD'; load: #(core tests)"
+          pharo /opt/pharo/Pharo.image test SBDD-Tests --junit-xml-output --fail-on-failure --fail-on-error
 
 
