@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          path: tome/
+          path: /tome
       - name: Load Tome and Test it
         run: |
           ls -la
