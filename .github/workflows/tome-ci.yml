@@ -12,7 +12,7 @@ jobs:
         run: |
           ls -la
           cd /
-          ls -la
+          ls -la __w/tome
           ./pharo /Pharo.image eval "Metacello new repository: 'tonel://__w/tome'; baseline: 'SBDD'; load: #(core tests)"
 
 
