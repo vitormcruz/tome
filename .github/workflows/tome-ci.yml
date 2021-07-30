@@ -13,6 +13,6 @@ jobs:
           ls -la
           cd /
           ls -la
-          ./pharo /Pharo.image eval "Metacello new repository: 'tonel:///__w/tome/tome/pharo'; baseline: 'SBDD'; load: #(core tests)"
+          ./pharo /Pharo.image eval "Metacello new repository: 'gitlocal:///__w/tome/tome'; baseline: 'SBDD'; load: #(core tests)"
 
 
