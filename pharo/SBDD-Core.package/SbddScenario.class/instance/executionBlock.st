@@ -1,3 +1,0 @@
-accessing
-executionBlock
-	^ executionBlock
