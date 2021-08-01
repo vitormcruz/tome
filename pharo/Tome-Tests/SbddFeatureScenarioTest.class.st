@@ -1,7 +1,7 @@
 Class {
 	#name : #SbddFeatureScenarioTest,
 	#superclass : #TestCase,
-	#category : 'SBDD-Tests'
+	#category : 'Tome-Tests'
 }
 
 { #category : #'tests - scenarios execution' }

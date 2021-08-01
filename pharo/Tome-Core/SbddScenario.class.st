@@ -6,7 +6,7 @@ Class {
 		'definition',
 		'executionBlock'
 	],
-	#category : 'SBDD-Core'
+	#category : 'Tome-Core'
 }
 
 { #category : #'instance creation' }

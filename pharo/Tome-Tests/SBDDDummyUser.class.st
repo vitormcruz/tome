@@ -5,7 +5,7 @@ Class {
 		'name',
 		'cpf'
 	],
-	#category : 'SBDD-Tests-Examples'
+	#category : 'Tome-Tests-Examples'
 }
 
 { #category : #accessing }

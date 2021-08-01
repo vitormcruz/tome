@@ -5,7 +5,7 @@ Class {
 		'header',
 		'examples'
 	],
-	#category : 'SBDD-Core'
+	#category : 'Tome-Core'
 }
 
 { #category : #'instance creation' }

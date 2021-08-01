@@ -1,6 +1,6 @@
 Extension { #name : #Collection }
 
-{ #category : #'*SBDD-Core' }
+{ #category : #'*Tome-Core' }
 Collection >> asFormatParametersOf: exampleValues [ 
 
 	| formatParameters |

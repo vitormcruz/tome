@@ -5,7 +5,7 @@ Class {
 		'scenarioBuilderMethod',
 		'exampleIndex'
 	],
-	#category : 'SBDD-Core'
+	#category : 'Tome-Core'
 }
 
 { #category : #private }

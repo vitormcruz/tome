@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'sbddFeatureInstance'
 	],
-	#category : 'SBDD-Core'
+	#category : 'Tome-Core'
 }
 
 { #category : #'instance creation' }
