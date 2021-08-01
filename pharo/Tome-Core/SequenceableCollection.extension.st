@@ -1,6 +1,6 @@
 Extension { #name : #SequenceableCollection }
 
-{ #category : #'*SBDD-Core' }
+{ #category : #'*Tome-Core' }
 SequenceableCollection >> asHeaderFor [
 
 	^ SbddExampleRepository withHeader: self.

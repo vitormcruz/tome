@@ -1,7 +1,7 @@
 Class {
 	#name : #SBDDDummyUserRepository,
 	#superclass : #OrderedCollection,
-	#category : 'SBDD-Tests-Examples'
+	#category : 'Tome-Tests-Examples'
 }
 
 { #category : #adding }

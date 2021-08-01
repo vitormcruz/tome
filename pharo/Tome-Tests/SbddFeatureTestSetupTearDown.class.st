@@ -5,7 +5,7 @@ Class {
 		'setUpCollection',
 		'tearDownCollection'
 	],
-	#category : 'SBDD-Tests'
+	#category : 'Tome-Tests'
 }
 
 { #category : #'private-initialization' }

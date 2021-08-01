@@ -1,7 +1,7 @@
 Class {
 	#name : #BaselineOfSBDD,
 	#superclass : #BaselineOf,
-	#category : 'BaselineOfSBDD'
+	#category : 'BaselineOfTome'
 }
 
 { #category : #baselines }

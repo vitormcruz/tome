@@ -1,7 +1,7 @@
 Class {
 	#name : #SbddFeatureTest,
 	#superclass : #TestCase,
-	#category : 'SBDD-Tests'
+	#category : 'Tome-Tests'
 }
 
 { #category : #'as yet unclassified' }

@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'userRepository'
 	],
-	#category : 'SBDD-Tests-Examples'
+	#category : 'Tome-Tests-Examples'
 }
 
 { #category : #'scenario outline' }
