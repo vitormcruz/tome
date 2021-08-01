@@ -1,16 +1,16 @@
 Class {
-	#name : #SbddScenario,
+	#name : #TomeScenario,
 	#superclass : #Object,
 	#instVars : [
 		'name',
 		'definition',
 		'executionBlock'
 	],
-	#category : 'Tome-Core'
+	#category : #'Tome-Core'
 }
 
 { #category : #'instance creation' }
-SbddScenario class >> withName: scenarioName definition: scenarioDef executionBlock: aBlock [
+TomeScenario class >> withName: scenarioName definition: scenarioDef executionBlock: aBlock [
 
 	^ self new
 		name: scenarioName;
@@ -19,7 +19,7 @@ SbddScenario class >> withName: scenarioName definition: scenarioDef executionBl
 ]
 
 { #category : #converting }
-SbddScenario >> asString [
+TomeScenario >> asString [
 
  ^ ('Scenario: ', name , '<n>' , 
 	 definition , '<n>' , 
@@ -27,37 +27,37 @@ SbddScenario >> asString [
 ]
 
 { #category : #accessing }
-SbddScenario >> definition [
+TomeScenario >> definition [
 	^ definition
 ]
 
 { #category : #accessing }
-SbddScenario >> definition: anObject [
+TomeScenario >> definition: anObject [
 	definition := anObject
 ]
 
 { #category : #accessing }
-SbddScenario >> executionBlock [
+TomeScenario >> executionBlock [
 	^ executionBlock
 ]
 
 { #category : #accessing }
-SbddScenario >> executionBlock: anObject [
+TomeScenario >> executionBlock: anObject [
 	executionBlock := anObject
 ]
 
 { #category : #accessing }
-SbddScenario >> name [
+TomeScenario >> name [
 	^ name
 ]
 
 { #category : #accessing }
-SbddScenario >> name: anObject [
+TomeScenario >> name: anObject [
 	name := anObject
 ]
 
 { #category : #converting }
-SbddScenario >> parseBlockClosure: aBlockClosure [
+TomeScenario >> parseBlockClosure: aBlockClosure [
 
 	| blockSource blockSourceLines |
 	
@@ -69,7 +69,7 @@ SbddScenario >> parseBlockClosure: aBlockClosure [
 ]
 
 { #category : #running }
-SbddScenario >> run [
+TomeScenario >> run [
 	| parameters |
 	
 	self validateScenario.
@@ -86,7 +86,7 @@ SbddScenario >> run [
 ]
 
 { #category : #running }
-SbddScenario >> validateScenario [
+TomeScenario >> validateScenario [
 	| errors |
 	
 	errors := OrderedCollection new.

@@ -1,44 +1,44 @@
 Class {
-	#name : #SbddExampleRepository,
+	#name : #TomeExampleRepository,
 	#superclass : #Object,
 	#instVars : [
 		'header',
 		'examples'
 	],
-	#category : 'Tome-Core'
+	#category : #'Tome-Core'
 }
 
 { #category : #'instance creation' }
-SbddExampleRepository class >> withHeader: exampleHeader [
+TomeExampleRepository class >> withHeader: exampleHeader [
 
 	^ super new withHeader: exampleHeader.
 ]
 
 { #category : #'var accessors' }
-SbddExampleRepository >> - aCollection [ 
+TomeExampleRepository >> - aCollection [ 
 
 	examples add: (header asFormatParametersOf: aCollection).
 
 ]
 
 { #category : #enumerating }
-SbddExampleRepository >> collect: aBlockClosure [ 
+TomeExampleRepository >> collect: aBlockClosure [ 
 	^ examples collect: aBlockClosure .
 ]
 
 { #category : #enumeration }
-SbddExampleRepository >> do: aBlockClosure [ 
+TomeExampleRepository >> do: aBlockClosure [ 
 	examples do: aBlockClosure.
 ]
 
 { #category : #initialization }
-SbddExampleRepository >> initialize [ 
+TomeExampleRepository >> initialize [ 
 
 	examples := OrderedCollection new.
 ]
 
 { #category : #'var accessors' }
-SbddExampleRepository >> withHeader: exampleHeader [
+TomeExampleRepository >> withHeader: exampleHeader [
 
 	header := exampleHeader.
 ]

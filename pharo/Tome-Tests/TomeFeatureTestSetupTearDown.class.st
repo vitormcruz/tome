@@ -1,22 +1,22 @@
 Class {
-	#name : #SbddFeatureTestSetupTearDown,
-	#superclass : #SbddFeature,
+	#name : #TomeFeatureTestSetupTearDown,
+	#superclass : #TomeFeature,
 	#classVars : [
 		'setUpCollection',
 		'tearDownCollection'
 	],
-	#category : 'Tome-Tests'
+	#category : #'Tome-Tests'
 }
 
 { #category : #'private-initialization' }
-SbddFeatureTestSetupTearDown class >> initialize [ 
+TomeFeatureTestSetupTearDown class >> initialize [ 
 
 	setUpCollection := OrderedCollection new.
 	tearDownCollection  := OrderedCollection new.
 ]
 
 { #category : #'scenario definition' }
-SbddFeatureTestSetupTearDown >> Test_Setup_And_TearDown [
+TomeFeatureTestSetupTearDown >> Test_Setup_And_TearDown [
 
 	<scenario>
 
@@ -36,7 +36,7 @@ SbddFeatureTestSetupTearDown >> Test_Setup_And_TearDown [
 ]
 
 { #category : #running }
-SbddFeatureTestSetupTearDown >> setUp [
+TomeFeatureTestSetupTearDown >> setUp [
 
 	super setUp.
 	setUpCollection removeAll.
@@ -44,7 +44,7 @@ SbddFeatureTestSetupTearDown >> setUp [
 ]
 
 { #category : #running }
-SbddFeatureTestSetupTearDown >> tearDown [
+TomeFeatureTestSetupTearDown >> tearDown [
 
 	super tearDown.
 	tearDownCollection removeAll.

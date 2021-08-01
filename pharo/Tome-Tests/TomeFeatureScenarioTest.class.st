@@ -1,13 +1,13 @@
 Class {
-	#name : #SbddFeatureScenarioTest,
+	#name : #TomeFeatureScenarioTest,
 	#superclass : #TestCase,
-	#category : 'Tome-Tests'
+	#category : #'Tome-Tests'
 }
 
 { #category : #'tests - scenarios execution' }
-SbddFeatureScenarioTest >> test_create_scenario_without_mandatory_params [
+TomeFeatureScenarioTest >> test_create_scenario_without_mandatory_params [
 
-	self should: [ (SbddScenario withName: nil definition: nil executionBlock: nil) run ] 
+	self should: [ (TomeScenario withName: nil definition: nil executionBlock: nil) run ] 
 		  raise: Error 
 		  withExceptionDo: [ :ex | self assert: ex messageText
 												 equals: 'Following errors found while creating a new Feature: scenario_mandatory_name, ', 

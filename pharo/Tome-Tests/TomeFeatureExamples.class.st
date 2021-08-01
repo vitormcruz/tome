@@ -1,14 +1,14 @@
 Class {
-	#name : #SbddFeatureExamples,
-	#superclass : #SbddFeature,
+	#name : #TomeFeatureExamples,
+	#superclass : #TomeFeature,
 	#instVars : [
 		'userRepository'
 	],
-	#category : 'Tome-Tests-Examples'
+	#category : #'Tome-Tests-Examples'
 }
 
 { #category : #'scenario outline' }
-SbddFeatureExamples >> Add_a_New_User [
+TomeFeatureExamples >> Add_a_New_User [
 
 	<scenario>
 
@@ -16,11 +16,11 @@ SbddFeatureExamples >> Add_a_New_User [
       		      def: 'Given a new user named "Sofia"
         			      When I try to register her as a user
            	         Then she is registery successfully'
-         		   run: [ :userName | userRepository add: (SBDDDummyUser new name: userName) ].
+         		   run: [ :userName | userRepository add: (TomeDummyUser new name: userName) ].
 ]
 
 { #category : #'scenario outline' }
-SbddFeatureExamples >> User_Must_Be_Major_Feature [
+TomeFeatureExamples >> User_Must_Be_Major_Feature [
 
 	<scenario>
 
@@ -41,7 +41,7 @@ SbddFeatureExamples >> User_Must_Be_Major_Feature [
 ]
 
 { #category : #'scenario outline' }
-SbddFeatureExamples >> User_Must_Be_Unique_by_CPF [
+TomeFeatureExamples >> User_Must_Be_Unique_by_CPF [
 
 	<scenario>
 
@@ -56,9 +56,9 @@ SbddFeatureExamples >> User_Must_Be_Unique_by_CPF [
   
 	            		   run: [ :johnCPF  :newUserCPF  :resultExpected |
 				
-								  userRepository add: (SBDDDummyUser new cpf: johnCPF; name: 'John').
+								  userRepository add: (TomeDummyUser new cpf: johnCPF; name: 'John').
 								
-	 	           		 	  self assert: ( [ userRepository add: (SBDDDummyUser new cpf: newUserCPF; name: 'Darla').
+	 	           		 	  self assert: ( [ userRepository add: (TomeDummyUser new cpf: newUserCPF; name: 'Darla').
 														'sucess' 
 													  ] ifError: [ 'fail' ] )
 										 equals: resultExpected.
@@ -68,7 +68,7 @@ SbddFeatureExamples >> User_Must_Be_Unique_by_CPF [
 ]
 
 { #category : #running }
-SbddFeatureExamples >> setUp [
+TomeFeatureExamples >> setUp [
 	super setUp.
-	userRepository := SBDDDummyUserRepository new. 
+	userRepository := TomeDummyUserRepository new. 
 ]
