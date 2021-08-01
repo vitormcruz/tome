@@ -13,7 +13,7 @@ BaselineOfTome >> baseline: spec [
 		spec blessing: #'baseline';   
 		repository: 'gitlab://vitormcruz/sandbox-st';   
 		
- 	   baseline: 'LangExtensions' with: [ spec repository: 'github://vitormcruz/tome:develop'; 
+ 	   baseline: 'LangExtensions' with: [ spec repository: 'gitlab://vitormcruz/sandbox-st:develop'; 
 											 		 loads: #(core) ];
 														
 		package: 'Tome-Core' with: [ spec requires: 'LangExtensions' ];
