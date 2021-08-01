@@ -1,21 +1,21 @@
 Class {
-	#name : #SbddFeature,
+	#name : #TomeFeature,
 	#superclass : #ParametrizedTestCase,
 	#instVars : [
 		'scenarioBuilderMethod',
 		'exampleIndex'
 	],
-	#category : 'Tome-Core'
+	#category : #'Tome-Core'
 }
 
 { #category : #private }
-SbddFeature class >> isAbstract [
+TomeFeature class >> isAbstract [
 
-	^ self name = #SbddFeature 
+	^ self name = #TomeFeature 
 ]
 
 { #category : #'building suites' }
-SbddFeature class >> myScenarios [
+TomeFeature class >> myScenarios [
 
 	^ self chain methods;
 				  	 select: [ :method | (method pragmas collect: #selector) includes: 'scenario' ]; 
@@ -28,7 +28,7 @@ SbddFeature class >> myScenarios [
 ]
 
 { #category : #'building suites' }
-SbddFeature class >> testParameters [
+TomeFeature class >> testParameters [
 
 	^ self myScenarios inject: ParametrizedTestMatrix new 
 						    into: [ :testMatrix :aCase | testMatrix addCase: aCase ]
@@ -36,36 +36,36 @@ SbddFeature class >> testParameters [
 ]
 
 { #category : #accessing }
-SbddFeature >> exampleIndex [
+TomeFeature >> exampleIndex [
 	^ exampleIndex
 ]
 
 { #category : #accessing }
-SbddFeature >> exampleIndex: anObject [
+TomeFeature >> exampleIndex: anObject [
 	exampleIndex := anObject
 ]
 
 { #category : #'scenario builder' }
-SbddFeature >> scenario: aString def: aStringDefinition run: aBlock [
+TomeFeature >> scenario: aString def: aStringDefinition run: aBlock [
 
-	^ {SbddScenario withName: aString 
+	^ {TomeScenario withName: aString 
 	 	            definition: aStringDefinition 
 				      executionBlock: aBlock}
 
 ]
 
 { #category : #accessing }
-SbddFeature >> scenarioBuilderMethod [
+TomeFeature >> scenarioBuilderMethod [
 	^ scenarioBuilderMethod
 ]
 
 { #category : #accessing }
-SbddFeature >> scenarioBuilderMethod: anObject [
+TomeFeature >> scenarioBuilderMethod: anObject [
 	scenarioBuilderMethod := anObject
 ]
 
 { #category : #'scenario builder' }
-SbddFeature >> scenarioOutline: aString def: aStringDescription examples: examples run: aBlock [
+TomeFeature >> scenarioOutline: aString def: aStringDescription examples: examples run: aBlock [
 
 	^ examples chain 
 				  collect: [ :example | 
@@ -77,7 +77,7 @@ SbddFeature >> scenarioOutline: aString def: aStringDescription examples: exampl
 ]
 
 { #category : #running }
-SbddFeature >> setUp [
+TomeFeature >> setUp [
 	<deprecated:  'Fix for parametrized tests. Wait until fix in the image.'>
 	
 	self initialize.
@@ -93,7 +93,7 @@ SbddFeature >> setUp [
 ]
 
 { #category : #'parameterized tests' }
-SbddFeature >> testScenario [
+TomeFeature >> testScenario [
 
 	^ ((self perform: scenarioBuilderMethod) at: exampleIndex) run.
 

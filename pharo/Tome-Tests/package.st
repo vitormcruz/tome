@@ -1,1 +1,1 @@
-Package { #name : #'SBDD-Tests' }
+Package { #name : #'Tome-Tests' }

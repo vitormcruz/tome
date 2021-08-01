@@ -1,20 +1,20 @@
 Class {
-	#name : #SbddFeatureTest,
+	#name : #TomeFeatureTest,
 	#superclass : #TestCase,
-	#category : 'Tome-Tests'
+	#category : #'Tome-Tests'
 }
 
 { #category : #'as yet unclassified' }
-SbddFeatureTest >> buildScenarioTestExecutionNamed: aStringName described: aStringDescription andWithExecution: aBlock [
+TomeFeatureTest >> buildScenarioTestExecutionNamed: aStringName described: aStringDescription andWithExecution: aBlock [
 
    | testCase |
 
-	testCase := (SbddFeature new 
+	testCase := (TomeFeature new 
 									 scenario: aStringName  
 								 	 def: aStringDescription  
 					 				 run: aBlock) asDictionary.
 									
-	^ SbddScenario withName: (testCase at: #scenarioDefinition)
+	^ TomeScenario withName: (testCase at: #scenarioDefinition)
 					   definition: (testCase at: #scenarioName) 
 						executionBlock: aBlock.
 									
@@ -22,12 +22,12 @@ SbddFeatureTest >> buildScenarioTestExecutionNamed: aStringName described: aStri
 ]
 
 { #category : #'tests - scenarios execution' }
-SbddFeatureTest >> test_scenario_execution_with_1_parameter [
+TomeFeatureTest >> test_scenario_execution_with_1_parameter [
 
 
 	| scenario paramObtained |
 	
-	scenario := SbddScenario withName: 'scenario_test'
+	scenario := TomeScenario withName: 'scenario_test'
 								   definition: 'Step with one parameter "param1"'
 									executionBlock: [ :param | 
 										paramObtained := param
@@ -39,12 +39,12 @@ SbddFeatureTest >> test_scenario_execution_with_1_parameter [
 ]
 
 { #category : #'tests - scenarios execution' }
-SbddFeatureTest >> test_scenario_execution_with_1_parameter_using_examples [
+TomeFeatureTest >> test_scenario_execution_with_1_parameter_using_examples [
 
 	| paramsObtained steps |
 
 	paramsObtained := OrderedCollection new.
-   steps := SbddFeature new scenarioOutline: 'scenario_test' 
+   steps := TomeFeature new scenarioOutline: 'scenario_test' 
 			   	            def: 'Step with one parameter "{param1}"'
 					         examples: #( param1 ) asHeaderFor 
 						 		           - #('value1') 
@@ -56,12 +56,12 @@ SbddFeatureTest >> test_scenario_execution_with_1_parameter_using_examples [
 ]
 
 { #category : #'tests - scenarios execution' }
-SbddFeatureTest >> test_scenario_execution_with_2_parameters_using_examples [
+TomeFeatureTest >> test_scenario_execution_with_2_parameters_using_examples [
 
 	| paramsObtained steps |
 
 	paramsObtained := OrderedCollection new.
-   steps := SbddFeature new scenarioOutline: 'scenario_test' 
+   steps := TomeFeature new scenarioOutline: 'scenario_test' 
 			   	            def: 'Step with tow parameters: "{param1}" and "{param2}"' 
 					         examples: #( param1    param2 ) asHeaderFor 
 						 		        - #('value1'     1    ) 
@@ -77,11 +77,11 @@ SbddFeatureTest >> test_scenario_execution_with_2_parameters_using_examples [
 ]
 
 { #category : #'tests - scenarios execution' }
-SbddFeatureTest >> test_scenario_execution_with_3_parameters [
+TomeFeatureTest >> test_scenario_execution_with_3_parameters [
 
 	| scenario paramsObtained |
 	
-	scenario := SbddScenario withName: 'scenario_test'
+	scenario := TomeScenario withName: 'scenario_test'
 								   definition: 'Step with one parameter "param1", "param2" and "param3"'
 									executionBlock: [ :param1 :param2 :param3 | 
 										paramsObtained := {param1. param2. param3}
@@ -93,12 +93,12 @@ SbddFeatureTest >> test_scenario_execution_with_3_parameters [
 ]
 
 { #category : #'tests - scenarios execution' }
-SbddFeatureTest >> test_scenario_execution_with_N_parameters_mixing_examples_with_fixed [
+TomeFeatureTest >> test_scenario_execution_with_N_parameters_mixing_examples_with_fixed [
 
 	| paramsObtained steps |
 
 	paramsObtained := OrderedCollection new.
-   steps := SbddFeature new scenarioOutline: 'scenario_test' 
+   steps := TomeFeature new scenarioOutline: 'scenario_test' 
 			   	            def: 'Step with N parameters "Fixed Param1" "Fixed Param2" "{exampleParam1}" "{exampleParam2}"'
 					         examples: #(       exampleParam1              exampleParam2           ) asHeaderFor 
 						 		           - #('exampleParam1Value1'      'exampleParam2Value1'       ) 

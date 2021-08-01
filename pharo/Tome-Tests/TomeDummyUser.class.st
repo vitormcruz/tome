@@ -1,29 +1,29 @@
 Class {
-	#name : #SBDDDummyUser,
+	#name : #TomeDummyUser,
 	#superclass : #Object,
 	#instVars : [
 		'name',
 		'cpf'
 	],
-	#category : 'Tome-Tests-Examples'
+	#category : #'Tome-Tests-Examples'
 }
 
 { #category : #accessing }
-SBDDDummyUser >> cpf [
+TomeDummyUser >> cpf [
 	^ cpf
 ]
 
 { #category : #accessing }
-SBDDDummyUser >> cpf: anObject [
+TomeDummyUser >> cpf: anObject [
 	cpf := anObject
 ]
 
 { #category : #accessing }
-SBDDDummyUser >> name [
+TomeDummyUser >> name [
 	^ name
 ]
 
 { #category : #accessing }
-SBDDDummyUser >> name: anObject [
+TomeDummyUser >> name: anObject [
 	name := anObject
 ]

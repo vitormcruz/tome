@@ -1,11 +1,11 @@
 Class {
-	#name : #SBDDDummyUserRepository,
+	#name : #TomeDummyUserRepository,
 	#superclass : #OrderedCollection,
-	#category : 'Tome-Tests-Examples'
+	#category : #'Tome-Tests-Examples'
 }
 
 { #category : #adding }
-SBDDDummyUserRepository >> add: aNewUser [
+TomeDummyUserRepository >> add: aNewUser [
 
 	(self anySatisfy: [ :user | user cpf = aNewUser cpf ])
 		ifTrue: [ Error signal: 'A User with this CPF number was already inserted!!' ].
