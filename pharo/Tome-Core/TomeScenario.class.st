@@ -1,3 +1,6 @@
+"
+I represent a Scenario ready to be executed. Usually you won't need to use me, see `TomeFeature`
+"
 Class {
 	#name : #TomeScenario,
 	#superclass : #Object,
