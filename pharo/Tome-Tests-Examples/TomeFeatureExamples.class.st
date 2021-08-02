@@ -7,7 +7,7 @@ Class {
 	#category : #'Tome-Tests-Examples'
 }
 
-{ #category : #'scenario outline' }
+{ #category : #scenario }
 TomeFeatureExamples >> Add_a_New_User [
 
 	<scenario>
@@ -15,11 +15,14 @@ TomeFeatureExamples >> Add_a_New_User [
 	^ self scenario: 'Add a new User'
       		      def: 'Given a new user named "Sofia"
         			      When I try to register her as a user
-           	         Then she is registery successfully'
-         		   run: [ :userName | userRepository add: (TomeDummyUser new name: userName) ].
+           	         Then she is registery "successfully"'
+         		   run: [ :userName :result | 
+						userRepository add: (TomeDummyUser new name: userName).
+						self assert: result equals: 'successfully'
+					].
 ]
 
-{ #category : #'scenario outline' }
+{ #category : #scenario }
 TomeFeatureExamples >> User_Must_Be_Major_Feature [
 
 	<scenario>
@@ -40,7 +43,7 @@ TomeFeatureExamples >> User_Must_Be_Major_Feature [
     		   			   ].
 ]
 
-{ #category : #'scenario outline' }
+{ #category : #scenario }
 TomeFeatureExamples >> User_Must_Be_Unique_by_CPF [
 
 	<scenario>
