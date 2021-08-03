@@ -134,7 +134,7 @@ TomeFeature >> scenarioOutline: aString def: aStringDescription examples: exampl
 	^ examples chain 
 				  collect: [ :example | 
 				  		self scenario: aString 
-						     def: (aStringDescription format: example)
+						     def: (example applyAsExampleTo: aStringDescription)
 						     run: aBlock
 				  ]; 
 				  flattened.
