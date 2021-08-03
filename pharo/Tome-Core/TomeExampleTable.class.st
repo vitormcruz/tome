@@ -63,7 +63,7 @@ TomeExampleTable class >> withHeader: aSequencableCollection [
 	^ super new withHeader: aSequencableCollection.
 ]
 
-{ #category : #'var accessors' }
+{ #category : #building }
 TomeExampleTable >> - aCollection [ 
 
 	examples add: (header asFormatParametersOf: aCollection).
@@ -75,18 +75,13 @@ TomeExampleTable >> collect: aBlockClosure [
 	^ examples collect: aBlockClosure .
 ]
 
-{ #category : #enumeration }
-TomeExampleTable >> do: aBlockClosure [ 
-	examples do: aBlockClosure.
-]
-
 { #category : #initialization }
 TomeExampleTable >> initialize [ 
 
 	examples := OrderedCollection new.
 ]
 
-{ #category : #'var accessors' }
+{ #category : #building }
 TomeExampleTable >> withHeader: aSequencebleCollection [
 
 	"Expect a SequenceCollection as parameter to be used as a header for the example table.

@@ -3,14 +3,23 @@ Extension { #name : #SequenceableCollection }
 { #category : #'*Tome-Core' }
 SequenceableCollection >> asFormatParametersOf: exampleValues [ 
 
-	| formatParameters |
+	" Use the list of example values received by parameter to create a dictionary of paramName -> paramValue.
+	  The number in the exampleValues list must be the same as mine."
+
+	[exampleValues isNil], [ exampleValues isEmpty ], [ self size ~= exampleValues size  ]
+		ifAnyTrue: [ ^ 
+			Error signal: 'There should be ', self size asString , ' parameters but found ', (exampleValues ifNil: [#()]) size asString 
+		].
+		
+
+	^ Dictionary new in: [ :parametersWithValues |
+	  		self paddedWith: exampleValues do: [ :header :value |
+				parametersWithValues add: header -> value.
+			]
+		];
+		yourself.
 	
-	formatParameters := Dictionary new.
-	self paddedWith: exampleValues do: [ :header :value |
-		formatParameters add: header -> value.
-	].
-	
-	^ formatParameters. 
+
 ]
 
 { #category : #'*Tome-Core' }
