@@ -4,23 +4,6 @@ Class {
 	#category : #'Tome-Tests'
 }
 
-{ #category : #'as yet unclassified' }
-TomeFeatureTest >> buildScenarioTestExecutionNamed: aStringName described: aStringDescription andWithExecution: aBlock [
-
-   | testCase |
-
-	testCase := (TomeFeature new 
-									 scenario: aStringName  
-								 	 def: aStringDescription  
-					 				 run: aBlock) asDictionary.
-									
-	^ TomeScenario withName: (testCase at: #scenarioDefinition)
-					   definition: (testCase at: #scenarioName) 
-						executionBlock: aBlock.
-									
-								
-]
-
 { #category : #'tests - scenarios execution' }
 TomeFeatureTest >> test_scenario_execution_with_1_parameter [
 
@@ -56,13 +39,29 @@ TomeFeatureTest >> test_scenario_execution_with_1_parameter_using_examples [
 ]
 
 { #category : #'tests - scenarios execution' }
+TomeFeatureTest >> test_scenario_execution_with_2_parameters [
+
+	| scenario paramsObtained |
+	
+	scenario := TomeScenario withName: 'scenario_test'
+								   definition: 'Step with two parameters: "param1" and "param2"'
+									executionBlock: [ :param1 :param2 | 
+										paramsObtained := {param1. param2}
+									].
+		
+	scenario run.
+	
+	self assertCollection: paramsObtained hasSameElements: #('param1' 'param2').
+]
+
+{ #category : #'tests - scenarios execution' }
 TomeFeatureTest >> test_scenario_execution_with_2_parameters_using_examples [
 
 	| paramsObtained steps |
 
 	paramsObtained := OrderedCollection new.
    steps := TomeFeature new scenarioOutline: 'scenario_test' 
-			   	            def: 'Step with tow parameters: "{param1}" and "{param2}"' 
+			   	            def: 'Step with two parameters: "{param1}" and "{param2}"' 
 					         examples: #( param1    param2 ) asHeaderFor 
 						 		        - #('value1'     1    ) 
 								        - #('value2'     2    ) 
@@ -82,7 +81,7 @@ TomeFeatureTest >> test_scenario_execution_with_3_parameters [
 	| scenario paramsObtained |
 	
 	scenario := TomeScenario withName: 'scenario_test'
-								   definition: 'Step with one parameter "param1", "param2" and "param3"'
+								   definition: 'Step with three parameters "param1", "param2" and "param3"'
 									executionBlock: [ :param1 :param2 :param3 | 
 										paramsObtained := {param1. param2. param3}
 									].
@@ -93,7 +92,28 @@ TomeFeatureTest >> test_scenario_execution_with_3_parameters [
 ]
 
 { #category : #'tests - scenarios execution' }
-TomeFeatureTest >> test_scenario_execution_with_N_parameters_mixing_examples_with_fixed [
+TomeFeatureTest >> test_scenario_execution_with_3_parameters_using_examples [
+
+	| paramsObtained steps |
+
+	paramsObtained := OrderedCollection new.
+   steps := TomeFeature new scenarioOutline: 'scenario_test' 
+			   	            def: 'Step with three parameters: "{param1}", "{param2}" and "{param3}"' 
+					         examples: #( param1    param2  param3 ) asHeaderFor 
+						 		        - #('value1'     1      true  ) 
+								        - #('value2'     2      false ) 
+								        - #('value3'     3      true  )
+					         run: [ :param1 :param2 :param3| 
+									paramsObtained add: {param1. param2. param3 = 'true' } 
+							   ].
+						
+	steps do: #run.
+					
+   self assertCollection: paramsObtained hasSameElements: #(#('value1' 1 true) #('value2' 2 false) #('value3' 3 true)).
+]
+
+{ #category : #'tests - scenarios execution' }
+TomeFeatureTest >> test_scenario_execution_with_N_parameters_mixing_examples_and_fixed_values [
 
 	| paramsObtained steps |
 

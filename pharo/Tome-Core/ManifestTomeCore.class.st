@@ -1,10 +1,10 @@
 "
-test
+See `TomeFeature` comment section for a complete description of Tome.
 "
 Class {
 	#name : #ManifestTomeCore,
 	#superclass : #PackageManifest,
-	#category : 'Tome-Core-Manifest'
+	#category : #'Tome-Core-Manifest'
 }
 
 { #category : #'code-critics' }
