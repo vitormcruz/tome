@@ -1,9 +1,21 @@
 "
-Class: TomeExampleClause
-                                                                                                    
+I am mostly like a very simple collection that can be represented as a table of elements with a header, so:
 
-I am mostly like a very simple collection and I am used to represent the example clause of a scenario outline specification.
-For example:
+```
+  #(Name     Age       Address  ) asHeaderFor 
+- #('Jhon'    25     'Street 1' ) 
+- #('Maria'   20     'Street 2' ) 
+- #('Smith'   60     'Street 3' ) 
+```
+
+is equivalent to:
+
+  |  Name   |  Age  |   Address   |
+  | 'Jhon'  |  25   |  'Street 1' | 
+  | 'Maria' |  20   |  'Street 2' | 
+  | 'Smith' |  60   |  'Street 3' | 
+
+I am used to represent the example clause of a scenario outline specification. For example:
 
 Scenario: Every user must be 18 ears old or more
 •	Given John is ""<age>"" years old
@@ -34,7 +46,7 @@ I represent the three examples used to instantiate the following three scenarios
 
 "
 Class {
-	#name : #TomeExampleClause,
+	#name : #TomeExampleTable,
 	#superclass : #Object,
 	#instVars : [
 		'header',
@@ -44,36 +56,38 @@ Class {
 }
 
 { #category : #'instance creation' }
-TomeExampleClause class >> withHeader: exampleHeader [
+TomeExampleTable class >> withHeader: aSequencableCollection [
 
-	^ super new withHeader: exampleHeader.
+	"See TomeExampleTable>>withHeader:"
+
+	^ super new withHeader: aSequencableCollection.
 ]
 
 { #category : #'var accessors' }
-TomeExampleClause >> - aCollection [ 
+TomeExampleTable >> - aCollection [ 
 
 	examples add: (header asFormatParametersOf: aCollection).
 
 ]
 
 { #category : #enumerating }
-TomeExampleClause >> collect: aBlockClosure [ 
+TomeExampleTable >> collect: aBlockClosure [ 
 	^ examples collect: aBlockClosure .
 ]
 
 { #category : #enumeration }
-TomeExampleClause >> do: aBlockClosure [ 
+TomeExampleTable >> do: aBlockClosure [ 
 	examples do: aBlockClosure.
 ]
 
 { #category : #initialization }
-TomeExampleClause >> initialize [ 
+TomeExampleTable >> initialize [ 
 
 	examples := OrderedCollection new.
 ]
 
 { #category : #'var accessors' }
-TomeExampleClause >> withHeader: aSequencebleCollection [
+TomeExampleTable >> withHeader: aSequencebleCollection [
 
 	"Expect a SequenceCollection as parameter to be used as a header for the example table.
 	 

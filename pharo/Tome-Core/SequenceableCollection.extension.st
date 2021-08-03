@@ -16,5 +16,5 @@ SequenceableCollection >> asFormatParametersOf: exampleValues [
 { #category : #'*Tome-Core' }
 SequenceableCollection >> asHeaderFor [
 
-	^ TomeExampleClause withHeader: self.
+	^ TomeExampleTable withHeader: self.
 ]
