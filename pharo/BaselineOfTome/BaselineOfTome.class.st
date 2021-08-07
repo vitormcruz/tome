@@ -13,10 +13,13 @@ BaselineOfTome >> baseline: spec [
 		spec blessing: #'baseline';   
 		repository: 'gitlab://vitormcruz/sandbox-st';   
 		
+ 	   baseline: 'Buoy' with: [ spec repository: 'github://ba-st/Buoy:v6.1.0/source'; 
+											 		 loads: #(Deployment) ];
+		
  	   baseline: 'LangExtensions' with: [ spec repository: 'gitlab://vitormcruz/sandbox-st:develop'; 
 											 		 loads: #(core) ];
 														
-		package: 'Tome-Core' with: [ spec requires: 'LangExtensions' ];
+		package: 'Tome-Core' with: [ spec requires: #('LangExtensions' 'Buoy') ];
 		package: 'Tome-Tests' with: [ spec requires: 'Tome-Core' ];   
 		
 		group: 'default' with: #('core');
