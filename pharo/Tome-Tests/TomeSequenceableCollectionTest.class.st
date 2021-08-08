@@ -9,9 +9,7 @@ TomeSequenceableCollectionTest >> test_asFormatParametersOf_empty [
 
 	self should: [ (#( name  age ) asFormatParametersOf: #()) ] 
 		  raise: Error 
-		  withExceptionDo: [ :err | 
-		    self assert: err messageText equals: 'There should be 2 parameters but found 0'
-  		  ].
+		  withMessageText: 'There should be 2 parameters but found 0'.
 ]
 
 { #category : #tests }
@@ -19,9 +17,7 @@ TomeSequenceableCollectionTest >> test_asFormatParametersOf_nil [
 
 	self should: [ (#( name  age ) asFormatParametersOf: nil) ] 
 		  raise: Error 
-		  withExceptionDo: [ :err | 
-		    self assert: err messageText equals: 'There should be 2 parameters but found 0'
-  		  ].
+		  withMessageText: 'There should be 2 parameters but found 0'.
 ]
 
 { #category : #tests }
@@ -36,9 +32,7 @@ TomeSequenceableCollectionTest >> test_asFormatParametersOf_parameter_size_less_
 
 	self should: [ (#( name  age ) asFormatParametersOf: #('Roger')) ] 
 		  raise: Error 
-		  withExceptionDo: [ :err | 
-		    self assert: err messageText equals: 'There should be 2 parameters but found 1'
-  		  ].
+		  withMessageText: 'There should be 2 parameters but found 1'.
 ]
 
 { #category : #tests }
@@ -46,7 +40,5 @@ TomeSequenceableCollectionTest >> test_asFormatParametersOf_parameter_size_more_
 
 	self should: [ (#( name  age ) asFormatParametersOf: #('Roger' 33 'extra param')) ] 
 		  raise: Error 
-		  withExceptionDo: [ :err | 
-		    self assert: err messageText equals: 'There should be 2 parameters but found 3'
-  		  ].
+		  withMessageText: 'There should be 2 parameters but found 3'.
 ]
