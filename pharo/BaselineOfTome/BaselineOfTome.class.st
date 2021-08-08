@@ -22,10 +22,11 @@ BaselineOfTome >> baseline: spec [
 														
 		package: 'Tome-Core' with: [ spec requires: #('LangExtensions') ];
 		package: 'Tome-Tests' with: [ spec requires: #('Tome-Core' 'Buoy-Tests') ];   
+		package: 'Tome-Tests-Examples' with: [ spec requires: #('Tome-Core' 'Buoy-Tests') ];
 		
 		group: 'default' with: #('dev');
 		group: 'core' with: #('Tome-Core');
-		group: 'dev' with: #(core 'Tome-Tests')			
+		group: 'dev' with: #(core 'Tome-Tests' 'Tome-Tests-Examples')			
 	].
 		
 
