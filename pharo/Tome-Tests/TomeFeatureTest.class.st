@@ -4,19 +4,29 @@ Class {
 	#category : #'Tome-Tests'
 }
 
+{ #category : #tests }
+TomeFeatureTest >> test_feature_class_with_no_scenario_definition [
+
+	self should: [ TomeDummyEmpytyFeature suite run ] 
+		  raise: Error 
+		  whoseDescriptionIncludes: 'No scenarios found.' 
+		  description: 'Should have raised a ''No scenarios found.'' error, but didn''t'.
+
+]
+
 { #category : #'tests - scenarios execution' }
 TomeFeatureTest >> test_scenario_execution_with_1_parameter [
 
 
-	| scenario paramObtained |
+	| steps paramObtained |
 	
-	scenario := TomeScenario withName: 'scenario_test'
-								   definition: 'Step with one parameter "param1"'
-									executionBlock: [ :param | 
+	steps := TomeFeature new scenario:'scenario_test'
+  								   def:'Step with one parameter "param1"'
+									run: [ :param | 
 										paramObtained := param
 									].
 		
-	scenario run.
+	steps do: #run.
 	
    self assert: 'param1' equals: paramObtained.
 ]
@@ -41,16 +51,15 @@ TomeFeatureTest >> test_scenario_execution_with_1_parameter_using_examples [
 { #category : #'tests - scenarios execution' }
 TomeFeatureTest >> test_scenario_execution_with_2_parameters [
 
-	| scenario paramsObtained |
+	| steps paramsObtained |
 	
-	scenario := TomeScenario withName: 'scenario_test'
-								   definition: 'Step with two parameters: "param1" and "param2"'
-									executionBlock: [ :param1 :param2 | 
-										paramsObtained := {param1. param2}
-									].
+	steps := TomeFeature new scenario: 'scenario_test'
+								    def: 'Step with two parameters: "param1" and "param2"'
+									 run: [ :param1 :param2 | 
+									     paramsObtained := {param1. param2}
+									 ].
 		
-	scenario run.
-	
+	steps do: #run.	
 	self assertCollection: paramsObtained hasSameElements: #('param1' 'param2').
 ]
 
@@ -78,15 +87,15 @@ TomeFeatureTest >> test_scenario_execution_with_2_parameters_using_examples [
 { #category : #'tests - scenarios execution' }
 TomeFeatureTest >> test_scenario_execution_with_3_parameters [
 
-	| scenario paramsObtained |
+	| steps paramsObtained |
 	
-	scenario := TomeScenario withName: 'scenario_test'
-								   definition: 'Step with three parameters "param1", "param2" and "param3"'
-									executionBlock: [ :param1 :param2 :param3 | 
-										paramsObtained := {param1. param2. param3}
-									].
+	steps := TomeFeature new scenario: 'scenario_test'
+								    def: 'Step with three parameters "param1", "param2" and "param3"'
+								    run: [ :param1 :param2 :param3 | 
+									     paramsObtained := {param1. param2. param3}
+								    ].
 		
-	scenario run.
+	steps do: #run.
 	
 	self assertCollection: paramsObtained hasSameElements: #('param1' 'param2' 'param3').
 ]
