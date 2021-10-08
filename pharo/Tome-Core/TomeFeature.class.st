@@ -83,20 +83,27 @@ TomeFeature class >> myScenarios [
 
 	^ self chain methods;
 				  	 select: [ :method | (method pragmas collect: #selector) includes: 'scenario' ]; 
-					 inject: OrderedCollection new into: [ :finalCollection :scenarioBuilderMethod | 
-						finalCollection addAll: ((1 to: ((scenarioBuilderMethod valueWithReceiver: self new arguments: #()) size )) collect: [ :exampleIndex | {#scenarioBuilderMethod -> scenarioBuilderMethod selector. 
-					  #exampleIndex -> exampleIndex}]);
-						yourself 
-						 
+					 inject: OrderedCollection new 
+					 into: [ :scenarios :scenarioBuilderMethod | 
+					     scenarios addAll: ((1 to: ((scenarioBuilderMethod valueWithReceiver: self new arguments: #()) size )) 
+														collect: [ :exampleIndex | {#scenarioBuilderMethod -> scenarioBuilderMethod selector. 
+																						   #exampleIndex -> exampleIndex}
+														]);
+						  yourself 
 					 ].
 ]
 
 { #category : #'building suites' }
 TomeFeature class >> testParameters [
 
-	^ self myScenarios inject: ParametrizedTestMatrix new 
-						    into: [ :testMatrix :aCase | testMatrix addCase: aCase ]
+   | myScenarios |
 
+   myScenarios := self myScenarios.
+
+	myScenarios ifEmpty: [ Error signal: 'No scenarios found. The feature classe must have at least one method annotated with the <senario> pragma' ].
+
+   ^ myScenarios inject: ParametrizedTestMatrix new
+			        into: [ :testMatrix :aCase | testMatrix addCase: aCase ]
 ]
 
 { #category : #accessing }

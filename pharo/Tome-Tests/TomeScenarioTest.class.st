@@ -1,11 +1,11 @@
 Class {
-	#name : #TomeFeatureScenarioTest,
+	#name : #TomeScenarioTest,
 	#superclass : #TestCase,
 	#category : #'Tome-Tests'
 }
 
 { #category : #'tests - scenarios execution' }
-TomeFeatureScenarioTest >> test_create_scenario_without_mandatory_params [
+TomeScenarioTest >> test_create_scenario_without_mandatory_params [
 
 	self should: [ (TomeScenario withName: nil definition: nil executionBlock: nil) run ] 
 		  raise: Error 
