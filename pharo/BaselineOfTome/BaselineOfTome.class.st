@@ -11,7 +11,7 @@ BaselineOfTome >> baseline: spec [
         
 	spec for: #'common' do: [
 		spec blessing: #'baseline';   
-		repository: 'gitlab://vitormcruz/sandbox-st';   
+		repository: 'github://vitormcruz/sandbox-st';   
 		
  	   baseline: 'Buoy' with: [ spec repository: 'github://ba-st/Buoy:v6.1.0/source' ];
 										
