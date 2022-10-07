@@ -17,7 +17,7 @@ BaselineOfTome >> baseline: spec [
 										
 		project: 'Buoy-Tests' copyFrom: 'Buoy' with: [ spec loads: #('Dependent-SUnit-Extensions') ];
 		
- 	   baseline: 'LangExtensions' with: [ spec repository: 'gitlab://vitormcruz/sandbox-st:develop'; 
+ 	   baseline: 'LangExtensions' with: [ spec repository: 'github://vitormcruz/sandbox-st:develop'; 
 											 		 loads: #(core) ];
 														
 		package: 'Tome-Core' with: [ spec requires: #('LangExtensions') ];
