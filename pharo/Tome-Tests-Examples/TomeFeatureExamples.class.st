@@ -61,13 +61,20 @@ TomeFeatureExamples >> User_Must_Be_Unique_by_CPF [
 				
 								  userRepository add: (TomeDummyUser new cpf: johnCPF; name: 'John').
 								
-	 	           		 	  self assert: ( [ userRepository add: (TomeDummyUser new cpf: newUserCPF; name: 'Darla').
-														'sucess' 
-													  ] ifError: [ 'fail' ] )
-										 equals: resultExpected.
+	 	           		 	  self assert: ( self do: [ userRepository add: (TomeDummyUser new cpf: newUserCPF; name: 'Darla') ] 
+					                                 returnOnSuccess: 'sucess' 
+					                                 otherwise: 'fail')
+										     equals: resultExpected.
 								 
 
     		   			   ].
+]
+
+{ #category : #'as yet unclassified' }
+TomeFeatureExamples >> do: aBlock returnOnSuccess: objectOnSuccess otherwise: objectOnFail [
+
+    aBlock on: Error do: [ ^ objectOnFail ].
+    ^ objectOnSuccess.
 ]
 
 { #category : #running }

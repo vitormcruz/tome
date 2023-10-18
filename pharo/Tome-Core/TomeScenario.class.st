@@ -82,7 +82,7 @@ TomeScenario >> run [
 									flattened;
 									collect: [ :param | param copyWithoutAll: '"' ];
 									collect: [ :param | [ param asNumber ] on: Exception do: [ :err | param ] ];
-									subject.
+									yourself.
 
 	^ executionBlock valueWithPossibleArgs: parameters .
 
