@@ -15,7 +15,7 @@ BaselineOfTome >> baseline: spec [
  	   baseline: 'Buoy' with: [ spec repository: 'github://ba-st/Buoy:v6.1.0/source' ];
 		    project: 'Buoy-Tests' copyFrom: 'Buoy' with: [ spec loads: #('Dependent-SUnit-Extensions') ];
 		
-	   baseline: 'Polaris' with: [ spec repository: 'github://vitormcruz/polaris-st:main/pharo'; loads: #(experimental-only) ];												
+	   baseline: 'Polaris' with: [ spec repository: 'github://vitormcruz/polaris-st:main/pharo'; loads: #('experimental-only') ];												
 		package: 'Tome-Core' with: [ spec requires: #('Polaris') ];
 		package: 'Tome-Tests' with: [ spec requires: #('Tome-Core' 'Buoy-Tests') ];   
 		package: 'Tome-Tests-Examples' with: [ spec requires: #('Tome-Core' 'Buoy-Tests') ];
