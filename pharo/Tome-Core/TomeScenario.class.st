@@ -77,12 +77,9 @@ TomeScenario >> run [
 	
 	self validateScenario.
 	
-	parameters := definition chain
-									allRegexMatches: '"[\w\d\s+-\.]*"';
-									flattened;
-									collect: [ :param | param copyWithoutAll: '"' ];
-									collect: [ :param | [ param asNumber ] on: Exception do: [ :err | param ] ];
-									yourself.
+	parameters := ((definition allRegexMatches: '"[\w\d\s+-\.]*"')
+                     flattened collect: [ :param | param copyWithoutAll: '"' ])
+                         collect: [ :param | [ param asNumber ] on: Exception do: [ :err | param ] ].
 
 	^ executionBlock valueWithPossibleArgs: parameters .
 

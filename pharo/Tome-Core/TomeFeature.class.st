@@ -75,11 +75,9 @@ Class {
 { #category : #'building suites' }
 TomeFeature class >> calculateParameters [
 
-   ^ self chain
-			 methods;
-          select: [ :method | (method pragmas collect: #selector) includes: 'scenario' ];
+   ^ (self methods select: [ :method | (method pragmas collect: #selector) includes: 'scenario' ])
 	       inject: OrderedCollection new
-        	 into: [ :parameters :scenarioBuilderMethod | parameters addAll: (self parametersFor: scenarioBuilderMethod) ; yourself ]
+          into: [ :parameters :scenarioBuilderMethod | parameters addAll: (self parametersFor: scenarioBuilderMethod) ; yourself ]
 ]
 
 { #category : #private }
@@ -153,13 +151,11 @@ TomeFeature >> scenarioBuilderMethod: anObject [
 { #category : #'scenario builder' }
 TomeFeature >> scenarioOutline: aString def: aStringDescription examples: examples run: aBlock [
 
-	^ examples chain 
-				  collect: [ :example | 
+	^ (examples collect: [ :example | 
 				  		self scenario: aString 
 						     def: (example applyAsExampleTo: aStringDescription)
 						     run: aBlock
-				  ]; 
-				  flattened.
+				  ]) flattened.
 ]
 
 { #category : #running }
