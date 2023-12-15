@@ -14,6 +14,12 @@ TomeFeatureTest >> test_feature_class_with_no_scenario_definition [
 
 ]
 
+{ #category : #'param extract' }
+TomeFeatureTest >> test_parameter_extraction [
+
+	self skip: 'should implement'
+]
+
 { #category : #'tests - scenarios execution' }
 TomeFeatureTest >> test_scenario_execution_with_1_parameter [
 
