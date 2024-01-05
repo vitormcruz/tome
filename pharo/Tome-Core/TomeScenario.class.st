@@ -56,7 +56,7 @@ TomeScenario >> extractParameters [
    paramRegexMatches := (definition allRegexMatches: '"[\w\d\s+-\.'']*"') flattened.
    rawParameters := paramRegexMatches collect: [ :param | param copyWithoutAll: '"' ].
 
-   ^ rawParameters collect: [ :param | self processParameter: param ]
+   ^ rawParameters collect: [ :param | TomeParameter createParameterFor: param ]
 ]
 
 { #category : #accessing }
@@ -81,25 +81,22 @@ TomeScenario >> parseBlockClosure: aBlockClosure [
 	^ (Character cr join: blockSourceLines), '<n>'.
 ]
 
-{ #category : #'as yet unclassified' }
-TomeScenario >> processParameter: aStringParam [
-
-    ^ [ aStringParam asNumber ]  "maybe apply chain of responsability?"
-          on: Exception
-          do: [ :err | (aStringParam beginsWith: 'equals:')
-                           ifTrue: [ TomeFeatureAssertion buildWithDef: aStringParam ]
-                           ifFalse: [ aStringParam ] ]
-]
-
 { #category : #running }
 TomeScenario >> run [
 
-   | parameters |
+   | parameters result |
    self validateScenario.
 
    parameters := self extractParameters.
 
-   ^ executionBlock valueWithPossibleArgs: parameters
+	result := executionBlock valueWithPossibleArgs: parameters.
+	parameters do: [ :param | 
+		    param wasUsed ifFalse: [ 
+		    TestFailure signal: param asString, ' should be used so that scenario execution pass.' 
+		]
+	].
+
+   ^ result.
 ]
 
 { #category : #running }
