@@ -5,7 +5,7 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
   Run_Tests:
     runs-on: ubuntu-latest
-    container: vitormcruz/pharo:9
+    container: vitormcruz/pharo:11
     steps:
       - uses: actions/checkout@v2
       - name: Load Tome and Test it
