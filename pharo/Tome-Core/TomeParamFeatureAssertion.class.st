@@ -42,8 +42,11 @@ TomeParamFeatureAssertion >> stringParam: aStringParam [
 { #category : #tests }
 TomeParamFeatureAssertion >> testFailFor: anObject [
 
-    "Verify if the assertion fails for an object that can be converted to string before doing the actual assertion. 
-     It is usefull to validate the state of the system before the tested action execution"
+	"Verify if the assertion fails for an object that can be converted to string before doing the actual assertion. 
+	It is usefull to validate the state of the system before the tested action execution"
 
-    assertBlock value: self.
+	[ assertBlock value: self value: anObject ] on: TestFailure do: [ ^ self "testFailOk" ] .
+
+	TestFailure signal: 'Test for failure did not failed for "', self stringParam , 
+								 '" and the value tested of "', anObject asString , '" '
 ]
