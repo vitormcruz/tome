@@ -29,7 +29,7 @@ TomeFeatureTest >> test_scenario_execution_with_1_parameter [
 	steps := TomeFeature new scenario:'scenario_test'
   								   def:'Step with one parameter "param1"'
 									run: [ :param | 
-										paramObtained := param
+										paramObtained := param , ''
 									].
 		
 	steps do: #run.
@@ -49,7 +49,7 @@ TomeFeatureTest >> test_scenario_execution_with_1_parameter_using_examples [
 						 		           - #('value1') 
 								           - #('value2') 
 								           - #('value3')
-					         run: [ :param1 | paramsObtained add: param1 ].
+					         run: [ :param1 | paramsObtained add: param1 , '' ].
 	steps do: #run.
    self assertCollection: paramsObtained hasSameElements: #('value1' 'value2' 'value3').
 ]
@@ -62,7 +62,7 @@ TomeFeatureTest >> test_scenario_execution_with_2_parameters [
 	steps := TomeFeature new scenario: 'scenario_test'
 								    def: 'Step with two parameters: "param1" and "param2"'
 									 run: [ :param1 :param2 | 
-									     paramsObtained := {param1. param2}
+									     paramsObtained := {param1 , ''. param2 , ''}
 									 ].
 		
 	steps do: #run.	
@@ -82,7 +82,7 @@ TomeFeatureTest >> test_scenario_execution_with_2_parameters_using_examples [
 								        - #('value2'     2    ) 
 								        - #('value3'     3    )
 					         run: [ :param1 :param2 | 
-									paramsObtained add: {param1. param2} 
+									paramsObtained add: {param1 , ''. param2 + 0} 
 							   ].
 						
 	steps do: #run.
@@ -98,7 +98,7 @@ TomeFeatureTest >> test_scenario_execution_with_3_parameters [
 	steps := TomeFeature new scenario: 'scenario_test'
 								    def: 'Step with three parameters "param1", "param2" and "param3"'
 								    run: [ :param1 :param2 :param3 | 
-									     paramsObtained := {param1. param2. param3}
+									     paramsObtained := {param1 , ''. param2 , ''. param3 , ''}
 								    ].
 		
 	steps do: #run.
@@ -119,7 +119,7 @@ TomeFeatureTest >> test_scenario_execution_with_3_parameters_using_examples [
 								        - #('value2'     2      false ) 
 								        - #('value3'     3      true  )
 					         run: [ :param1 :param2 :param3| 
-									paramsObtained add: {param1. param2. param3 = 'true' } 
+									paramsObtained add: {param1  , ''. param2 + 0. param3 = 'true' } 
 							   ].
 						
 	steps do: #run.
@@ -140,7 +140,7 @@ TomeFeatureTest >> test_scenario_execution_with_N_parameters_mixing_examples_and
 								           - #('exampleParam1Value2'      'exampleParam2Value2'       ) 
 								           - #('exampleParam1Value3'      'exampleParam2Value3'       )
 					         run: [ :fix1 :fix2 :exampleParam1 :exampleParam2 | 
-										paramsObtained add: fix1; add: fix2; add:exampleParam1; add: exampleParam2.
+										paramsObtained add: fix1 , ''; add: fix2 , ''; add:exampleParam1 , ''; add: exampleParam2 , ''.
 								].
 	steps do: #run.
    self assert: paramsObtained asOrderedCollection
