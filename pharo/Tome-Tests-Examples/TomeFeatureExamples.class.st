@@ -70,7 +70,7 @@ TomeFeatureExamples >> User_Must_Be_Unique_by_CPF [
     		   			   ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'test util' }
 TomeFeatureExamples >> do: aBlock returnOnSuccess: objectOnSuccess otherwise: objectOnFail [
 
     aBlock on: Error do: [ ^ objectOnFail ].

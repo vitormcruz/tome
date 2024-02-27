@@ -21,14 +21,6 @@ TomeScenario class >> withName: scenarioName definition: scenarioDef executionBl
 		executionBlock: aBlock.
 ]
 
-{ #category : #converting }
-TomeScenario >> asString [
-
- ^ ('Scenario: ', name , '<n>' , 
-	 definition , '<n>' , 
-	 (self parseBlockClosure: executionBlock)) expandMacros.
-]
-
 { #category : #accessing }
 TomeScenario >> definition [
 	^ definition
@@ -59,6 +51,14 @@ TomeScenario >> extractParameters [
    ^ rawParameters collect: [ :param | TomeParameter createParameterFor: param ]
 ]
 
+{ #category : #inspecting }
+TomeScenario >> inspectScenarioDesc: specBuilder [
+
+	<inspectorPresentationOrder: 1 title: 'Scenario Description'>
+
+	^ specBuilder newText text: (self scenarioDescription); beNotEditable; yourself.
+]
+
 { #category : #accessing }
 TomeScenario >> name [
 	^ name
@@ -81,6 +81,21 @@ TomeScenario >> parseBlockClosure: aBlockClosure [
 	^ (Character cr join: blockSourceLines), '<n>'.
 ]
 
+{ #category : #printing }
+TomeScenario >> printOn: aStream [
+	"Append to the argument, aStream, a sequence of characters that
+	identifies the receiver."
+
+	| title |
+	title := self class name.
+	aStream
+		nextPutAll: (title first isVowel ifTrue: ['an '] ifFalse: ['a ']);
+		nextPutAll: title;
+		nextPutAll: '(';
+		nextPutAll: name;
+		nextPutAll: ')'.
+]
+
 { #category : #running }
 TomeScenario >> run [
 
@@ -97,6 +112,13 @@ TomeScenario >> run [
 	].
 
    ^ result.
+]
+
+{ #category : #converting }
+TomeScenario >> scenarioDescription [
+
+		^ 'Scenario: ', name, String cr, definition.
+
 ]
 
 { #category : #running }
