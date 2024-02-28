@@ -99,10 +99,11 @@ TomeScenario >> printOn: aStream [
 { #category : #running }
 TomeScenario >> run [
 
-   | parameters result |
-   self validateScenario.
+	| parameters result |
+	self validateScenario.
 
-   parameters := self extractParameters.
+	parameters := self extractParameters.
+	parameters ifEmpty: [ TestFailure signal: 'Feature without params. This means the feature is not linked to the test code which trumps the runnable specification objective' ]	.
 
 	result := executionBlock valueWithPossibleArgs: parameters.
 	parameters do: [ :param | 
@@ -111,7 +112,7 @@ TomeScenario >> run [
 		]
 	].
 
-   ^ result.
+	^ result.
 ]
 
 { #category : #converting }

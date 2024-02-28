@@ -18,7 +18,8 @@ TomeFeatureExamples >> Add_a_New_User [
            	         Then she is registery "successfully"'
          		   run: [ :userName :result | 
 						userRepository add: (TomeDummyUser new name: userName).
-						self assert: result equals: 'successfully'
+						self assert: result equals: 'successfully'.
+						self assert: (userRepository anySatisfy: [:user | user name = userName ])
 					].
 ]
 

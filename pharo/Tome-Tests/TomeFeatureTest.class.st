@@ -15,9 +15,19 @@ TomeFeatureTest >> test_feature_class_with_no_scenario_definition [
 ]
 
 { #category : #'param extract' }
-TomeFeatureTest >> test_parameter_extraction [
+TomeFeatureTest >> test_parameter_extraction_with_no_param [
 
-	self skip: 'should implement'
+	self	should: [ 
+				(TomeFeature	new scenario:'scenario_test'
+  									def:'Step with no parameter'
+									run: [ ]) do: #run 
+			]
+			raise: TestFailure 
+			withExceptionDo: [ :ex | 
+				self	assert: ex messageText 
+						equals: 'Feature without params. This means the feature is not linked to the test code which trumps the runnable specification objective' 
+			].
+		
 ]
 
 { #category : #'tests - scenarios execution' }
