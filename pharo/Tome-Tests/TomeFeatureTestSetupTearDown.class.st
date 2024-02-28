@@ -21,7 +21,7 @@ TomeFeatureTestSetupTearDown >> Test_Setup_And_TearDown [
 	<scenario>
 
 	^ self scenarioOutline: 'Test if Setup and TearDown are working correctly'
-			 def: 'Execute the {execution}th time' 
+			 def: 'Execute the "{execution}"th time' 
 			examples: #(execution) asHeaderFor 
 					  - #(1)
 					  - #(2)
@@ -31,6 +31,8 @@ TomeFeatureTestSetupTearDown >> Test_Setup_And_TearDown [
 				self assert: tearDownCollection isEmpty.
 				setUpCollection add: execution.
 				tearDownCollection add: execution.
+				self assertCollection: setUpCollection hasSameElements: { execution }.
+				self assertCollection: tearDownCollection hasSameElements: { execution }.
 			] 
 
 ]

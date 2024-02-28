@@ -4,34 +4,8 @@ Class {
 	#category : #'Tome-Tests'
 }
 
-{ #category : #tests }
-TomeFeatureTest >> test_feature_class_with_no_scenario_definition [
-
-	self should: [ TomeDummyEmpytyFeature suite run ] 
-		  raise: Error 
-		  whoseDescriptionIncludes: 'No scenarios found.' 
-		  description: 'Should have raised a ''No scenarios found.'' error, but didn''t'.
-
-]
-
-{ #category : #'param extract' }
-TomeFeatureTest >> test_parameter_extraction_with_no_param [
-
-	self	should: [ 
-				(TomeFeature	new scenario:'scenario_test'
-  									def:'Step with no parameter'
-									run: [ ]) do: #run 
-			]
-			raise: TestFailure 
-			withExceptionDo: [ :ex | 
-				self	assert: ex messageText 
-						equals: 'Feature without params. This means the feature is not linked to the test code which trumps the runnable specification objective' 
-			].
-		
-]
-
 { #category : #'tests - scenarios execution' }
-TomeFeatureTest >> test_scenario_execution_with_1_parameter [
+TomeFeatureTest >> test_extraction_of_1_parameter [
 
 
 	| steps paramObtained |
@@ -48,7 +22,7 @@ TomeFeatureTest >> test_scenario_execution_with_1_parameter [
 ]
 
 { #category : #'tests - scenarios execution' }
-TomeFeatureTest >> test_scenario_execution_with_1_parameter_using_examples [
+TomeFeatureTest >> test_extraction_of_1_parameter_using_examples [
 
 	| paramsObtained steps |
 
@@ -65,7 +39,7 @@ TomeFeatureTest >> test_scenario_execution_with_1_parameter_using_examples [
 ]
 
 { #category : #'tests - scenarios execution' }
-TomeFeatureTest >> test_scenario_execution_with_2_parameters [
+TomeFeatureTest >> test_extraction_of_2_parameters [
 
 	| steps paramsObtained |
 	
@@ -80,7 +54,7 @@ TomeFeatureTest >> test_scenario_execution_with_2_parameters [
 ]
 
 { #category : #'tests - scenarios execution' }
-TomeFeatureTest >> test_scenario_execution_with_2_parameters_using_examples [
+TomeFeatureTest >> test_extraction_of_2_parameters_using_examples [
 
 	| paramsObtained steps |
 
@@ -101,7 +75,7 @@ TomeFeatureTest >> test_scenario_execution_with_2_parameters_using_examples [
 ]
 
 { #category : #'tests - scenarios execution' }
-TomeFeatureTest >> test_scenario_execution_with_3_parameters [
+TomeFeatureTest >> test_extraction_of_3_parameters [
 
 	| steps paramsObtained |
 	
@@ -117,7 +91,7 @@ TomeFeatureTest >> test_scenario_execution_with_3_parameters [
 ]
 
 { #category : #'tests - scenarios execution' }
-TomeFeatureTest >> test_scenario_execution_with_3_parameters_using_examples [
+TomeFeatureTest >> test_extraction_of_3_parameters_using_examples [
 
 	| paramsObtained steps |
 
@@ -138,7 +112,7 @@ TomeFeatureTest >> test_scenario_execution_with_3_parameters_using_examples [
 ]
 
 { #category : #'tests - scenarios execution' }
-TomeFeatureTest >> test_scenario_execution_with_N_parameters_mixing_examples_and_fixed_values [
+TomeFeatureTest >> test_extraction_of_N_parameters_mixing_examples_and_fixed_values [
 
 	| paramsObtained steps |
 
@@ -157,4 +131,30 @@ TomeFeatureTest >> test_scenario_execution_with_N_parameters_mixing_examples_and
 		  equals: #('Fixed Param1' 'Fixed Param2' 'exampleParam1Value1' 'exampleParam2Value1' 
 						'Fixed Param1' 'Fixed Param2' 'exampleParam1Value2' 'exampleParam2Value2'
 						'Fixed Param1' 'Fixed Param2' 'exampleParam1Value3' 'exampleParam2Value3') asOrderedCollection.
+]
+
+{ #category : #'param extract' }
+TomeFeatureTest >> test_extraction_of_Zero_parameters [
+
+	self	should: [ 
+				(TomeFeature	new scenario:'scenario_test'
+  									def:'Step with no parameter'
+									run: [ ]) do: #run 
+			]
+			raise: TestFailure 
+			withExceptionDo: [ :ex | 
+				self	assert: ex messageText 
+						equals: 'Feature without params. This means the feature is not linked to the test code which trumps the runnable specification objective' 
+			].
+		
+]
+
+{ #category : #tests }
+TomeFeatureTest >> test_feature_class_with_no_scenario_definition [
+
+	self should: [ TomeDummyEmpytyFeature suite run ] 
+		  raise: Error 
+		  whoseDescriptionIncludes: 'No scenarios found.' 
+		  description: 'Should have raised a ''No scenarios found.'' error, but didn''t'.
+
 ]

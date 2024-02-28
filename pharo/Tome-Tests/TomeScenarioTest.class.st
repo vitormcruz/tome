@@ -187,11 +187,16 @@ TomeScenarioTest >> test_scenario_with_One_passing_assertion_param [
 { #category : #'tests - using parameters' }
 TomeScenarioTest >> test_scenario_with_no_parameters [
 
-    | scenario |
-        
-    scenario := TomeScenario withName: 'Test Scenario' 
-                             definition: 'Scenario with no parameters' 
-                             executionBlock: [ ].
-       
-    self should: [ scenario run. true ] description: 'Should have run the scenario without error'.
+	| scenario |
+	
+	scenario := TomeScenario
+		            withName: 'Test Scenario'
+		            definition: 'Scenario with no parameters'
+		            executionBlock: [  ].
+
+	self	should: [ scenario run ] 
+			raise: TestFailure withExceptionDo: [ :ex |
+				self assert: ex messageText
+						equals: 'Feature without params. This means the feature is not linked to the test code which trumps the runnable specification objective'
+			]
 ]
