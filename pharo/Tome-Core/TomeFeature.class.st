@@ -156,6 +156,14 @@ TomeFeature >> parametersToUse: aCase [
 	parametersToUse := aCase.
 ]
 
+{ #category : #printing }
+TomeFeature >> printOn: aStream [
+
+	parametersToUse ifNotNil: [ 
+		(parametersToUse collect: #valuable) printOn: aStream delimiter: $ 
+	]
+]
+
 { #category : #'scenario builder' }
 TomeFeature >> scenario: aString def: aStringDefinition run: aBlock [
 

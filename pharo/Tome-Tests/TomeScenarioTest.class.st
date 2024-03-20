@@ -117,9 +117,12 @@ TomeScenarioTest >> test_scenario_using_all_N_parameters [
                              definition: 'Scenario with multiple parameters: "equals: 1" and "equals: 2" "equals: 3"
                                           and also with some normal parameters:  "teste", "2" and "teste2"' 
                              executionBlock: [ :param1 :param2 :param3 :param4 :param5 :param6 | 
-                                 param1 assertSuccessFor: 1.
-                                 param2 assertSuccessFor: 2.
-                                 param3 assertSuccessFor: 3.
+												param1 assertionActualValue: 1.
+												param1 assertSuccess.
+												param2 assertionActualValue: 2.
+												param2 assertSuccess.
+												param3 assertionActualValue: 3.
+												param3 assertSuccess.
                                  param4, param6.
                                  param5 + 1
                              ].
@@ -136,9 +139,12 @@ TomeScenarioTest >> test_scenario_with_N_failing_assertion_params [
     scenario := TomeScenario withName: 'Test Scenario' 
                              definition: 'Scenario with a single parameter: "equals: 1", "equals: 2" and "equals: 3"' 
                              executionBlock: [ :param :param2 :param3 | 
-                                 param assertSuccessFor: 2.
-                                 param2 assertSuccessFor: 3.
-                                 param3 assertSuccessFor: 1.
+												param assertionActualValue: 2.
+												param assertSuccess.
+												param2 assertionActualValue: 3.
+												param2 assertSuccess.
+												param3 assertionActualValue: 1.
+												param3 assertSuccess.
 	                          ].
         
     self should: [ scenario run ] raise: TestFailure.
@@ -152,9 +158,12 @@ TomeScenarioTest >> test_scenario_with_N_passing_assertion_params [
     scenario := TomeScenario withName: 'Test Scenario' 
                              definition: 'Scenario with a single parameter: "equals: 1", "equals: 2" and "equals: 3"' 
                              executionBlock: [ :param :param2 :param3 | 
-                                 param assertSuccessFor: 1.
-                                 param2 assertSuccessFor: 2.
-                                 param3 assertSuccessFor: 3.
+												param assertionActualValue: 1.
+												param assertSuccess.
+												param2 assertionActualValue: 2.
+												param2 assertSuccess.
+												param3 assertionActualValue: 3.
+												param3 assertSuccess.
 	                          ].
         
     self should: [ scenario run. true ] description: 'Should have run the scenario without error'.
@@ -167,7 +176,10 @@ TomeScenarioTest >> test_scenario_with_One_failing_assertion_param [
         
     scenario := TomeScenario withName: 'Test Scenario' 
                              definition: 'Scenario with a single parameter: "equals: 1"' 
-                             executionBlock: [ :param | param assertSuccessFor: 2 ].
+                             executionBlock: [ :param | 
+												param assertionActualValue: 2.
+												param assertSuccess 
+											].
         
     self should: [ scenario run ] raise: TestFailure.
 ]
@@ -179,7 +191,10 @@ TomeScenarioTest >> test_scenario_with_One_passing_assertion_param [
         
     scenario := TomeScenario withName: 'Test Scenario' 
                              definition: 'Scenario with a single parameter: "equals: 1"' 
-                             executionBlock: [ :param | param assertSuccessFor: 1 ].
+                             executionBlock: [ :param | 
+												param assertionActualValue: 1.
+												param assertSuccess 
+											].
         
     self should: [ scenario run. true ] description: 'Should have run the scenario without error'.
 ]

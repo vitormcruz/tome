@@ -19,7 +19,10 @@ TomeParameter class >> createParameterFor: aStringParam [
 { #category : #'instance creation' }
 TomeParameter class >> newForDef: aStringParam [
 
-	self = TomeParameter ifTrue: [ self error: 'Use ''createparameterFor:'' instead. I am an abstract method for suclasses reuse.' ].
+	self = TomeParameter ifTrue: [ 
+		self error: 'Use ''createparameterFor:'' instead. I am an abstract method for suclasses reuse.' 
+	].
+
 	^ self new stringParam: aStringParam.
 ]
 

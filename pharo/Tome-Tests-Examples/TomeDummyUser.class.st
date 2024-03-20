@@ -3,7 +3,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'name',
-		'cpf'
+		'cpf',
+		'monthlyWage'
 	],
 	#category : #'Tome-Tests-Examples'
 }
@@ -19,6 +20,18 @@ TomeDummyUser >> cpf: anObject [
 ]
 
 { #category : #accessing }
+TomeDummyUser >> monthlyWage [
+
+	^ monthlyWage
+]
+
+{ #category : #accessing }
+TomeDummyUser >> monthlyWage: anObject [
+
+	monthlyWage := anObject
+]
+
+{ #category : #accessing }
 TomeDummyUser >> name [
 	^ name
 ]
@@ -26,4 +39,10 @@ TomeDummyUser >> name [
 { #category : #accessing }
 TomeDummyUser >> name: anObject [
 	name := anObject
+]
+
+{ #category : #'as yet unclassified' }
+TomeDummyUser >> yearlyWage [
+
+	^ monthlyWage * 12.
 ]
