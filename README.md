@@ -37,7 +37,7 @@ self
   ]
 ```
 
-All strings enclosed by quotation marks (") are considered parameters of the scenario, and will be used as arguments to the run block. Enclosed strings starting with `equals:` are considered assertions with special behavior, `assertSuccessFor:`, for example, is a message answered by the assertion that validate with the argument is equals to the defined value in the specification definition. 
+All strings enclosed by quotation marks (") are considered parameters of the scenario, and will be used as arguments to the `run` block parameter. Enclosed strings starting with `equals:` are considered assertions with special behavior, `assertSuccessFor:`, for example, is a message answered by the assertion that validate with the argument is equals to the defined value in the specification definition. 
 
 
 For more examples and considerations about specification writting and implementation, look at the [`Tome-Tests-Examples`](https://github.com/vitormcruz/tome/tree/develop/pharo/Tome-Tests-Examples) package.
