@@ -4,11 +4,48 @@
 
 Tome is a Pharo framework that enables creation of Executable Specifications (not implemented yet) allowing the adoption of [ATDD](https://en.wikipedia.org/wiki/Acceptance_test-driven_development) discipline more generally, or simply the adoption of [BDD](https://dannorth.net/introducing-bdd/) by developers.
 
+To create a specification test, Tome provides the basic API for a simple scenario
+
+```smalltalk
+self
+  scenario: 'Simple scenario description'
+  def: 'A scenario definition. Given.. When.. Then... is a popular format, but Tome do not enforces it.'
+  run: [ "A block containing the execution for the given scenario" ]
+```
+
+Let's consider a simple Acceptance Criteria: Registered Users Must be at Major Age
+Examples derived from it could be:
+  1. A User at age of 20 cannot be registered on the system
+  2. A User at age of 21 can be registered on the system
+  3. A User at age of 30 can be registered on the system
+
+The first scenario can be written in Tome like this:
+
+```smalltalk
+self
+  scenario: 'A User at age of 20 cannot be registered on the system'
+  def: 'Given a new user named "John Smith" with "20" years old
+        When I try to do it's registation
+        Then looking for "equals: John Smith" finds the new user with "equals: 20" years old
+       '
+  run: [ :newUserName :userAge :assertNewUserName :assertNewUserAge |
+    | newUser |
+    userRepo add: (User newNamed: newUserName; age: userAge asNumber).
+    newUser := userRepo select: [ :usr| usr name = newUserName ].
+    assertNewUserName assertSuccessFor: newUser name. "newUser name is equals: John Smith ??"
+    assertNewUserAge assertSuccessFor: newUser age. "newUser age is equals: 20 ??"
+  ]
+```
+
+All strings enclosed by quotation marks (") are considered parameters of the scenario, and will be used as arguments to the run block. Enclosed strings starting with `equals:` are considered assertions with special behavior, `assertSuccessFor:`, for example, is a message answered by the assertion that validate with the argument is equals to the defined value in the specification definition. 
+
+
+For more examples and considerations about specification writting and implementation, look at the [`Tome-Tests-Examples`](https://github.com/vitormcruz/tome/tree/develop/pharo/Tome-Tests-Examples) package.
 
 
 To become an Executable Specification.... (to be done)
 
-## Executable Specification
+## Executable Specification Explanation
 Executable Specification is an advance on the TDD, BDD and documentation practices that tries to connect requirements documentation to the tests, thus creating a "live documentation" of sorts that is used as an updated documentation of the system and as an automated way to validate the system against it's requirements. 
 
 One of the problems of documentation is that they frequently get out of date, and keeping them updated is costly: hard, tedious and time consuming, while not providing any new functionality. Among the advantages of automated tests, one is that they provide a way to understand the functions they are testing, giving **examples** on how they should or shouldn't be used.
