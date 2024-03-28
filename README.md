@@ -9,11 +9,13 @@ To create a specification test, Tome provides the basic API for a simple scenari
 ```smalltalk
 self
   scenario: 'Simple scenario description'
-  def: 'A scenario definition. Given.. When.. Then... is a popular format, but Tome do not enforces it.'
-  run: [ "A block containing the execution for the given scenario" ]
+  def: 'A scenario definition.
+        Given.. When.. Then... is a popular format, but Tome do not enforces it.
+       '
+  run: [ "A block containing the implementation for the given scenario" ]
 ```
 
-Let's consider a simple Acceptance Criteria: Registered Users Must be at Major Age
+Let's consider a simple Acceptance Criteria: Users Must be at Major Age to be registered
 Examples derived from it could be:
   1. A User at age of 20 cannot be registered on the system
   2. A User at age of 21 can be registered on the system
@@ -26,7 +28,7 @@ self
   scenario: 'A User at age of 20 cannot be registered on the system'
   def: 'Given a new user named "John Smith" with "20" years old
         When I try to do it's registation
-        Then looking for "equals: John Smith" finds the new user with "equals: 20" years old
+        Then "equals: John Smith" can be found on the system having "equals: 20" years old registered
        '
   run: [ :newUserName :userAge :assertNewUserName :assertNewUserAge |
     | newUser |
@@ -37,7 +39,46 @@ self
   ]
 ```
 
-All strings enclosed by quotation marks (") are considered parameters of the scenario, and will be used as arguments to the `run` block parameter. Enclosed strings starting with `equals:` are considered assertions with special behavior, `assertSuccessFor:`, for example, is a message answered by the assertion that validate with the argument is equals to the defined value in the specification definition. 
+All strings enclosed by quotation marks (") are considered parameters of the scenario, and will be used as arguments to the `run` block parameter. Enclosed strings starting with `equals:` are considered assertions with special behavior, `assertSuccessFor:`, for example, is a message answered by the assertion that validate if the argument is equals to the defined value in the specification definition
+
+We could create the other scenarios for the examples, but since they are very similar we can use a Scenario Outline to avoid repetitions:
+
+```smalltalk
+self
+  scenarioOutline: 'Simple scenario description'
+  def: 'A scenario definition.
+        Given.. When.. Then... is a popular format, but Tome do not enforces it.
+       '
+	examples: #(  'header'  ) asHeaderFor 
+	    			- #(  "examples" )
+						- #(    ....     )
+					
+  run: [ "A block containing the implementation for the given scenario outline
+          it will be called once for each example" ]
+```
+
+For "Users Must be at Major Age to be registered" criteria, an implementation of a Scenario Outline would be:
+
+```smalltalk
+self
+  scenarioOutline: 'Users Must be at Major Age to be registered'
+  def: 'Given a new user named "John Smith" with "{age}" years old
+        When I try to do it's registation
+        Then "equals: John Smith - {age} years old" can de found on 
+       '
+	examples: #(  'age'    'result'  ) asHeaderFor 
+	    			- #( 20       'no user'                                    )
+						- #( 21       'the new user with "equals: 20" years old'   )
+						- #( 30       'the new user with "equals: 30" years old'   )
+					
+  run: [ :newUserName :userAge :assertNewUserName :assertNewUserAge |
+    | newUser |
+    userRepo add: (User newNamed: newUserName; age: userAge asNumber).
+    newUser := userRepo select: [ :usr| usr name = newUserName ].
+    assertNewUserName assertSuccessFor: newUser name. "newUser name is equals: John Smith ??"
+    assertNewUserAge assertSuccessFor: newUser age. "newUser age is equals: 20 ??"
+  ]
+```
 
 
 For more examples and considerations about specification writting and implementation, look at the [`Tome-Tests-Examples`](https://github.com/vitormcruz/tome/tree/develop/pharo/Tome-Tests-Examples) package.
