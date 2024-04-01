@@ -33,13 +33,13 @@ self
   run: [ :newUserName :userAge :assertNewUserName :assertNewUserAge |
     | newUser |
     userRepo add: (User newNamed: newUserName; age: userAge asNumber).
-    newUser := userRepo select: [ :usr| usr name = newUserName ].
+    newUser := (userRepo select: [ :usr| usr name = newUserName ]) at: 1.
     assertNewUserName assertSuccessFor: newUser name. "newUser name is equals: John Smith ??"
     assertNewUserAge assertSuccessFor: newUser age. "newUser age is equals: 20 ??"
   ]
 ```
 
-All strings enclosed by quotation marks (") are considered parameters of the scenario, and will be used as arguments to the `run` block parameter. Enclosed strings starting with `equals:` are considered assertions with special behavior, `assertSuccessFor:`, for example, is a message answered by the assertion that validate if the argument is equals to the defined value in the specification definition
+All strings enclosed by quotation marks (") are considered parameters of the scenario, and will be used as arguments to the `run` block parameter. Enclosed strings starting with `equals:` are considered assertions with special behavior. `assertSuccessFor:`, for example, is a message answered by the assertion that validate if the argument is equals to the defined value in the specification definition
 
 We could create the other scenarios for the examples, but since they are very similar we can use a Scenario Outline to avoid repetitions:
 
@@ -49,8 +49,8 @@ self
   def: 'A scenario definition.
         Given.. When.. Then... is a popular format, but Tome do not enforces it.
        '
-	examples: #(  'header'  ) asHeaderFor 
-	    			- #(  "examples" )
+	examples: #(  'header'  ) asHeaderFor
+						- #(  "examples" )
 						- #(    ....     )
 					
   run: [ "A block containing the implementation for the given scenario outline
@@ -64,29 +64,50 @@ self
   scenarioOutline: 'Users Must be at Major Age to be registered'
   def: 'Given a new user named "John Smith" with "{age}" years old
         When I try to do it's registation
-        Then "equals: John Smith - {age} years old" can de found on 
+        Then the new user "equals: {findResult}" be found on the system
        '
-	examples: #(  'age'    'result'  ) asHeaderFor 
-	    			- #( 20       'no user'                                    )
-						- #( 21       'the new user with "equals: 20" years old'   )
-						- #( 30       'the new user with "equals: 30" years old'   )
+	examples: #(    'age'    'findResult'  ) asHeaderFor 
+	    			- #(   20       'cannot'     )
+						- #(   21       'can'   		 )
+						- #(   30       'can'        )
 					
-  run: [ :newUserName :userAge :assertNewUserName :assertNewUserAge |
-    | newUser |
+  run: [ :newUserName :userAge :assertFindResult |
+    | findResult |
     userRepo add: (User newNamed: newUserName; age: userAge asNumber).
-    newUser := userRepo select: [ :usr| usr name = newUserName ].
-    assertNewUserName assertSuccessFor: newUser name. "newUser name is equals: John Smith ??"
-    assertNewUserAge assertSuccessFor: newUser age. "newUser age is equals: 20 ??"
+    findResult := (userRepo select: [ :usr| usr name = newUserName ])
+										ifEmpty [ 'cannot' ]
+										ifNotEmpty [ 'can' ].
+
+    assertFindResult assertSuccessFor: findResult. 
   ]
 ```
 
+Each example will instantiate a new scenario execution switching the examples header by it's value. The header is referenced by it's name enclosed by curly braces ({}), usually should be enclosed by quotation marks (") to be used as parameters of the scenario execution. In the example, we will instantiate thre scenarios:
 
-For more examples and considerations about specification writting and implementation, look at the [`Tome-Tests-Examples`](https://github.com/vitormcruz/tome/tree/develop/pharo/Tome-Tests-Examples) package.
+```
+Given a new user named "John Smith" with "20" years old
+When I try to do it's registation
+Then the new user "equals: cannot" be found on the system
+```
+```
+Given a new user named "John Smith" with "21" years old
+When I try to do it's registation
+Then the new user "equals: can" be found on the system
+```
+```
+Given a new user named "John Smith" with "30" years old
+When I try to do it's registation
+Then the new user "equals: can" be found on the system
+```
+
+Note how differently scenario can be written and asserted. Ideally, it must be linked as much as possible to the code through parameters and assertions so that changes to it or to the code are reflected both ways and it's execution passes or fail accordingly. For more examples and considerations about specification writting and implementation, look at the [`Tome-Tests-Examples`](https://github.com/vitormcruz/tome/tree/develop/pharo/Tome-Tests-Examples) package.
 
 
-To become an Executable Specification.... (to be done)
+## Executable Specification 
 
-## Executable Specification Explanation
+To be done....
+
+### Executable Specification Explanation
 Executable Specification is an advance on the TDD, BDD and documentation practices that tries to connect requirements documentation to the tests, thus creating a "live documentation" of sorts that is used as an updated documentation of the system and as an automated way to validate the system against it's requirements. 
 
 One of the problems of documentation is that they frequently get out of date, and keeping them updated is costly: hard, tedious and time consuming, while not providing any new functionality. Among the advantages of automated tests, one is that they provide a way to understand the functions they are testing, giving **examples** on how they should or shouldn't be used.
