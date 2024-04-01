@@ -50,8 +50,8 @@ self
         Given.. When.. Then... is a popular format, but Tome do not enforces it.
        '
 	examples: #(  'header'  ) asHeaderFor
-						- #(  "examples" )
-						- #(    ....     )
+	          - #(  "examples" )
+	          - #(    ....     )
 					
   run: [ "A block containing the implementation for the given scenario outline
           it will be called once for each example" ]
@@ -66,17 +66,17 @@ self
         When I try to do it's registation
         Then the new user "equals: {findResult}" be found on the system
        '
-	examples: #(    'age'    'findResult'  ) asHeaderFor 
-	    			- #(   20       'cannot'     )
-						- #(   21       'can'   		 )
-						- #(   30       'can'        )
+	examples: #(    'age'   'findResult'  ) asHeaderFor 
+	          - #(   20       'cannot'    )
+	          - #(   21       'can'       )
+	          - #(   30       'can'       )
 					
   run: [ :newUserName :userAge :assertFindResult |
     | findResult |
     userRepo add: (User newNamed: newUserName; age: userAge asNumber).
     findResult := (userRepo select: [ :usr| usr name = newUserName ])
-										ifEmpty [ 'cannot' ]
-										ifNotEmpty [ 'can' ].
+	                  ifEmpty [ 'cannot' ]
+	                  ifNotEmpty [ 'can' ].
 
     assertFindResult assertSuccessFor: findResult. 
   ]
