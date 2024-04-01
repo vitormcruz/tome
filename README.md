@@ -49,7 +49,7 @@ self
   def: 'A scenario definition.
         Given.. When.. Then... is a popular format, but Tome do not enforces it.
        '
-	examples: #(  'header'     ) asHeaderFor
+	examples: #(    'header'   ) asHeaderFor
 	          - #(  "examples" )
 	          - #(    ....     )
 					
