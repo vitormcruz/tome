@@ -4,18 +4,37 @@
 
 Tome is a Pharo framework that enables creation of Executable Specifications (not implemented yet) allowing the adoption of [ATDD](https://en.wikipedia.org/wiki/Acceptance_test-driven_development) discipline more generally, or simply the adoption of [BDD](https://dannorth.net/introducing-bdd/) by developers.
 
-To create a specification test, Tome provides the basic API for a simple scenario
+To create a Basic BDD Feature just subclass from specification test just 
 
 ```smalltalk
-self
-  scenario: 'Simple scenario description'
-  def: 'A scenario definition.
-        Given.. When.. Then... is a popular format, but Tome do not enforces it.
-       '
-  run: [ "A block containing the implementation for the given scenario" ]
+TomeFeature << #MyFeature
+    slots: { };
+    package: 'MyProject-Features'
 ```
 
-Let's consider a simple Acceptance Criteria: Users Must be at Major Age to be registered
+Then create methods for the scenario specification and implementation, there is no naming rule, you just need to annotate it with the <scenario> pragma:
+
+```smalltalk
+MyFeature >> Scenario_Method_Name
+    <scenario>
+```
+
+Tome provides the following basic API for a simple scenario:
+
+```smalltalk
+MyFeature >> Simple_Scenario_Description
+    <scenario>
+
+    self
+      scenario: 'Simple scenario description'
+      def: 'A scenario definition.
+            Given.. When.. Then... is a popular format, but Tome do not enforces it.
+           '
+      run: [ "A block containing the implementation for the given scenario" ]
+```
+
+As example, let's consider a simple Acceptance Criteria: Users Must be at Major Age to be Registered
+
 Examples derived from it could be:
   1. A User at age of 20 cannot be registered on the system
   2. A User at age of 21 can be registered on the system
@@ -24,62 +43,73 @@ Examples derived from it could be:
 The first scenario can be written in Tome like this:
 
 ```smalltalk
-self
-  scenario: 'A User at age of 20 cannot be registered on the system'
-  def: 'Given a new user named "John Smith" with "20" years old
-        When I try to do it's registation
-        Then "equals: John Smith" can be found on the system having "equals: 20" years old registered
-       '
-  run: [ :newUserName :userAge :assertNewUserName :assertNewUserAge |
-    | newUser |
-    userRepo add: (User newNamed: newUserName; age: userAge asNumber).
-    newUser := (userRepo select: [ :usr| usr name = newUserName ]) at: 1.
-    assertNewUserName assertSuccessFor: newUser name. "newUser name is equals: John Smith ??"
-    assertNewUserAge assertSuccessFor: newUser age. "newUser age is equals: 20 ??"
-  ]
+MyFeature >> A_User_Age_20_Cannot_be_Registered
+    <scenario>
+    self
+      scenario: 'A User at age of 20 cannot be registered on the system'
+      def: 'Given a new user named "John Smith" with "20" years old
+            When I try to do it's registation
+            Then "equals: John Smith" can be found on the system having "equals: 20" years old registered
+           '
+      run: [ :newUserName :userAge :assertNewUserName :assertNewUserAge |
+        | newUser |
+        userRepo add: (User newNamed: newUserName; age: userAge asNumber).
+        newUser := (userRepo select: [ :usr| usr name = newUserName ]) at: 1.
+        assertNewUserName assertSuccessFor: newUser name. "newUser name is equals: John Smith ??"
+        assertNewUserAge assertSuccessFor: newUser age. "newUser age is equals: 20 ??"
+      ]
 ```
 
-All strings enclosed by quotation marks (") are considered parameters of the scenario, and will be used as arguments to the `run` block parameter. Enclosed strings starting with `equals:` are considered assertions with special behavior. `assertSuccessFor:`, for example, is a message answered by the assertion that validate if the argument is equals to the defined value in the specification definition
+Rules are:
+	1. All strings enclosed by quotation marks (") are considered parameters of the scenario and will be used as arguments to the `run` block parameter in order they were defined in the text. 
+	2. Enclosed strings starting with `equals:` are considered assertions with special behavior. `assertSuccessFor:`, for example, is a message answered by the assertion that validate if the argument is equals to the defined value in the specification definition
+	3. All parameters **must** be used, otherwise the scenario execution fails. This is an efforcement made only to reinforce the need to link the definition to it's execution.
 
-We could create the other scenarios for the examples, but since they are very similar we can use a Scenario Outline to avoid repetitions:
+Instead of continuing to create scenarios for the rest of the examples, since they are very similar, we can use a Scenario Outline to avoid repetitions:
 
 ```smalltalk
-self
-  scenarioOutline: 'Simple scenario description'
-  def: 'A scenario definition.
-        Given.. When.. Then... is a popular format, but Tome do not enforces it.
-       '
-	examples: #(    'header'   ) asHeaderFor
-	          - #(  "examples" )
-	          - #(    ....     )
+MyFeature >> Simple_Scenario_Description
+    <scenario>
+
+  self
+    scenarioOutline: 'Simple scenario description'
+    def: 'A scenario definition.
+          Given.. When.. Then... is a popular format, but Tome do not enforces it.
+         '
+	  examples: #(    'header'   ) asHeaderFor
+	            - #(  "examples" )
+	            - #(    ....     )
 					
-  run: [ "A block containing the implementation for the given scenario outline
-          it will be called once for each example" ]
+    run: [ "A block containing the implementation for the given scenario outline
+            it will be called once for each example" ]
 ```
 
 For "Users Must be at Major Age to be registered" criteria, an implementation of a Scenario Outline would be:
 
 ```smalltalk
-self
-  scenarioOutline: 'Users Must be at Major Age to be registered'
-  def: 'Given a new user named "John Smith" with "{age}" years old
-        When I try to do it's registation
-        Then the new user "equals: {findResult}" be found on the system
-       '
-	examples: #(    'age'   'findResult'  ) asHeaderFor 
-	          - #(   20       'cannot'    )
-	          - #(   21       'can'       )
-	          - #(   30       'can'       )
-					
-  run: [ :newUserName :userAge :assertFindResult |
-    | findResult |
-    userRepo add: (User newNamed: newUserName; age: userAge asNumber).
-    findResult := (userRepo select: [ :usr| usr name = newUserName ])
-	                  ifEmpty [ 'cannot' ]
-	                  ifNotEmpty [ 'can' ].
+MyFeature >> Users_Must_be_Major
+    <scenario>
 
-    assertFindResult assertSuccessFor: findResult. 
-  ]
+  self
+    scenarioOutline: 'Users Must be at Major Age to be registered'
+    def: 'Given a new user named "John Smith" with "{age}" years old
+          When I try to do it's registation
+          Then the new user "equals: {findResult}" be found on the system
+         '
+	  examples: #(    'age'   'findResult'  ) asHeaderFor 
+	            - #(   20       'cannot'    )
+	            - #(   21       'can'       )
+	            - #(   30       'can'       )
+					
+    run: [ :newUserName :userAge :assertFindResult |
+      | findResult |
+      userRepo add: (User newNamed: newUserName; age: userAge asNumber).
+      findResult := (userRepo select: [ :usr| usr name = newUserName ])
+	                    ifEmpty [ 'cannot' ]
+	                    ifNotEmpty [ 'can' ].
+
+      assertFindResult assertSuccessFor: findResult. 
+    ]
 ```
 
 Each example will instantiate a new scenario execution switching the examples header by it's value. The header is referenced by it's name enclosed by curly braces ({}), usually should be enclosed by quotation marks (") to be used as parameters of the scenario execution. In the example, we will instantiate thre scenarios:
