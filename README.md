@@ -4,7 +4,7 @@
 
 Tome is a Pharo framework that enables creation of Executable Specifications (not implemented yet) allowing the adoption of [ATDD](https://en.wikipedia.org/wiki/Acceptance_test-driven_development) discipline more generally, or simply the adoption of [BDD](https://dannorth.net/introducing-bdd/) by developers.
 
-To create a Basic BDD Feature just subclass from specification test just 
+To create a Basic BDD Feature, just subclass from TomeFeature class:
 
 ```smalltalk
 TomeFeature << #MyFeature
@@ -12,14 +12,14 @@ TomeFeature << #MyFeature
     package: 'MyProject-Features'
 ```
 
-Then create methods for the scenario specification and implementation, there is no naming rule, you just need to annotate it with the <scenario> pragma:
+Then create methods for the scenario specification and implementation. There is no naming rules, just annotate it with the `<scenario>` pragma:
 
 ```smalltalk
 MyFeature >> Scenario_Method_Name
     <scenario>
 ```
 
-Tome provides the following basic API for a simple scenario:
+Tome provides the following basic API for simple scenarios:
 
 ```smalltalk
 MyFeature >> Simple_Scenario_Description
@@ -33,7 +33,7 @@ MyFeature >> Simple_Scenario_Description
       run: [ "A block containing the implementation for the given scenario" ]
 ```
 
-As example, let's consider a simple Acceptance Criteria: Users Must be at Major Age to be Registered
+As an example, let's consider a simple Acceptance Criteria: Users Must be at Major Age to be Registered
 
 Examples derived from it could be:
   1. A User at age of 20 cannot be registered on the system
@@ -61,11 +61,12 @@ MyFeature >> A_User_Age_20_Cannot_be_Registered
 ```
 
 Rules are:
-	1. All strings enclosed by quotation marks (") are considered parameters of the scenario and will be used as arguments to the `run` block parameter in order they were defined in the text. 
+	1. All strings enclosed by quotation marks (") are considered parameters of the scenario and will be used as arguments to the `run` block parameter in the order they were defined in the text. 
 	2. Enclosed strings starting with `equals:` are considered assertions with special behavior. `assertSuccessFor:`, for example, is a message answered by the assertion that validate if the argument is equals to the defined value in the specification definition
 	3. All parameters **must** be used, otherwise the scenario execution fails. This is an efforcement made only to reinforce the need to link the definition to it's execution.
 
-Instead of continuing to create scenarios for the rest of the examples, since they are very similar, we can use a Scenario Outline to avoid repetitions:
+
+A Scenario Outline can be defined in order to define multiple similar scenarios:
 
 ```smalltalk
 MyFeature >> Simple_Scenario_Description
@@ -75,6 +76,7 @@ MyFeature >> Simple_Scenario_Description
     scenarioOutline: 'Simple scenario description'
     def: 'A scenario definition.
           Given.. When.. Then... is a popular format, but Tome do not enforces it.
+          Examples are referenced by the {header} name, enclosed with curly braces.
          '
 	  examples: #(    'header'   ) asHeaderFor
 	            - #(  "examples" )
@@ -84,7 +86,7 @@ MyFeature >> Simple_Scenario_Description
             it will be called once for each example" ]
 ```
 
-For "Users Must be at Major Age to be registered" criteria, an implementation of a Scenario Outline would be:
+The acceptance criteria "Users Must be at Major Age to be Registered" have very similar examples, so let's take advantage of the Scenario Outline:
 
 ```smalltalk
 MyFeature >> Users_Must_be_Major
@@ -112,7 +114,7 @@ MyFeature >> Users_Must_be_Major
     ]
 ```
 
-Each example will instantiate a new scenario execution switching the examples header by it's value. The header is referenced by it's name enclosed by curly braces ({}), usually should be enclosed by quotation marks (") to be used as parameters of the scenario execution. In the example, we will instantiate thre scenarios:
+Each example will instantiate a new scenario execution switching the examples header by it's value. The header is referenced by it's name enclosed by curly braces ({}), usually it should also be enclosed by quotation marks (") to be used as parameters of the scenario execution. In the example, we will instantiate three scenarios:
 
 ```
 Given a new user named "John Smith" with "20" years old
@@ -130,7 +132,7 @@ When I try to do it's registation
 Then the new user "equals: can" be found on the system
 ```
 
-Note how differently scenario can be written and asserted. Ideally, it must be linked as much as possible to the code through parameters and assertions so that changes to it or to the code are reflected both ways and it's execution passes or fail accordingly. For more examples and considerations about specification writting and implementation, look at the [`Tome-Tests-Examples`](https://github.com/vitormcruz/tome/tree/develop/pharo/Tome-Tests-Examples) package.
+Note how differently scenario can be written and asserted. Ideally, it must be linked as much as possible to the code through parameters and assertions so that changes to it or to the code are reflected in both ways and it's execution passes or fail accordingly. For more examples and considerations about specification writting and implementation, look at the [`Tome-Tests-Examples`](https://github.com/vitormcruz/tome/tree/develop/pharo/Tome-Tests-Examples) package.
 
 
 ## Executable Specification 
