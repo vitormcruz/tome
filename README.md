@@ -4,7 +4,9 @@
 
 Tome is a Pharo framework that enables creation of Executable Specifications (not implemented yet) allowing the adoption of [ATDD](https://en.wikipedia.org/wiki/Acceptance_test-driven_development) discipline more generally, or simply the adoption of [BDD](https://dannorth.net/introducing-bdd/) by developers.
 
-To create a Basic BDD Feature, just subclass from TomeFeature class:
+## Creating a BDD Feature
+
+Just subclass from `TomeFeature` class:
 
 ```smalltalk
 TomeFeature << #MyFeature
@@ -18,6 +20,7 @@ Then create methods for the scenario specification and implementation. There is 
 MyFeature >> Scenario_Method_Name
     <scenario>
 ```
+### Scenarios
 
 Tome provides the following basic API for simple scenarios:
 
@@ -36,9 +39,9 @@ MyFeature >> Simple_Scenario_Description
 As an example, let's consider a simple Acceptance Criteria: Users Must be at Major Age to be Registered
 
 Examples derived from it could be:
-  1. A User at age of 20 cannot be registered on the system
-  2. A User at age of 21 can be registered on the system
-  3. A User at age of 30 can be registered on the system
+  1. A User at age of 20 years old cannot be registered on the system
+  2. A User at age of 21 years old can be registered on the system
+  3. A User at age of 30 years old can be registered on the system
 
 The first scenario can be written in Tome like this:
 
@@ -46,7 +49,7 @@ The first scenario can be written in Tome like this:
 MyFeature >> A_User_Age_20_Cannot_be_Registered
     <scenario>
     self
-      scenario: 'A User at age of 20 cannot be registered on the system'
+      scenario: 'A User at age of 20 years old cannot be registered on the system'
       def: 'Given a new user named "John Smith" with "20" years old
             When I try to do it's registation
             Then "equals: John Smith" can be found on the system having "equals: 20" years old registered
@@ -65,6 +68,7 @@ Rules are:
  2. Enclosed strings starting with `equals:` are considered assertions with special behavior. `assertSuccessFor:`, for example, is a message answered by the assertion that validate if the argument is equals to the defined value in the specification definition
  3. All parameters **must** be used, otherwise the scenario execution fails. This is an efforcement made only to reinforce the need to link the definition to it's execution.
 
+### Multiple Similar Scenarios
 
 A Scenario Outline can be defined in order to define multiple similar scenarios:
 
