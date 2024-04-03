@@ -61,9 +61,9 @@ MyFeature >> A_User_Age_20_Cannot_be_Registered
 ```
 
 Rules are:
-	1. All strings enclosed by quotation marks (") are considered parameters of the scenario and will be used as arguments to the `run` block parameter in the order they were defined in the text. 
-	2. Enclosed strings starting with `equals:` are considered assertions with special behavior. `assertSuccessFor:`, for example, is a message answered by the assertion that validate if the argument is equals to the defined value in the specification definition
-	3. All parameters **must** be used, otherwise the scenario execution fails. This is an efforcement made only to reinforce the need to link the definition to it's execution.
+ 1. All strings enclosed by quotation marks (") are considered parameters of the scenario and will be used as arguments to the `run` block parameter in the order they were defined in the text. 
+ 2. Enclosed strings starting with `equals:` are considered assertions with special behavior. `assertSuccessFor:`, for example, is a message answered by the assertion that validate if the argument is equals to the defined value in the specification definition
+ 3. All parameters **must** be used, otherwise the scenario execution fails. This is an efforcement made only to reinforce the need to link the definition to it's execution.
 
 
 A Scenario Outline can be defined in order to define multiple similar scenarios:
