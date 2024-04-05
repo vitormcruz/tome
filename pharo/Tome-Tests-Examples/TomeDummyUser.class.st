@@ -4,10 +4,23 @@ Class {
 	#instVars : [
 		'name',
 		'cpf',
-		'monthlyWage'
+		'monthlyWage',
+		'age'
 	],
 	#category : #'Tome-Tests-Examples'
 }
+
+{ #category : #accessing }
+TomeDummyUser >> age [
+
+	^ age
+]
+
+{ #category : #accessing }
+TomeDummyUser >> age: anObject [
+
+	age := anObject
+]
 
 { #category : #accessing }
 TomeDummyUser >> cpf [

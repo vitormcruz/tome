@@ -206,3 +206,11 @@ TomeFeature >> testScenario [
 
 
 ]
+
+{ #category : #running }
+TomeFeature >> when: aBlock [
+
+	"Returns a WhenClause created in the context of the concreteScenario (TomeScenario) execution"
+
+	^ concreteScenario when: aBlock.
+]

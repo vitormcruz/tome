@@ -35,3 +35,10 @@ ManifestTomeCore class >> ruleStringConcatenationRuleV1FalsePositive [
 	<ignoreForCoverage>
 	^ #(#(#(#RGMethodDefinition #(#TomeScenario #run #false)) #'2024-01-08T08:48:34.597-03:00') )
 ]
+
+{ #category : #'code-critics' }
+ManifestTomeCore class >> ruleUsesAddRuleV1FalsePositive [
+
+	<ignoreForCoverage>
+	^ #(#(#(#RGMethodDefinition #(#TomeScenario #when: #false)) #'2024-03-21T11:10:52.547-03:00') )
+]

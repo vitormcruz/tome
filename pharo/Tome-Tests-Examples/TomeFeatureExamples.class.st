@@ -8,55 +8,6 @@ Class {
 }
 
 { #category : #scenario }
-TomeFeatureExamples >> User_Must_Be_Major_Feature [
-
-	<scenario>
-
-	^ self 
-		scenarioOutline: 'User must be Major'
-		def: 'Given that John has "{a number}" years old
-				 When I try to register him as a User
-				 Then the result is: "{result}"'
-                   
-		examples: #(  'a number'   'result'  ) asHeaderFor 
-						- #(    12         fail    )
-						- #(    18         sucess   )
-						- #(    25         sucess   )
-						
-		run: [ :aNumber :resultExpected |
-				self assert: (aNumber >= 18 ifTrue: [ 'sucess' ] ifFalse: [ 'fail' ])
-				equals: resultExpected.
-		].
-]
-
-{ #category : #scenario }
-TomeFeatureExamples >> User_Must_Be_Unique_by_CPF [
-
-	<scenario>
-
-	^ self scenarioOutline: 'User must be unique by it''s CPF number'
-      		       	   def: 'Given that John was registered with CPF: "001"
-        			            When I try to register another user with the CPF: "{newUserCPF}"
-           			         Then the result is: "{result}"'
-                   
-                 examples: #(   newUserCPF    result   ) asHeaderFor 
-                	 		  - #(   '001'        fail    )
-                 			  - #(   '002'       sucess   )
-  
-	            		   run: [ :johnCPF  :newUserCPF  :resultExpected |
-				
-								  userRepository add: (TomeDummyUser new cpf: johnCPF; name: 'John').
-								
-	 	           		 	  self assert: ( self do: [ userRepository add: (TomeDummyUser new cpf: newUserCPF; name: 'Darla') ] 
-					                                 returnOnSuccess: 'sucess' 
-					                                 otherwise: 'fail')
-										     equals: resultExpected.
-								 
-
-    		   			   ].
-]
-
-{ #category : #scenario }
 TomeFeatureExamples >> a_Change_User_Salary [
 	"A simple example of a Scenario that tests for a change of an user salary:
 		1- Every text surrounded by quotation marks become parameters injected into the run block in order;
@@ -101,14 +52,14 @@ TomeFeatureExamples >> a_Change_User_Salary_More_Terse_Implementation_1 [
 
 	<scenario>
 	^ self	
-		scenario: 'Change User Salary More Terse Implementation 1'
+		scenario: 'Change User Salary (More Terse Implementation 1)'
 		def: 'Given am already registered user with a monthly wage of $"1000"
 				 When I change her salary to $"2000"
 				 Then her yearly salary becomes "equals: 24000"'
 		run: [ :currentMonthlyWage :newMonthlyWage :assertNewYearlyWage |
 			| user |
 			
-			user := TomeDummyUser new name: 'User1'; monthlyWage: currentMonthlyWage.
+			user := self legalAgeDummyUser name: 'User1'; monthlyWage: currentMonthlyWage.
 			
 			"You can run adhoc assertions as needed"
 			self assert: user yearlyWage equals: 12000.
@@ -127,14 +78,14 @@ TomeFeatureExamples >> a_Change_User_Salary_More_Terse_Implementation_2 [
 
 	<scenario>
 	^ self	
-		scenario: 'Change User Salary More Terse Implementation 2'
+		scenario: 'Change User Salary (More Terse Implementation 2)'
 		def: 'Given am already registered user with a monthly wage of $"1000"
 				 When I change her salary to $"2000"
 				 Then her yearly salary becomes "equals: 24000"'
 		run: [ :currentMonthlyWage :newMonthlyWage :assertNewYearlyWage |
 			| user |
 			
-			user := TomeDummyUser new name: 'User1'; monthlyWage: currentMonthlyWage.
+			user := self legalAgeDummyUser name: 'User1'; monthlyWage: currentMonthlyWage.
 			
 			"Store the assertion actual value. If a block is passed, it will evaluate lazilly"
 			assertNewYearlyWage assertionActualValue: [ user yearlyWage ].
@@ -165,17 +116,17 @@ TomeFeatureExamples >> a_Change_User_Salary_More_Terse_Implementation_3 [
 
 	<scenario>
 	^ self	
-		scenario: 'Change User Salary More Terse Implementation 3'
+		scenario: 'Change User Salary (More Terse Implementation 3)'
 		def: 'Given am already registered user with a monthly wage of $"1000"
 				 When I change her salary to $"2000"
 				 Then her yearly salary becomes "equals: 24000"'
 		run: [ :currentMonthlyWage :newMonthlyWage :assertNewYearlyWage |
 			| user |
 			
-			user := TomeDummyUser new name: 'User1'; monthlyWage: currentMonthlyWage.
+			user := self legalAgeDummyUser name: 'User1'; monthlyWage: currentMonthlyWage.
 			
-			assertNewYearlyWage	when: [ user monthlyWage: newMonthlyWage ]
-											assertFor: [ user yearlyWage ].
+			(self when: [ user monthlyWage: newMonthlyWage  ])
+			      actualValue: [ user yearlyWage ] forAssertion: assertNewYearlyWage.
 		]
 ]
 
@@ -187,12 +138,12 @@ TomeFeatureExamples >> b_Add_a_New_User_1_Ill_Conceived [
 	<scenario>
 
 	^ self
-		scenario: 'Add a new User Ill Conceived'
+		scenario: 'Add a new validy User (Ill Conceived)'
 		def: 'Given a new user named "Sofia"
   		      When I try to register her as a user
   	         Then she is registery "successfully"'
   	   run: [ :userName :result | 
-			userRepository add: (TomeDummyUser new name: userName).
+			userRepository add: (self legalAgeDummyUser name: userName).
 			"Every param must be used, so that the proper linkage with the Specification is made.
 			Any usage is registered as used, e.g., if userName were concatenated with another string, 
 			'markused' would be redundant. The exceptional case is attribution, which cannot be 
@@ -205,19 +156,19 @@ TomeFeatureExamples >> b_Add_a_New_User_1_Ill_Conceived [
 { #category : #scenario }
 TomeFeatureExamples >> b_Add_a_New_User_2_Implementation_1 [
 
-	"This is a beter implementation of the scenario, vecause it validate (asserts) actual 
+	"This is a better implementation of the scenario, because it validate (asserts) actual 
 	examples and it's data. Note that 'markUsed' is not even necessary anymore, because 
-	the implemetnation actually uses it to assert the criteria."
+	the implementation actually uses the parameter to assert the criteria."
 
 	<scenario>
 
 	^ self 
-		scenario: 'Add a new User Better Scenario Implementation 1'
+		scenario: 'Add a new valid User (Better Scenario Implementation 1)'
 		def:	'Given a new user named "Sofia"
 				 When I register her as a user
 				 Then "equals: ''Sofia''" can be found on the system'
      run: [ :userName :assertSofiaFound | 
-			userRepository add: (TomeDummyUser new name: userName).
+			userRepository add: (self legalAgeDummyUser name: userName).
 			assertSofiaFound assertSuccessFor: [ self findNameOnRepository: userName ]
 		].
 ]
@@ -229,30 +180,87 @@ TomeFeatureExamples >> b_Add_a_New_User_3_Implementation_2 [
 
 	<scenario>
 	^ self
-		  scenario: 'Add a new User Better Scenario Implementation 2'
-		  def: 'Given a new user named "Sofia"
+		scenario: 'Add a new valid User (Better Scenario Implementation 2)'
+		def: 'Given a new user named "Sofia"
 				 When I register her as a user
 				 Then "equals: ''Sofia''" can be found on the system'
-		  run: [ :userName :assertSofiaFound |
-			  assertSofiaFound
-				  when: [ userRepository add: (TomeDummyUser new name: userName) ]
-				  assertFor: [ self findNameOnRepository: userName ]
-			  ]
-]
-
-{ #category : #'test util' }
-TomeFeatureExamples >> do: aBlock returnOnSuccess: objectOnSuccess otherwise: objectOnFail [
-
-    aBlock on: Error do: [ ^ objectOnFail ].
-    ^ objectOnSuccess.
+		run: [ :userName :assertSofiaFound |
+			
+			(self when: [ userRepository add: (self legalAgeDummyUser name: userName) ])
+				actualValue: [ self findNameOnRepository: userName ] forAssertion: assertSofiaFound.
+	  ]
 ]
 
 { #category : #scenario }
+TomeFeatureExamples >> c_User_Must_Be_Major_Feature [
+
+	"An example using scenario outline to avoid repetitions."
+
+	<scenario>
+
+	^ self 
+		scenarioOutline: 'User must be Major'
+		def: 'Given that John has "{a number}" years old
+				 When I try to register him as a User
+				 Then the result is: "equals: ''{result}''"'
+                   
+		examples: #(  'a number'   'result'  ) asHeaderFor 
+		          - #(    12         fail    )
+		          - #(    17         fail    )
+		          - #(    18         success  )
+		          - #(    25         success  )
+						
+		run: [ :userAge :assertResultExpected |
+			| result |
+			(self when: [ result := self resultFrom: [ userRepository add: (TomeDummyUser new age: userAge) ] ])
+				actualValue: [ result ] forAssertion: assertResultExpected.
+		].
+]
+
+{ #category : #scenario }
+TomeFeatureExamples >> d_User_Must_Be_Unique_by_CPF [
+
+	<scenario>
+
+	^ self 
+		scenarioOutline: 'User must be unique by it''s CPF number'
+ 		def: 'Given that John was registered with CPF: "001"
+           When I try to register another user with the CPF: "{newUserCPF}"
+           Then the result is: "equals: ''{result}''"'
+                   
+		examples: #(   newUserCPF    result   ) asHeaderFor 
+       	 		  - #(   '001'        fail    )
+       			  - #(   '002'       success  )
+  
+		run: [ :johnCPF  :newUserCPF :assertionResult |
+			| result |
+			userRepository add: (self legalAgeDummyUser cpf: johnCPF; name: 'John').
+			
+			(self when: [ result := self resultFrom: [ userRepository add: (self legalAgeDummyUser cpf: newUserCPF; name: 'Darla')  ]])
+				actualValue: [ result ] forAssertion: assertionResult.
+
+	 	].
+]
+
+{ #category : #'test util' }
 TomeFeatureExamples >> findNameOnRepository: userName [
 
 	^ (userRepository collect: #name)
 		  detect: [ :usrName | usrName = userName ]
 		  ifNone: [ 'UsrNotFund' ]
+]
+
+{ #category : #'test util' }
+TomeFeatureExamples >> legalAgeDummyUser [
+
+	^ TomeDummyUser new age: 20.
+]
+
+{ #category : #'test util' }
+TomeFeatureExamples >> resultFrom: aBlock [
+
+	aBlock on: TomeExampleError do: [ ^ 'fail' ].
+	^ 'success'.
 ]
 
 { #category : #running }

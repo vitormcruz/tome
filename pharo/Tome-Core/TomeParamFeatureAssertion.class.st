@@ -86,29 +86,3 @@ TomeParamFeatureAssertion >> testFail [
 	TestFailure signal: 'Test for failure did not failed for "', self stringParam , 
 								 '" and the value tested of "', actualValue asString , '" '
 ]
-
-{ #category : #tests }
-TomeParamFeatureAssertion >> testFailFor: anObject [
-
-	"Verify if the assertion fails for an object that can be converted to string before doing the actual assertion. 
-	It is usefull to validate the state of the system before the tested action execution"
-
-	[ assertBlock value: self value: anObject ] on: TestFailure do: [ ^ self "testFailOk" ] .
-
-	TestFailure signal: 'Test for failure did not failed for "', self stringParam , 
-								 '" and the value tested of "', anObject asString , '" '
-]
-
-{ #category : #'validate asserting' }
-TomeParamFeatureAssertion >> when: aBlock assertFor: aBlockReturningExpectedVal [
-
-	(aBlock isBlock & aBlockReturningExpectedVal isBlock) 
-		ifFalse: [ Error signal: 'wen:assertFor: needs both params to be blocks so that when is executed only after ',
-											'testing current state, and the expected val to be reaclculated after when is executed' ].
-										
-	self assertionActualValue: aBlockReturningExpectedVal.
-	self testFail.
-	aBlock value.
-	self assertSuccess.
-	
-]

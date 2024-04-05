@@ -7,7 +7,8 @@ Class {
 	#instVars : [
 		'name',
 		'definition',
-		'executionBlock'
+		'executionBlock',
+		'whenClauses'
 	],
 	#category : #'Tome-Core'
 }
@@ -49,6 +50,12 @@ TomeScenario >> extractParameters [
    rawParameters := paramRegexMatches collect: [ :param | param copyWithoutAll: '"' ].
 
    ^ rawParameters collect: [ :param | TomeParameter createParameterFor: param ]
+]
+
+{ #category : #initialization }
+TomeScenario >> initialize [ 
+
+	whenClauses := OrderedCollection new.
 ]
 
 { #category : #inspecting }
@@ -98,20 +105,24 @@ TomeScenario >> printOn: aStream [
 { #category : #running }
 TomeScenario >> run [
 
-	| parameters result |
+	| parameters |
 	self validateScenario.
 
 	parameters := self extractParameters.
-	parameters ifEmpty: [ TestFailure signal: 'Feature without params. This means the feature is not linked to the test code which trumps the runnable specification objective' ]	.
+	parameters ifEmpty: [ 
+		TestFailure signal: 'Feature without params. This means the feature is not linked to the test code which trumps',
+									 ' the runnable specification objective' 
+	]	.
 
-	result := executionBlock valueWithPossibleArgs: parameters.
+	executionBlock valueWithPossibleArgs: parameters.
+	whenClauses do: [ :whenClause | whenClause execute ].
+	
 	parameters do: [ :param | 
 		    param wasUsed ifFalse: [ 
 		    TestFailure signal: param asString, ' should be used so that scenario execution pass.' 
 		]
 	].
 
-	^ result.
 ]
 
 { #category : #converting }
@@ -134,4 +145,10 @@ TomeScenario >> validateScenario [
 		Error signal: 'Following errors found while creating a new Feature: ', 
 						  (', ' join: errors) 
 	].
+]
+
+{ #category : #running }
+TomeScenario >> when: aBlock [
+
+	^ whenClauses add: (WhenClause newFor: aBlock). 
 ]
