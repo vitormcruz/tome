@@ -6,7 +6,7 @@ Tome is a Pharo framework that enables creation of Executable Specifications (no
 
 ## Creating a BDD Feature
 
-Just subclass from `TomeFeature` class:
+Subclass from `TomeFeature` class:
 
 ```smalltalk
 TomeFeature << #MyFeature
@@ -14,7 +14,7 @@ TomeFeature << #MyFeature
     package: 'MyProject-Features'
 ```
 
-Then create methods for the scenario specification and implementation. There is no naming rules, just annotate it with the `<scenario>` pragma:
+Then create scenario methods, there is no naming rules, just annotate it with the `<scenario>` pragma:
 
 ```smalltalk
 MyFeature >> Scenario_Method_Name
@@ -22,7 +22,7 @@ MyFeature >> Scenario_Method_Name
 ```
 ### Scenarios
 
-Tome provides the following basic API for simple scenarios:
+The `#scenario:def:run` is the basic API for simple scenarios:
 
 ```smalltalk
 MyFeature >> Simple_Scenario_Description
@@ -36,14 +36,12 @@ MyFeature >> Simple_Scenario_Description
       run: [ "A block containing the implementation for the given scenario" ]
 ```
 
-As an example, let's consider a simple Acceptance Criteria: Users Must be at Major Age to be Registered
-
-Examples derived from it could be:
+E.g., consider the following Acceptance Criteria - **Users Must be at Major Age to be Registered**:
   1. A User at age of 20 years old cannot be registered on the system
   2. A User at age of 21 years old can be registered on the system
   3. A User at age of 30 years old can be registered on the system
 
-The first scenario can be written in Tome like this:
+The scenario for the first example can be written in Tome like this:
 
 ```smalltalk
 MyFeature >> A_User_Age_20_Cannot_be_Registered
