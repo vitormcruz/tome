@@ -7,6 +7,7 @@ Class {
 	#instVars : [
 		'name',
 		'definition',
+		'parameters',
 		'executionBlock',
 		'whenClauses'
 	],
@@ -48,6 +49,11 @@ TomeScenario >> extractParameters [
    | paramRegexMatches rawParameters |
    paramRegexMatches := (definition allRegexMatches: '"[\w\d\s+-\.'']*"') flattened.
    rawParameters := paramRegexMatches collect: [ :param | param copyWithoutAll: '"' ].
+
+	rawParameters ifEmpty: [ 
+		TestFailure signal: 'Feature without params. This means the feature is not linked to the test code which trumps',
+									 ' the runnable specification objective' 
+	].
 
    ^ rawParameters collect: [ :param | TomeParameter createParameterFor: param ]
 ]
@@ -105,21 +111,15 @@ TomeScenario >> printOn: aStream [
 { #category : #running }
 TomeScenario >> run [
 
-	| parameters |
 	self validateScenario.
 
 	parameters := self extractParameters.
-	parameters ifEmpty: [ 
-		TestFailure signal: 'Feature without params. This means the feature is not linked to the test code which trumps',
-									 ' the runnable specification objective' 
-	]	.
-
 	executionBlock valueWithPossibleArgs: parameters.
 	whenClauses do: [ :whenClause | whenClause execute ].
 	
 	parameters do: [ :param | 
-		    param wasUsed ifFalse: [ 
-		    TestFailure signal: param asString, ' should be used so that scenario execution pass.' 
+		param wasUsed ifFalse: [ 
+			TestFailure signal: param asString, ' should be used so that scenario execution pass.' 
 		]
 	].
 

@@ -88,10 +88,22 @@ TomeFeature class >> isAbstract [
 	^ self name = #TomeFeature 
 ]
 
+{ #category : #'*Tome-Core' }
+TomeFeature class >> isFeature [
+
+	^ true.
+]
+
+{ #category : #'as yet unclassified' }
+TomeFeature class >> prettyName [
+
+	^ nil.
+]
+
 { #category : #'building suites' }
 TomeFeature class >> protoParametersFor: scenarioBuilderMethodSelector [
 
-	" Return a list of TomeScenarioBuilderProtoParameter that can be used later to create actual TomeScenario's."
+	" Return a list of TomeScenarioBuilderProtoParameter that can be used latter to create actual TomeScenario's."
 
    | qtdScenarios |
 
@@ -132,7 +144,7 @@ TomeFeature class >> testParameters [
 { #category : #accessing }
 TomeFeature >> concreteScenario [
 
-	^ concreteScenario
+	^ concreteScenario ifNil: [ (parametersToUse at: 1) valuable ].
 ]
 
 { #category : #accessing }

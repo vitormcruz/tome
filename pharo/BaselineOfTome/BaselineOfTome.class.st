@@ -15,8 +15,9 @@ BaselineOfTome >> baseline: spec [
       baseline: 'Avatar' with: [ spec repository: 'github://vitormcruz/avatar:createBaseline'; loads: #(core) ];	
  	   baseline: 'Buoy' with: [ spec repository: 'github://ba-st/Buoy:v6.1.0/source' ];
 		    project: 'Buoy-Tests' copyFrom: 'Buoy' with: [ spec loads: #('Dependent-SUnit-Extensions') ];
+ 	   baseline: 'ZincHTTPComponents' with: [ spec repository: 'github://svenvc/zinc:v5/repository' ];
 		
-		package: 'Tome-Core' with: [ spec requires: #('Avatar') ];
+		package: 'Tome-Core' with: [ spec requires: #('Avatar' 'ZincHTTPComponents') ];
 		package: 'Tome-Tests' with: [ spec requires: #('Tome-Core' 'Buoy-Tests') ];   
 		package: 'Tome-Tests-Examples' with: [ spec requires: #('Tome-Core' 'Buoy-Tests') ];
 		

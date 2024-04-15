@@ -5,7 +5,8 @@ Class {
 	#classTraits : 'TAssertable classTrait',
 	#instVars : [
 		'assertBlock',
-		'assertionActualValue'
+		'assertionActualValue',
+		'assertionError'
 	],
 	#category : #'Tome-Core'
 }
@@ -28,8 +29,13 @@ TomeParamFeatureAssertion >> assertSuccess [
     "Verify if the assertion is successful for an object.
      Raises an AssertionFailure if the assertion fails or if this method is never called."
     
-    parameterUsed  := true.
-    assertBlock value: self value: (assertionActualValue value).
+	parameterUsed  := true.
+	[ assertBlock value: self value: (assertionActualValue value) ] 
+		on: TestFailure 
+		do: [ :exception | 
+			assertionError := exception.
+			exception signal.
+		].
 
 ]
 
