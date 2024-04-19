@@ -9,7 +9,7 @@ TomeFeature class >> printOnAsHtml: aStream [
 	aStream
 		nextPutAll: ' Feature: ';
 		nextPutAll: '<b>';
-		nextPutAll: (aTomeFeature class prettyName ifNil: [ aTomeFeature class name ]);
+		nextPutAll: (aTomeFeature class featureName ifNil: [ aTomeFeature class name ]);
 		nextPutAll: '</b>';
 		nextPut: Character cr
 ]

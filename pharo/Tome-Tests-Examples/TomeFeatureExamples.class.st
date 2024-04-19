@@ -7,6 +7,12 @@ Class {
 	#category : #'Tome-Tests-Examples'
 }
 
+{ #category : #infos }
+TomeFeatureExamples class >> featureName [
+
+	^ 'Examples of Scenarios'.
+]
+
 { #category : #scenario }
 TomeFeatureExamples >> a_Change_User_Salary [
 	"A simple example of a Scenario that tests for a change of an user salary:
@@ -235,7 +241,7 @@ TomeFeatureExamples >> d_User_Must_Be_Unique_by_CPF [
 		run: [ :johnCPF  :newUserCPF :assertionResult |
 			| result |
 			userRepository add: (self legalAgeDummyUser cpf: johnCPF; name: 'John').
-			
+			Error signal: 'bla'.
 			(self when: [ result := self resultFrom: [ userRepository add: (self legalAgeDummyUser cpf: newUserCPF; name: 'Darla')  ]])
 				actualValue: [ result ] forAssertion: assertionResult.
 

@@ -82,22 +82,22 @@ TomeFeature class >> calculateProtoParameters [
 			]
 ]
 
+{ #category : #infos }
+TomeFeature class >> featureName [
+
+	^ self name.
+]
+
 { #category : #private }
 TomeFeature class >> isAbstract [
 
 	^ self name = #TomeFeature 
 ]
 
-{ #category : #'*Tome-Core' }
+{ #category : #infos }
 TomeFeature class >> isFeature [
 
 	^ true.
-]
-
-{ #category : #'as yet unclassified' }
-TomeFeature class >> prettyName [
-
-	^ nil.
 ]
 
 { #category : #'building suites' }
