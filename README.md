@@ -2,7 +2,7 @@
 
 ![Tests](https://github.com/vitormcruz/tome/actions/workflows/tome-ci.yml/badge.svg)
 
-Tome is a Pharo framework that enables creation of Executable Specifications (not implemented yet) allowing the adoption of [ATDD](https://en.wikipedia.org/wiki/Acceptance_test-driven_development) discipline more generally, or simply the adoption of [BDD](https://dannorth.net/introducing-bdd/) by developers.
+Tome is a Pharo framework that enables creation of Executable Specifications (not implemented yet) allowing the adoption of [BDD](https://dannorth.net/introducing-bdd/) or, more generally, the [ATDD](https://en.wikipedia.org/wiki/Acceptance_test-driven_development) discipline.
 
 ## Creating a BDD Feature
 
@@ -22,7 +22,7 @@ MyFeature >> Scenario_Method_Name
 ```
 ### Scenarios
 
-The `#scenario:def:run` is the basic API for simple scenarios:
+The `#scenario:def:run` is the basic API for scenarios:
 
 ```smalltalk
 MyFeature >> Simple_Scenario_Description
@@ -62,9 +62,9 @@ MyFeature >> A_User_Age_20_Cannot_be_Registered
 ```
 
 Rules are:
- 1. All strings enclosed by quotation marks (") are considered parameters of the scenario and will be used as arguments to the `run` block parameter in the order they were defined in the text. 
- 2. Enclosed strings starting with `equals:` are considered assertions with special behavior. `assertSuccessFor:`, for example, is a message answered by the assertion that validate if the argument is equals to the defined value in the specification definition
- 3. All parameters **must** be used, otherwise the scenario execution fails. This is an efforcement made only to reinforce the need to link the definition to it's execution.
+ 1. All strings enclosed by quotation marks (") are considered parameters of the scenario and will be used as arguments to the `run` block parameter in the order they were defined in the text;
+ 2. Enclosed strings starting with `equals:` are considered assertions with special behavior. `assertSuccessFor:`, for example, is a message answered by that kind of assertion that validate if the argument is equals to the defined value in the specification definition;
+ 3. All parameters **must** be used, otherwise the scenario execution fails. This is a reinforcement of the link between the specification definition and its execution.
 
 ### Multiple Similar Scenarios
 
@@ -84,8 +84,8 @@ MyFeature >> Simple_Scenario_Description
 	            - #(  "examples" )
 	            - #(    ....     )
 					
-    run: [ "A block containing the implementation for the given scenario outline
-            it will be called once for each example" ]
+    run: [ "A block containing the implementation for the given scenario outline.
+            It will be called once for each example" ]
 ```
 
 The acceptance criteria "Users Must be at Major Age to be Registered" have very similar examples, so let's take advantage of the Scenario Outline:
@@ -134,7 +134,7 @@ When I try to do it's registation
 Then the new user "equals: can" be found on the system
 ```
 
-Note how differently scenario can be written and asserted. Ideally, it must be linked as much as possible to the code through parameters and assertions so that changes to it or to the code are reflected in both ways and it's execution passes or fail accordingly. For more examples and considerations about specification writting and implementation, look at the [`Tome-Tests-Examples`](https://github.com/vitormcruz/tome/tree/develop/pharo/Tome-Tests-Examples) package.
+Note how differently scenario can be written and asserted. Ideally, it must be linked as much as possible to the code through parameters and assertions so that changes to it or to the code are reflected in both ways and its execution passes or fail accordingly. For more examples and considerations about specification writting and implementation, look at the [`Tome-Tests-Examples`](https://github.com/vitormcruz/tome/tree/develop/pharo/Tome-Tests-Examples) package.
 
 
 ## Executable Specification 
@@ -148,15 +148,15 @@ One of the problems of documentation is that they frequently get out of date, an
 
   > Hey! So automated test are a kind of **Documentation**!?
 
-Yes! And, even more than that, automated tests executed in a CI verifies the system behavior, pointing out errors or behaviors **out of sync** with the **specification**. So automated tests are documentation that, if executed frequently, cannot become unawarely out of date, it will **tell the anyone** if it is out of date, otherwise the system must have bug. So, automated tests are, effectively, **Executable Specifications**!
+Yes! And, even more than that, automated tests executed in a CI (continous Integragion) verifies the system behavior, pointing out errors or behaviors **out of sync** with the **specification**. So automated tests are documentation that, if executed frequently, cannot become unawarely out of date, it will **tell anyone** if it is out of date, otherwise the system must have a bug. So, automated tests are, effectively, **Executable Specifications**!
 
   > Yes, but, humm, automated tests are generally very low level and technical, not usefull for anyone but developers.
 
-Yes, and the BDD practice, for example, emerged so that tests were described upfront and in a more natual language to facilitate communication, but it was still to much constricted to the technical audience. The objective of the **Executable Specification** practice is to provide a higher level communication that could be discussed, created and changed by anyone in the team, expecially the non technical ones.
+True!, and the BDD practice, for example, emerged so that tests were described upfront and in a more natual language to facilitate communication, but it was still to much constricted to the technical audience. The objective of the **Executable Specification** practice is to provide a higher level communication that could be discussed, created and changed by anyone in the team, expecially the non technical ones.
 
   > How so?
 
-Instead of using, for example, Use Cases, let's decribe the requirements as Acceptance Criterias and then create examples that can be used to validate those Criterias — remember, automated testes use examples of things that pass and things that do not pass to verify the system. There is already an argably advantage of describing requirements like this, because examples are much more concrete and simple to describe and understand than another techniques, such as Use Cases that look like programming. When our Specification by Example (acceptance criteria + examples) for a functionality is done — which can be stored in a text file for example — let's link them with the system by executing them as tests in any CI or pipeline employed, making then effectivelly Executable Specifications. From now on, any change in the system that breaks the documented requirements expectations will break the Executable Specification execution as well, forcing them to be updated or the system to be fixed. The Executable Specification becomes the source for team communication, and modifications made to it will need to be reflected in the system or they will break.
+Instead of using, for example, Use Cases, let's decribe the requirements as Acceptance Criterias and then create examples that can be used to validate those Criterias — remember, automated testes use examples of things that pass and things that do not pass to verify the system. There is already an argably advantage of describing requirements like this, because examples are much more concrete and simple to describe and understand than another techniques such as Use Cases that look like programming. When our Specification by Example (acceptance criteria + examples) for a functionality is done — which can be stored in a text file for example — let's link them with the system by executing them as tests in any CI or pipeline employed, making then effectivelly Executable Specifications. From now on, any change in the system that breaks the documented requirements expectations will break the Executable Specification execution as well, forcing them to be updated or the system to be fixed. The Executable Specification becomes the source for team communication, and modifications made to it will need to be reflected in the system or they will break.
 
-From that point, ATDD discipline really shines, every development can be clearly anchored by Acceptance Criteria that was previously discussed by the whole team, clearing and bringing o bit more north to the development process. 
+From that point, ATDD discipline really shines: every development can be clearly anchored by Acceptance Criteria that was previously discussed by the whole team, bringing a clear north to the development process anchored to the business and more transparent to everyone. 
 
