@@ -24,12 +24,12 @@ TomeFeatureWebApp class >> initialize [
 { #category : #'as yet unclassified' }
 TomeFeatureWebApp >> generateSinplePage [
 
-^ WAHtmlCanvas builder 
+^  WAHtmlCanvas builder 
 		documentClass: WAHtmlDocument ;
 		rootClass: WAHtmlRoot;
 		fullDocument: true;
 		rootBlock: [ :root | root style: TomeFeatureWebApp new style ];
-		render: [ :html | TomeFeatureWebApp new renderContentOn: html ].
+		render: TomeFeatureWebApp new.
 ]
 
 { #category : #rendering }
@@ -79,11 +79,17 @@ TomeFeatureWebApp >> renderScenario: scenario on: html [
 
 	html span
 		class: 'scenario-header';
-		with: [ html text: scenario name ].
+		with: scenario name.
 
 	html div 
 		class: 'definition-body';
-		with: [ html preformatted: scenario definition ].
+		with: [ 
+			| htmlLines htmlParamsStream |
+			
+			htmlLines := scenario definition lines collect: [ :line | (TomeScenarioHtmlLine on: line)].
+			htmlParamsStream := ReadStream on: (scenario parameters collect: [ :param2 | TomeScenarioHtmlParam on: param2 ]).
+			htmlLines do: [ :htmlLine | htmlLine renderOn: html usingHtmlParamsStream: htmlParamsStream ].		
+		]
 	
 ]
 
@@ -180,9 +186,19 @@ TomeFeatureWebApp >> style [
 		font-size: normal;
 		font-weight: bold;
 	}
+
+	span.scenario-param-was-used{
+		color: blue;
+	}
+	
+	span.scenario-param-was-not-used{
+		color: red;
+	}
 	
 	div.definition-body{
 		font-size: large;
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
 	}
 	
 	div.end-page-space{

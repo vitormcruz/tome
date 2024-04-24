@@ -14,6 +14,12 @@ Class {
 	#category : #'Tome-Core'
 }
 
+{ #category : #running }
+TomeScenario class >> tomeParamRegex [
+
+	^ '"[\w\d\s+-\.'']*"'
+]
+
 { #category : #'instance creation' }
 TomeScenario class >> withName: scenarioName definition: scenarioDef executionBlock: aBlock [
 
@@ -47,16 +53,17 @@ TomeScenario >> executionBlock: anObject [
 { #category : #running }
 TomeScenario >> extractParameters [
 
-   | paramRegexMatches rawParameters |
-   paramRegexMatches := (definition allRegexMatches: '"[\w\d\s+-\.'']*"') flattened.
-   rawParameters := paramRegexMatches collect: [ :param | param copyWithoutAll: '"' ].
+	| paramRegexMatches rawParameters |
+	paramRegexMatches := (definition allRegexMatches: TomeScenario tomeParamRegex) flattened.
+	rawParameters := paramRegexMatches collect: [ :param | param copyWithoutAll: '"' ].
 
-	rawParameters ifEmpty: [ 
-		TestFailure signal: 'Feature without params. This means the feature is not linked to the test code which trumps',
-									 ' the runnable specification objective' 
-	].
+	rawParameters ifEmpty: [
+		TestFailure signal:
+			'Feature without params. This means the feature is not linked to the test code which trumps'
+			, ' the runnable specification objective'
+		].
 
-   ^ rawParameters collect: [ :param | TomeParameter createParameterFor: param ]
+	^ rawParameters collect: [ :param | TomeParameter createParameterFor: param ]
 ]
 
 { #category : #initialization }
@@ -81,6 +88,12 @@ TomeScenario >> name [
 { #category : #accessing }
 TomeScenario >> name: anObject [
 	name := anObject
+]
+
+{ #category : #accessing }
+TomeScenario >> parameters [
+
+	^ parameters clone.
 ]
 
 { #category : #converting }

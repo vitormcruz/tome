@@ -27,7 +27,7 @@ TomeFeatureExamples >> a_Change_User_Salary [
 	^ self	
 		scenario: 'Change User Salary'
 		def: 'Given an already registered user with a monthly wage of $"1000"
-				 And a current yearly wage of $"equals: 12000""
+				 And a current yearly wage of $"equals: 12000"
 				 When I change her salary to $"2000"
 				 Then her yearly salary becomes "equals: 25000"'
 		run: [ :currentMonthlyWage :assertCurrentYearlyWage :newMonthlyWage :assertNewYearlyWage |
