@@ -19,9 +19,6 @@ TomeDelegatedParam >> handleMessage: aMessage toTarget: anObject [
 	(((TomeParameter methods, TomeDelegatedParam methods) collect: #selector) includes: aMessage selector) 
 		ifTrue: [ ^ aMessage sendTo: self ].
 		
-	((aMessage selector = #perform:) & (((TomeParameter methods, TomeDelegatedParam methods) collect: #selector) includes: aMessage argument))
-		ifTrue: [ ^ aMessage sendTo: self ].
-		
     parameterUsed := true.
     ^ aMessage sendTo: anObject.
 

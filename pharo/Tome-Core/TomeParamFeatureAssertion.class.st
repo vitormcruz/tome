@@ -60,6 +60,12 @@ TomeParamFeatureAssertion >> assertionActualValue: aValueOrBlock [
 	
 ]
 
+{ #category : #accessing }
+TomeParamFeatureAssertion >> assertionError [
+
+	^ assertionError
+]
+
 { #category : #printing }
 TomeParamFeatureAssertion >> printOn: aStream [
 	"Append to the argument, aStream, a sequence of characters that

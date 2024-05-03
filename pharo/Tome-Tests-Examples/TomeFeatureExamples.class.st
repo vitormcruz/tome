@@ -73,7 +73,7 @@ TomeFeatureExamples >> a_Change_User_Salary_More_Terse_Implementation_1 [
 			user monthlyWage: newMonthlyWage.
 
 			"Is the new yearly wage the expected value?"
-			assertNewYearlyWage assertSuccessFor: user yearlyWage.
+			"assertNewYearlyWage assertSuccessFor: user yearlyWage."
 		]
 ]
 
@@ -230,19 +230,18 @@ TomeFeatureExamples >> d_User_Must_Be_Unique_by_CPF [
 
 	^ self 
 		scenarioOutline: 'User must be unique by it''s CPF number'
- 		def: 'Given that John was registered with CPF: "001"
+ 		def: 'Given that John was registered with CPF: "''001''"
            When I try to register another user with the CPF: "{newUserCPF}"
            Then the result is: "equals: ''{result}''"'
                    
-		examples: #(   newUserCPF    result   ) asHeaderFor 
-       	 		  - #(   '001'        fail    )
-       			  - #(   '002'       success  )
+		examples: #(    newUserCPF       result   ) asHeaderFor 
+       	 		  - #(   '''001'''        fail    )
+       			  - #(   '''002'''       success  )
   
 		run: [ :johnCPF  :newUserCPF :assertionResult |
 			| result |
 			userRepository add: (self legalAgeDummyUser cpf: johnCPF; name: 'John').
-			Error signal: 'bla'.
-			(self when: [ result := self resultFrom: [ userRepository add: (self legalAgeDummyUser cpf: newUserCPF; name: 'Darla')  ]])
+			(self when: [ result := self resultFrom: [ userRepository add: (self legalAgeDummyUser cpf: newUserCPF; name: 'Darla') ]])
 				actualValue: [ result ] forAssertion: assertionResult.
 
 	 	].
@@ -265,6 +264,7 @@ TomeFeatureExamples >> legalAgeDummyUser [
 { #category : #'test util' }
 TomeFeatureExamples >> resultFrom: aBlock [
 
+	Error signal: 'bla'. 
 	aBlock on: TomeExampleError do: [ ^ 'fail' ].
 	^ 'success'.
 ]

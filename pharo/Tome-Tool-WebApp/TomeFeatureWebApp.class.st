@@ -43,13 +43,13 @@ TomeFeatureWebApp >> renderContentOn: html [
 	html div class: 'feature-scenario-splitter'.	
 		
 	html div class: 'feature-content'; with: [
-		self renderFailedScenarios: (testResult failures collect: #concreteScenario) on: html.
+		self renderFailedScenarios: (testResult failures collect: [ :test | test concreteScenario asScenarioHtml]) on: html.
 		html div class: 'scenario-section-splitter'.
 		
-		self renderErrorScenarios: (testResult errors collect: #concreteScenario) on: html.
+		self renderErrorScenarios: (testResult errors collect: [ :test | test concreteScenario asErrorScenarioHtml])  on: html.
 		html div class: 'scenario-section-splitter'.
 		
-		self renderPassedScenarios: (testResult passed collect: #concreteScenario) on: html.
+		self renderPassedScenarios: (testResult passed collect: [ :test | test concreteScenario asScenarioHtml]) on: html.
 	].
 
 	html div class: 'end-page-space'.	
@@ -75,36 +75,17 @@ TomeFeatureWebApp >> renderPassedScenarios: scenariosPassed on: html [
 ]
 
 { #category : #'rendering-scenarios' }
-TomeFeatureWebApp >> renderScenario: scenario on: html [
-
-	html span
-		class: 'scenario-header';
-		with: scenario name.
-
-	html div 
-		class: 'definition-body';
-		with: [ 
-			| htmlLines htmlParamsStream |
-			
-			htmlLines := scenario definition lines collect: [ :line | (TomeScenarioHtmlLine on: line)].
-			htmlParamsStream := ReadStream on: (scenario parameters collect: [ :param2 | TomeScenarioHtmlParam on: param2 ]).
-			htmlLines do: [ :htmlLine | htmlLine renderOn: html usingHtmlParamsStream: htmlParamsStream ].		
-		]
-	
-]
-
-{ #category : #'rendering-scenarios' }
 TomeFeatureWebApp >> renderScenarios: scenarios on: html usingClassTypePrefix: classTypePrefix [
 
 	scenarios ifEmpty: [ ^ self ].
 	
 	html div 
-		class: 'scenario-container'; 
+		class: 'scenarios-result-container'; 
 		with: [ 
 			html div class: 'scenarios-', classTypePrefix.
 			html div
 				class: 'scenarios-body-', classTypePrefix;
-			 	with: [ scenarios do: [ :scenario | self renderScenario: scenario on: html ] ]
+			 	with: [ scenarios do: [ :scenario | scenario renderOn: html ] ]
 		].
 	
 
@@ -148,57 +129,77 @@ TomeFeatureWebApp >> style [
 		height: 0.5rem;
 	}
 	
-	div.scenario-container{
- 	  display: flex;
+	div.scenarios-result-container{
+ 	  display: grid;
+	  grid-template-columns: 0.4rem auto
+	
 	}
 	
 	div.scenarios-failed{
-	  width: 0.4rem;
  	  background-color: #fdd260; 
 	}
 
 	div.scenarios-error{
-	  width: 0.4rem;
  	  background-color: #e78778; 
 	}
 	
 	div.scenarios-passed{
-	  width: 0.4rem;
  	  background-color: #9af085;
 	}
 	
 	div.scenarios-body-failed{
-	  flex-grow: 1;
 		padding-left: 0.5rem;
 	}
 	
 	div.scenarios-body-error{
-	  flex-grow: 1;
 	  padding-left: 0.5rem;
 	}
 	
 	div.scenarios-body-passed{
-	  flex-grow: 1;
 	  padding-left: 0.5rem;
 	}
 	
 	span.scenario-header{
-		font-size: normal;
 		font-weight: bold;
 	}
 
 	span.scenario-param-was-used{
-		color: blue;
+		color: green;
 	}
 	
 	span.scenario-param-was-not-used{
-		color: red;
+		color: #db9f00;
+	}
+	
+	span.scenario-param-assertion-failed{
+		color: #bf3620;
+	}
+	
+	.scenarios-body-error .scenario-param-was-not-used,.scenario-param-was-used{
+		color: black;
 	}
 	
 	div.definition-body{
-		font-size: large;
-		padding-top: 0.5rem;
-		padding-bottom: 0.5rem;
+	  font-size: large;
+	  padding-top: 0.5rem;
+	  padding-bottom: 0.5rem;
+	}
+	
+	div.definition-body-error-container{
+
+	}
+	
+	div.scenario-text-body{
+	}
+
+	
+	div.error-body{
+	  margin-top: 0.5rem;
+	  max-height: 15rem;
+	  max-width: 85%;
+	  overflow-x: scroll; 
+	  overflow-y: scroll; 
+ 	  background-color: #FFCCCC; 
 	}
 	
 	div.end-page-space{
@@ -207,4 +208,16 @@ TomeFeatureWebApp >> style [
 	
 
 '
+]
+
+{ #category : #updating }
+TomeFeatureWebApp >> updateRoot: anHtmlRoot [
+	"Override this method to modify the Root object of a Document while rendering. This
+	method is usually called by a WAUpdateRootVisitor.
+	
+	If you are using Painters within a tree of Presenters/Components, this method will not
+	be called unless the Painter is included in the list of children of the Presenter."
+	
+	super updateRoot: anHtmlRoot.
+	anHtmlRoot title: 'Feature'.
 ]

@@ -20,6 +20,20 @@ ManifestTomeCore class >> ruleCollectSelectNotUsedRuleV1FalsePositive [
 ]
 
 { #category : #'code-critics' }
+ManifestTomeCore class >> ruleGRAnsiConvertorRuleV1FalsePositive [
+
+	<ignoreForCoverage>
+	^ #(#(#(#RGPackageDefinition #(#'Tome-Core')) #'2024-04-30T11:29:06.581-03:00') )
+]
+
+{ #category : #'code-critics' }
+ManifestTomeCore class >> ruleGRAnsiExceptionsRuleV1FalsePositive [
+
+	<ignoreForCoverage>
+	^ #(#(#(#RGPackageDefinition #(#'Tome-Core')) #'2024-04-30T11:28:59.157-03:00') )
+]
+
+{ #category : #'code-critics' }
 ManifestTomeCore class >> ruleRBCollectSelectNotUsedRuleV1FalsePositive [
 	^ #(#(#(#RGMethodDefinition #(#'TestFeature class' #testParameters #true)) #'2019-11-02T21:09:19.854109-03:00') #(#(#RGClassDefinition #(#TomeFeature)) #'2019-11-17T17:37:08.066537-03:00') )
 ]
