@@ -1,6 +1,6 @@
 Extension { #name : #TomeParameter }
 
-{ #category : #'*Tome-Tool-WebApp' }
+{ #category : #'*Tome-Tools-WebApp' }
 TomeParameter >> asHtmlParam [
 	
 	^ TomeScenarioHtmlParam on: self.

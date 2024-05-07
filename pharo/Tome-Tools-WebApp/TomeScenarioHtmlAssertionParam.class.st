@@ -1,7 +1,7 @@
 Class {
 	#name : #TomeScenarioHtmlAssertionParam,
 	#superclass : #TomeScenarioHtmlParam,
-	#category : #'Tome-Tool-WebApp'
+	#category : #'Tome-Tools-WebApp'
 }
 
 { #category : #'instance creation' }

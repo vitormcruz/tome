@@ -1,7 +1,7 @@
 Class {
 	#name : #TomeScenarioErrorHtml,
 	#superclass : #TomeScenarioHtml,
-	#category : #'Tome-Tool-WebApp'
+	#category : #'Tome-Tools-WebApp'
 }
 
 { #category : #rendering }

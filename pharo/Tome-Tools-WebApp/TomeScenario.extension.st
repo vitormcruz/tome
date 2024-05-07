@@ -1,12 +1,12 @@
 Extension { #name : #TomeScenario }
 
-{ #category : #'*Tome-Tool-WebApp' }
+{ #category : #'*Tome-Tools-WebApp' }
 TomeScenario >> asErrorScenarioHtml [
 
 	^ TomeScenarioHtml withErrorFrom: self.
 ]
 
-{ #category : #'*Tome-Tool-WebApp' }
+{ #category : #'*Tome-Tools-WebApp' }
 TomeScenario >> asScenarioHtml [
 
 	^ TomeScenarioHtml passedFrom: self.

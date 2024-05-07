@@ -18,7 +18,7 @@ Class {
 		'SCENARIO_SECTION_SPLITTER',
 		'TEST_RESULT_SUMARY'
 	],
-	#category : #'Tome-Tool-WebApp'
+	#category : #'Tome-Tools-WebApp'
 }
 
 { #category : #'class initialization' }

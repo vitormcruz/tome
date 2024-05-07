@@ -4,7 +4,7 @@ Class {
 	#pools : [
 		'TomeCSSClasses'
 	],
-	#category : #'Tome-Tool-WebApp'
+	#category : #'Tome-Tools-WebApp'
 }
 
 { #category : #testing }

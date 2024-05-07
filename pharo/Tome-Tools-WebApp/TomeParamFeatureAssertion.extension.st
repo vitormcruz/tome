@@ -1,6 +1,6 @@
 Extension { #name : #TomeParamFeatureAssertion }
 
-{ #category : #'*Tome-Tool-WebApp' }
+{ #category : #'*Tome-Tools-WebApp' }
 TomeParamFeatureAssertion >> asHtmlParam [
 
 	^ TomeScenarioHtmlAssertionParam on: self.

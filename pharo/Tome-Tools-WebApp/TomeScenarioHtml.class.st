@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'scenario'
 	],
-	#category : #'Tome-Tool-WebApp'
+	#category : #'Tome-Tools-WebApp'
 }
 
 { #category : #'instance creation' }
