@@ -37,7 +37,7 @@ TomeScenario >> definition [
 { #category : #accessing }
 TomeScenario >> definition: anObject [
 
-	definition := anObject withBlanksCondensed.
+	definition := anObject ifNotNil: [ anObject withBlanksCondensed ].
 ]
 
 { #category : #accessing }
