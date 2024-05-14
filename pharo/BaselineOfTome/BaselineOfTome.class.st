@@ -27,7 +27,7 @@ BaselineOfTome >> baseline: spec [
 		
 		group: 'default' with: #('dev');
 		group: 'core' with: #('Tome-Core' 'Seaside3-Prod');
-		group: 'dev' with: #(core 'Tome-Tests' 'Tome-Tests-Examples' 'Seaside3-Dev')
+		group: 'dev' with: #(core 'Tome-Tests' 'Tome-Examples' 'Seaside3-Dev')
 	].
 		
 
