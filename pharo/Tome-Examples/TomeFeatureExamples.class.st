@@ -29,7 +29,7 @@ TomeFeatureExamples >> a_Change_User_Salary [
 		def: 'Given an already registered user with a monthly wage of $"1000"
 				 And a current yearly wage of $"equals: 12000"
 				 When I change her salary to $"2000"
-				 Then her yearly salary becomes "equals: 25000"'
+				 Then her yearly salary becomes "equals: 24000"'
 		run: [ :currentMonthlyWage :assertCurrentYearlyWage :newMonthlyWage :assertNewYearlyWage |
 			| user |
 			
@@ -73,7 +73,7 @@ TomeFeatureExamples >> a_Change_User_Salary_More_Terse_Implementation_1 [
 			user monthlyWage: newMonthlyWage.
 
 			"Is the new yearly wage the expected value?"
-			"assertNewYearlyWage assertSuccessFor: user yearlyWage."
+			assertNewYearlyWage assertSuccessFor: user yearlyWage.
 		]
 ]
 
@@ -264,7 +264,6 @@ TomeFeatureExamples >> legalAgeDummyUser [
 { #category : #'test util' }
 TomeFeatureExamples >> resultFrom: aBlock [
 
-	Error signal: 'bla'. 
 	aBlock on: TomeExampleError do: [ ^ 'fail' ].
 	^ 'success'.
 ]

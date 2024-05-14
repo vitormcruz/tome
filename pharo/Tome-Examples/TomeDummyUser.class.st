@@ -54,7 +54,7 @@ TomeDummyUser >> name: anObject [
 	name := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 TomeDummyUser >> yearlyWage [
 
 	^ monthlyWage * 12.
