@@ -1,5 +1,5 @@
 Class {
-	#name : #TomeScenarioHtml,
+	#name : #TomeScenarioViewFragment,
 	#superclass : #Object,
 	#instVars : [
 		'scenario'
@@ -8,40 +8,40 @@ Class {
 }
 
 { #category : #'instance creation' }
-TomeScenarioHtml class >> failedFrom: aScenario [
+TomeScenarioViewFragment class >> failedFrom: aScenario [
 
 	^ self new scenario: aScenario.
 ]
 
 { #category : #'instance creation' }
-TomeScenarioHtml class >> passedFrom: aScenario [
+TomeScenarioViewFragment class >> passedFrom: aScenario [
 
 	^ self new scenario: aScenario.
 ]
 
 { #category : #'instance creation' }
-TomeScenarioHtml class >> withErrorFrom: aScenario [
+TomeScenarioViewFragment class >> withErrorFrom: aScenario [
 
-	^ TomeScenarioErrorHtml new scenario: aScenario.
+	^ TomeScenarioErrorViewFragment new scenario: aScenario.
 ]
 
 { #category : #'rendering-scenarios' }
-TomeScenarioHtml >> body: html [
+TomeScenarioViewFragment >> body: html [
 
 	| htmlLines htmlParamsStream |
-	htmlLines := scenario definition lines collect: [ :line | TomeScenarioHtmlLine on: line ].
+	htmlLines := scenario definition lines collect: [ :line | TomeScenarioLineViewFragment on: line ].
 	htmlParamsStream := ReadStream on: (scenario parameters collect: [ :param | param asHtmlParam ]).
 	^ htmlLines do: [ :htmlLine | htmlLine renderOn: html usingHtmlParamsStream: htmlParamsStream ]
 ]
 
 { #category : #accessing }
-TomeScenarioHtml >> header: html [
+TomeScenarioViewFragment >> header: html [
 
 	html text: scenario name.
 ]
 
 { #category : #'rendering-scenarios' }
-TomeScenarioHtml >> renderOn: html [
+TomeScenarioViewFragment >> renderOn: html [
 
 	html span
 		class: 'scenario-header';
@@ -53,7 +53,7 @@ TomeScenarioHtml >> renderOn: html [
 ]
 
 { #category : #accessing }
-TomeScenarioHtml >> scenario: aScenario [
+TomeScenarioViewFragment >> scenario: aScenario [
 
 	scenario := aScenario.
 ]

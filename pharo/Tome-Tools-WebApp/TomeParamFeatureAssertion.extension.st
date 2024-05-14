@@ -3,5 +3,5 @@ Extension { #name : #TomeParamFeatureAssertion }
 { #category : #'*Tome-Tools-WebApp' }
 TomeParamFeatureAssertion >> asHtmlParam [
 
-	^ TomeScenarioHtmlAssertionParam on: self.
+	^ TomeScenarioAssertionParamViewFragment on: self.
 ]

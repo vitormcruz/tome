@@ -1,44 +1,30 @@
 Class {
-	#name : #TomeFeatureWebApp,
+	#name : #TomeFeatureView,
 	#superclass : #WAComponent,
-	#pools : [
-		'TomeCSSClasses'
+	#instVars : [
+		'selectedFeatureClass'
 	],
 	#category : #'Tome-Tools-WebApp'
 }
 
-{ #category : #testing }
-TomeFeatureWebApp class >> canBeRoot [
-	"When returning true, the component can be registered as a standalone application from the configuration interface."
-
-	^ true
-]
-
-{ #category : #'class initialization' }
-TomeFeatureWebApp class >> initialize [
-	| app |
-
-	app := WAAdmin register: self asApplicationAt: 'Tome'.
-]
-
-{ #category : #'as yet unclassified' }
-TomeFeatureWebApp >> generateSinplePage [
+{ #category : #exporting }
+TomeFeatureView >> generateSinplePage [
 
 ^  WAHtmlCanvas builder 
 		documentClass: WAHtmlDocument ;
 		rootClass: WAHtmlRoot;
 		fullDocument: true;
-		rootBlock: [ :root | root style: TomeFeatureWebApp new style ];
-		render: TomeFeatureWebApp new.
+		rootBlock: [ :root | root style: TomeFeatureView new style ];
+		render: TomeFeatureView new.
 ]
 
 { #category : #rendering }
-TomeFeatureWebApp >> renderContentOn: html [
+TomeFeatureView >> renderContentOn: html [
 
 	| testResult |
-	testResult := TomeFeatureExamples suite run.
+	testResult := selectedFeatureClass suite run.
 	
-	html heading level2 with: 'Feature: ' , TomeFeatureExamples featureName.
+	html heading level1 with: 'Feature: ' , selectedFeatureClass featureName.
 	self renderSumaryOf: testResult on: html.	
 	html div class: 'feature-scenario-splitter'.	
 		
@@ -57,25 +43,25 @@ TomeFeatureWebApp >> renderContentOn: html [
 ]
 
 { #category : #'rendering-scenarios' }
-TomeFeatureWebApp >> renderErrorScenarios: scenariosError on: html [
+TomeFeatureView >> renderErrorScenarios: scenariosError on: html [
 
 	self renderScenarios: scenariosError on: html usingClassTypePrefix: 'error'.
 ]
 
 { #category : #'rendering-scenarios' }
-TomeFeatureWebApp >> renderFailedScenarios: scenariosFailed on: html [
+TomeFeatureView >> renderFailedScenarios: scenariosFailed on: html [
 
 	self renderScenarios: scenariosFailed on: html usingClassTypePrefix: 'failed'.
 ]
 
 { #category : #'rendering-scenarios' }
-TomeFeatureWebApp >> renderPassedScenarios: scenariosPassed on: html [
+TomeFeatureView >> renderPassedScenarios: scenariosPassed on: html [
 
 	self renderScenarios: scenariosPassed on: html usingClassTypePrefix: 'passed'.
 ]
 
 { #category : #'rendering-scenarios' }
-TomeFeatureWebApp >> renderScenarios: scenarios on: html usingClassTypePrefix: classTypePrefix [
+TomeFeatureView >> renderScenarios: scenarios on: html usingClassTypePrefix: classTypePrefix [
 
 	scenarios ifEmpty: [ ^ self ].
 	
@@ -92,15 +78,21 @@ TomeFeatureWebApp >> renderScenarios: scenarios on: html usingClassTypePrefix: c
 ]
 
 { #category : #rendering }
-TomeFeatureWebApp >> renderSumaryOf: testResult on: html [
+TomeFeatureView >> renderSumaryOf: testResult on: html [
 
 	html div 
 		class: 'test-result-summary';
 		with: (String streamContents: [ :stream | testResult printOn: stream ]).
 ]
 
+{ #category : #accessing }
+TomeFeatureView >> selectedFeatureClass: aFeatureClass [
+
+	selectedFeatureClass := aFeatureClass.
+]
+
 { #category : #hooks }
-TomeFeatureWebApp >> style [
+TomeFeatureView >> style [
 	"Returns a CSS stylesheet associated with this component. This stylesheet will be added to <head> section of the html document so it will be global and not scoped.
 
 	This is done for all visible components (see class comment of WAComponent for what visible means).
@@ -117,7 +109,7 @@ TomeFeatureWebApp >> style [
 	}
 	
 	div.test-result-summary{
-		font-size: smaller;
+		font-size: medium;
 	}
 	
 	span.scenario-label{
@@ -159,10 +151,6 @@ TomeFeatureWebApp >> style [
 	  padding-left: 0.5rem;
 	}
 	
-	span.scenario-header{
-		font-weight: bold;
-	}
-
 	span.scenario-param-was-used{
 		color: green;
 	}
@@ -179,8 +167,13 @@ TomeFeatureWebApp >> style [
 		color: black;
 	}
 	
+	span.scenario-header{
+		font-size: 1.7rem;
+		font-weight: bold;
+	}
+	
 	div.definition-body{
-	  font-size: large;
+	  font-size: 1.7rem;
 	  padding-top: 0.5rem;
 	  padding-bottom: 0.5rem;
 	}
@@ -194,6 +187,7 @@ TomeFeatureWebApp >> style [
 
 	
 	div.error-body{
+	  font-size: 0.9rem;
 	  margin-top: 0.5rem;
 	  max-height: 15rem;
 	  max-width: 85%;
@@ -208,16 +202,4 @@ TomeFeatureWebApp >> style [
 	
 
 '
-]
-
-{ #category : #updating }
-TomeFeatureWebApp >> updateRoot: anHtmlRoot [
-	"Override this method to modify the Root object of a Document while rendering. This
-	method is usually called by a WAUpdateRootVisitor.
-	
-	If you are using Painters within a tree of Presenters/Components, this method will not
-	be called unless the Painter is included in the list of children of the Presenter."
-	
-	super updateRoot: anHtmlRoot.
-	anHtmlRoot title: 'Feature'.
 ]

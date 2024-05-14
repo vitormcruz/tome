@@ -1,5 +1,5 @@
 Class {
-	#name : #TomeScenarioHtmlLine,
+	#name : #TomeScenarioLineViewFragment,
 	#superclass : #Object,
 	#instVars : [
 		'scenarioLine'
@@ -8,13 +8,13 @@ Class {
 }
 
 { #category : #'instance creation' }
-TomeScenarioHtmlLine class >> on: aString [
+TomeScenarioLineViewFragment class >> on: aString [
 
 	^ self new scenarioLine: aString.
 ]
 
 { #category : #rendering }
-TomeScenarioHtmlLine >> remainingLineFrom: defLineSplit splitedBy: htmlScenarioParam [
+TomeScenarioLineViewFragment >> remainingLineFrom: defLineSplit splitedBy: htmlScenarioParam [
 
 	defLineSplit size = 2 ifTrue: [ ^ defLineSplit at: 2 ]. "there is no other parameter with equal string representation"
 	^ defLineSplit removeFirst; 
@@ -22,7 +22,7 @@ TomeScenarioHtmlLine >> remainingLineFrom: defLineSplit splitedBy: htmlScenarioP
 ]
 
 { #category : #rendering }
-TomeScenarioHtmlLine >> renderOn: html usingHtmlParamsStream: htmlParamsStream [
+TomeScenarioLineViewFragment >> renderOn: html usingHtmlParamsStream: htmlParamsStream [
 
 	| htmlScenarioParam lineSplitByParam |
 	
@@ -39,13 +39,13 @@ TomeScenarioHtmlLine >> renderOn: html usingHtmlParamsStream: htmlParamsStream [
 ]
 
 { #category : #accessing }
-TomeScenarioHtmlLine >> scenarioLine: aString [
+TomeScenarioLineViewFragment >> scenarioLine: aString [
 
 	scenarioLine := aString.
 ]
 
 { #category : #test }
-TomeScenarioHtmlLine >> scenarioLineUseNextParamFrom: htmlParamsStream [
+TomeScenarioLineViewFragment >> scenarioLineUseNextParamFrom: htmlParamsStream [
 
 	htmlParamsStream atEnd ifTrue: [ ^ false ].
 	^ (scenarioLine findString: htmlParamsStream peek paramDefString) ~= 0.

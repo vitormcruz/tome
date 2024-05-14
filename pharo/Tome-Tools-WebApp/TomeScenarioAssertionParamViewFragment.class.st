@@ -1,11 +1,11 @@
 Class {
-	#name : #TomeScenarioHtmlAssertionParam,
-	#superclass : #TomeScenarioHtmlParam,
+	#name : #TomeScenarioAssertionParamViewFragment,
+	#superclass : #TomeScenarioParamViewFragment,
 	#category : #'Tome-Tools-WebApp'
 }
 
 { #category : #'instance creation' }
-TomeScenarioHtmlAssertionParam >> configureUsed [
+TomeScenarioAssertionParamViewFragment >> configureUsed [
 
 	param assertionError ifNotNil: [ :error |
 		spanClass := 'scenario-param-assertion-failed'.
@@ -18,7 +18,7 @@ TomeScenarioHtmlAssertionParam >> configureUsed [
 ]
 
 { #category : #accessing }
-TomeScenarioHtmlAssertionParam >> prettyParameter [
+TomeScenarioAssertionParamViewFragment >> prettyParameter [
 
 	^ param stringParam withoutPrefix: 'equals: '.
 ]

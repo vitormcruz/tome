@@ -1,11 +1,11 @@
 Class {
-	#name : #TomeScenarioErrorHtml,
-	#superclass : #TomeScenarioHtml,
+	#name : #TomeScenarioErrorViewFragment,
+	#superclass : #TomeScenarioViewFragment,
 	#category : #'Tome-Tools-WebApp'
 }
 
 { #category : #rendering }
-TomeScenarioErrorHtml >> body: html [
+TomeScenarioErrorViewFragment >> body: html [
 
 	html div class: 'definition-body-error-container'; with: [		
 		html div

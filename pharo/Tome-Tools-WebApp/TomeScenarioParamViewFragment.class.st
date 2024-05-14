@@ -1,5 +1,5 @@
 Class {
-	#name : #TomeScenarioHtmlParam,
+	#name : #TomeScenarioParamViewFragment,
 	#superclass : #Object,
 	#instVars : [
 		'spanClass',
@@ -10,27 +10,27 @@ Class {
 }
 
 { #category : #'instance creation' }
-TomeScenarioHtmlParam class >> on: aTomeParameter [
+TomeScenarioParamViewFragment class >> on: aTomeParameter [
 
 	^ self new from: aTomeParameter.
 ]
 
 { #category : #'instance creation' }
-TomeScenarioHtmlParam >> configureNotUsed [
+TomeScenarioParamViewFragment >> configureNotUsed [
 
 	spanClass := 'scenario-param-was-not-used'.
 	title := 'Parameter not used by the Specification implementation, linkage to its execution is compromised'.
 ]
 
 { #category : #'instance creation' }
-TomeScenarioHtmlParam >> configureUsed [
+TomeScenarioParamViewFragment >> configureUsed [
 
 	spanClass := 'scenario-param-was-used'.
 	title := 'Parameter used by the Specification Implementation'.
 ]
 
 { #category : #'instance creation' }
-TomeScenarioHtmlParam >> from: aTomeParameter [
+TomeScenarioParamViewFragment >> from: aTomeParameter [
 
 	param := aTomeParameter.
 	aTomeParameter wasUsed 
@@ -39,7 +39,7 @@ TomeScenarioHtmlParam >> from: aTomeParameter [
 ]
 
 { #category : #accessing }
-TomeScenarioHtmlParam >> paramDefString [
+TomeScenarioParamViewFragment >> paramDefString [
 
 	"Return the parameter as it is definided, i.e. with quotation marks enclosing it. "
 
@@ -47,13 +47,13 @@ TomeScenarioHtmlParam >> paramDefString [
 ]
 
 { #category : #accessing }
-TomeScenarioHtmlParam >> prettyParameter [
+TomeScenarioParamViewFragment >> prettyParameter [
 
 	^ param stringParam.
 ]
 
 { #category : #rendering }
-TomeScenarioHtmlParam >> renderOn: html [
+TomeScenarioParamViewFragment >> renderOn: html [
 
 	html span
 		title: self title;
@@ -62,25 +62,25 @@ TomeScenarioHtmlParam >> renderOn: html [
 ]
 
 { #category : #accessing }
-TomeScenarioHtmlParam >> spanClass [
+TomeScenarioParamViewFragment >> spanClass [
 
 	^ spanClass
 ]
 
 { #category : #private }
-TomeScenarioHtmlParam >> split: aLineDef [
+TomeScenarioParamViewFragment >> split: aLineDef [
 
 	^ self paramDefString split: aLineDef
 ]
 
 { #category : #private }
-TomeScenarioHtmlParam >> splitDef: aLineDef [
+TomeScenarioParamViewFragment >> splitDef: aLineDef [
 
 	^ self paramDefString split: aLineDef
 ]
 
 { #category : #accessing }
-TomeScenarioHtmlParam >> title [
+TomeScenarioParamViewFragment >> title [
 
 	^ title
 ]

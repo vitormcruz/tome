@@ -10,7 +10,7 @@ Class {
 { #category : #infos }
 TomeFeatureExamples class >> featureName [
 
-	^ 'Examples of Scenarios'.
+	^ 'Examples of scenarios you can build with Tome'.
 ]
 
 { #category : #scenario }
