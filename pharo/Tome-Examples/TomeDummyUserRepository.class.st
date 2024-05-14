@@ -1,7 +1,7 @@
 Class {
 	#name : #TomeDummyUserRepository,
 	#superclass : #OrderedCollection,
-	#category : #'Tome-Tests-Examples'
+	#category : #'Tome-Examples'
 }
 
 { #category : #adding }

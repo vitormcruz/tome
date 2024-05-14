@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'userRepository'
 	],
-	#category : #'Tome-Tests-Examples'
+	#category : #'Tome-Examples'
 }
 
 { #category : #infos }

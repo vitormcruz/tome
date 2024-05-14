@@ -7,7 +7,7 @@ Class {
 		'monthlyWage',
 		'age'
 	],
-	#category : #'Tome-Tests-Examples'
+	#category : #'Tome-Examples'
 }
 
 { #category : #accessing }

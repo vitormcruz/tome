@@ -22,7 +22,7 @@ BaselineOfTome >> baseline: spec [
 		
 		package: 'Tome-Core' with: [ spec requires: #('Avatar') ];
 		package: 'Tome-Tests' with: [ spec requires: #('Tome-Core' 'Buoy-Tests') ];   
-		package: 'Tome-Tests-Examples' with: [ spec requires: #('Tome-Core' 'Buoy-Tests') ];
+		package: 'Tome-Examples' with: [ spec requires: #('Tome-Core' 'Buoy-Tests') ];
 		package: 'Tome-Tools-WebApp' with: [ spec requires: #('Tome-Core') ];
 		
 		group: 'default' with: #('dev');
