@@ -18,7 +18,7 @@ BaselineOfTome >> baseline: spec [
 		
 		baseline:'Seaside3' with: [ spec repository: 'github://SeasideSt/Seaside:v3.5.5/repository' ];
 			project: 'Seaside3-Prod' copyFrom: 'Seaside3' with: [ spec loads: #('Core' 'Zinc') ];
-			project: 'Seaside3-Dev' copyFrom: 'Seaside3' with: [ spec loads: #('Core' 'Zinc' 'Development' 'Examples') ];
+			project: 'Seaside3-Dev' copyFrom: 'Seaside3' with: [ spec loads: #(default) ];
 		
 		package: 'Tome-Core' with: [ spec requires: #('Avatar') ];
 		package: 'Tome-Tests' with: [ spec requires: #('Tome-Core' 'Buoy-Tests') ];   
@@ -27,7 +27,8 @@ BaselineOfTome >> baseline: spec [
 		
 		group: 'default' with: #('dev');
 		group: 'core' with: #('Tome-Core' 'Seaside3-Prod');
-		group: 'dev' with: #(core 'Tome-Tests' 'Tome-Examples' 'Seaside3-Dev')
+		group: 'test' with: #('Tome-Core' 'Tome-Tests' 'Tome-Examples');
+		group: 'dev' with: #(core test 'Seaside3-Dev')
 	].
 		
 
