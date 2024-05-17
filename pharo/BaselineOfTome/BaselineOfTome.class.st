@@ -26,8 +26,8 @@ BaselineOfTome >> baseline: spec [
 		package: 'Tome-Tools-WebApp' with: [ spec requires: #('Tome-Core') ];
 		
 		group: 'default' with: #('dev');
-		group: 'core' with: #('Tome-Core' 'Seaside3-Prod');
-		group: 'test' with: #('Tome-Core' 'Tome-Tests' 'Tome-Examples');
+		group: 'core' with: #('Tome-Core' 'Tome-Examples' 'Tome-Tools-WebApp' 'Seaside3-Prod');
+		group: 'test' with: #(core 'Tome-Tests');
 		group: 'dev' with: #(core test 'Seaside3-Dev')
 	].
 		
