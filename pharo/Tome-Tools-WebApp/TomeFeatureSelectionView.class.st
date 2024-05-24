@@ -10,7 +10,7 @@ Class {
 { #category : #rendering }
 TomeFeatureSelectionView >> filterFeatures [
 
-	^ TomeFeature subclasses select: [ :feature | feature featureName asLowercase beginsWith: featureFilter asLowercase ]
+	^ TomeFeature subclasses select: [ :feature | feature featureName asLowercase beginsWith: (featureFilter asLowercase) ]
 ]
 
 { #category : #initialization }

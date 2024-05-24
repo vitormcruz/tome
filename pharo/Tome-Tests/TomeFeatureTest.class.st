@@ -16,7 +16,7 @@ TomeFeatureTest >> test_extraction_of_1_parameter [
 										paramObtained := param , ''
 									].
 		
-	steps do: #run.
+	(steps collect: #value) do: #run.
 	
    self assert: 'param1' equals: paramObtained.
 ]
@@ -34,7 +34,9 @@ TomeFeatureTest >> test_extraction_of_1_parameter_using_examples [
 								           - #('value2') 
 								           - #('value3')
 					         run: [ :param1 | paramsObtained add: param1 , '' ].
-	steps do: #run.
+					
+	(steps collect: #value) do: #run.
+	
    self assertCollection: paramsObtained hasSameElements: #('value1' 'value2' 'value3').
 ]
 
@@ -49,7 +51,8 @@ TomeFeatureTest >> test_extraction_of_2_parameters [
 									     paramsObtained := {param1 , ''. param2 , ''}
 									 ].
 		
-	steps do: #run.	
+	(steps collect: #value) do: #run.
+	
 	self assertCollection: paramsObtained hasSameElements: #('param1' 'param2').
 ]
 
@@ -69,7 +72,7 @@ TomeFeatureTest >> test_extraction_of_2_parameters_using_examples [
 									paramsObtained add: {param1 , ''. param2 + 0} 
 							   ].
 						
-	steps do: #run.
+	(steps collect: #value) do: #run.
 					
    self assertCollection: paramsObtained hasSameElements: #(#('value1' 1) #('value2' 2) #('value3' 3)).
 ]
@@ -85,7 +88,7 @@ TomeFeatureTest >> test_extraction_of_3_parameters [
 									     paramsObtained := {param1 , ''. param2 , ''. param3 , ''}
 								    ].
 		
-	steps do: #run.
+	(steps collect: #value) do: #run.
 	
 	self assertCollection: paramsObtained hasSameElements: #('param1' 'param2' 'param3').
 ]
@@ -106,7 +109,7 @@ TomeFeatureTest >> test_extraction_of_3_parameters_using_examples [
 									paramsObtained add: {param1  , ''. param2 + 0. param3 = 'true' } 
 							   ].
 						
-	steps do: #run.
+	(steps collect: #value) do: #run.
 					
    self assertCollection: paramsObtained hasSameElements: #(#('value1' 1 true) #('value2' 2 false) #('value3' 3 true)).
 ]
@@ -126,7 +129,9 @@ TomeFeatureTest >> test_extraction_of_N_parameters_mixing_examples_and_fixed_val
 					         run: [ :fix1 :fix2 :exampleParam1 :exampleParam2 | 
 										paramsObtained add: fix1 , ''; add: fix2 , ''; add:exampleParam1 , ''; add: exampleParam2 , ''.
 								].
-	steps do: #run.
+							
+	(steps collect: #value) do: #run.
+	
    self assert: paramsObtained asOrderedCollection
 		  equals: #('Fixed Param1' 'Fixed Param2' 'exampleParam1Value1' 'exampleParam2Value1' 
 						'Fixed Param1' 'Fixed Param2' 'exampleParam1Value2' 'exampleParam2Value2'
@@ -137,9 +142,9 @@ TomeFeatureTest >> test_extraction_of_N_parameters_mixing_examples_and_fixed_val
 TomeFeatureTest >> test_extraction_of_Zero_parameters [
 
 	self	should: [ 
-				(TomeFeature	new scenario:'scenario_test'
+				((TomeFeature	new scenario:'scenario_test'
   									def:'Step with no parameter'
-									run: [ ]) do: #run 
+									run: [ ]) collect: #value ) do: #run 
 			]
 			raise: TestFailure 
 			withExceptionDo: [ :ex | 
@@ -147,14 +152,4 @@ TomeFeatureTest >> test_extraction_of_Zero_parameters [
 						equals: 'Feature without params. This means the feature is not linked to the test code which trumps the runnable specification objective' 
 			].
 		
-]
-
-{ #category : #tests }
-TomeFeatureTest >> test_feature_class_with_no_scenario_definition [
-
-	self should: [ TomeDummyEmpytyFeature suite run ] 
-		  raise: Error 
-		  whoseDescriptionIncludes: 'No scenarios found.' 
-		  description: 'Should have raised a ''No scenarios found.'' error, but didn''t'.
-
 ]

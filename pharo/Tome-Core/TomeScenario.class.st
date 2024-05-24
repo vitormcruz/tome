@@ -8,8 +8,8 @@ Class {
 		'name',
 		'definition',
 		'parameters',
-		'executionBlock',
-		'whenClauses'
+		'whenClauses',
+		'runBlock'
 	],
 	#category : #'Tome-Core'
 }
@@ -26,7 +26,7 @@ TomeScenario class >> withName: scenarioName definition: scenarioDef executionBl
 	^ self new
 		name: scenarioName;
 		definition: scenarioDef;
-		executionBlock: aBlock.
+		runBlock: aBlock.
 ]
 
 { #category : #accessing }
@@ -38,16 +38,6 @@ TomeScenario >> definition [
 TomeScenario >> definition: anObject [
 
 	definition := anObject ifNotNil: [ anObject withBlanksCondensed ].
-]
-
-{ #category : #accessing }
-TomeScenario >> executionBlock [
-	^ executionBlock
-]
-
-{ #category : #accessing }
-TomeScenario >> executionBlock: anObject [
-	executionBlock := anObject
 ]
 
 { #category : #running }
@@ -96,18 +86,6 @@ TomeScenario >> parameters [
 	^ parameters clone.
 ]
 
-{ #category : #converting }
-TomeScenario >> parseBlockClosure: aBlockClosure [
-
-	| blockSource blockSourceLines |
-	
-	blockSource  := aBlockClosure asString.
-	blockSourceLines := {'          run: ', blockSource lines first}, 
-	                    (blockSource lines allButFirst collect: [ :it | '              ', it ]).
-	
-	^ (Character cr join: blockSourceLines), '<n>'.
-]
-
 { #category : #printing }
 TomeScenario >> printOn: aStream [
 	"Append to the argument, aStream, a sequence of characters that
@@ -128,7 +106,7 @@ TomeScenario >> run [
 	self validateScenario.
 
 	parameters := self extractParameters.
-	executionBlock valueWithPossibleArgs: parameters.
+	runBlock valueWithPossibleArgs: parameters.
 	whenClauses do: [ :whenClause | whenClause execute ].
 	
 	parameters do: [ :param | 
@@ -137,6 +115,16 @@ TomeScenario >> run [
 		]
 	].
 
+]
+
+{ #category : #accessing }
+TomeScenario >> runBlock [
+	^ runBlock
+]
+
+{ #category : #accessing }
+TomeScenario >> runBlock: aBlock [
+	runBlock := aBlock
 ]
 
 { #category : #converting }

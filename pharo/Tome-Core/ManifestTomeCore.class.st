@@ -8,18 +8,6 @@ Class {
 }
 
 { #category : #'code-critics' }
-ManifestTomeCore class >> ruleBadMessageRule2V1FalsePositive [
-
-	<ignoreForCoverage>
-	^ #(#(#(#RGMethodDefinition #(#'TomeFeature class' #protoParametersFor: #true)) #'2024-02-27T14:04:29.583-03:00') #(#(#RGMethodDefinition #(#TomeScenarioBuilderProtoParameter #convertInScenarioFor: #false)) #'2024-02-27T14:38:14.882-03:00') )
-]
-
-{ #category : #'code-critics' }
-ManifestTomeCore class >> ruleCollectSelectNotUsedRuleV1FalsePositive [
-	^ #(#(#(#RGMethodDefinition #(#'TomeFeature class' #calculateProtoParameters #true)) #'2021-10-08T09:51:12.573064-03:00') )
-]
-
-{ #category : #'code-critics' }
 ManifestTomeCore class >> ruleGRAnsiConvertorRuleV1FalsePositive [
 
 	<ignoreForCoverage>

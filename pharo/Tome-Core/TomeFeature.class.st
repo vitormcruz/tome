@@ -64,22 +64,20 @@ TO DO
 "
 Class {
 	#name : #TomeFeature,
-	#superclass : #ParametrizedTestCase,
+	#superclass : #TestCase,
 	#instVars : [
-		'concreteScenario'
+		'scenarioToRun'
+	],
+	#classVars : [
+		'VIRTUAL_SCENARIO_INDEX_SEPARATOR'
 	],
 	#category : #'Tome-Core'
 }
 
-{ #category : #'building suites' }
-TomeFeature class >> calculateProtoParameters [
+{ #category : #documentation }
+TomeFeature class >> buildMicroDownUsing: aBuilder withComment: aString [
 
-	^ self scenarioPragmedMethods
-		  inject: OrderedCollection new
-		  into: [ :parameters :scenarioBuilderMethod |
-			  parameters	addAll: (self protoParametersFor: scenarioBuilderMethod selector);
-								yourself
-			]
+	Class buildMicroDownUsing: aBuilder withComment: aString
 ]
 
 { #category : #infos }
@@ -88,10 +86,16 @@ TomeFeature class >> featureName [
 	^ self name.
 ]
 
+{ #category : #'class initialization' }
+TomeFeature class >> initialize [ 
+
+	VIRTUAL_SCENARIO_INDEX_SEPARATOR := '__index__'.
+]
+
 { #category : #private }
 TomeFeature class >> isAbstract [
 
-	^ self name = #TomeFeature 
+	^ self name = #TomeFeature.
 ]
 
 { #category : #infos }
@@ -101,128 +105,106 @@ TomeFeature class >> isFeature [
 ]
 
 { #category : #'building suites' }
-TomeFeature class >> protoParametersFor: scenarioBuilderMethodSelector [
-
-	" Return a list of TomeScenarioBuilderProtoParameter that can be used latter to create actual TomeScenario's."
-
-   | qtdScenarios |
-
-	qtdScenarios := (self new perform: scenarioBuilderMethodSelector) size.
-   ^ (1 to: qtdScenarios) 
-	  		collect: [ :exampleIndex | 
-				TomeScenarioBuilderProtoParameter	newForScenarioBuilderMethodName: scenarioBuilderMethodSelector 
-																	andExampleIndex: exampleIndex
-			].
-]
-
-{ #category : #'building suites' }
 TomeFeature class >> scenarioPragmedMethods [
 
 	^ self methods select: [ :method | (method pragmas collect: #selector) includes: 'scenario' ]
 ]
 
-{ #category : #'building suites' }
-TomeFeature class >> testParameters [
-
-	"Parameters used to create multiple tests. In Tome, each test is a concrete scenario created by 'Builder' methods defined 
-	in the instance side of the Feature Test class, each of which is annotated with a <scenario> pragma.
+{ #category : #accessing }
+TomeFeature class >> testSelectors [
+	
+	<TODO: 'make testes validating this method'>
+	| instanceOfMe |
+	
+	instanceOfMe := self new.
+	
+	^ (self scenarioPragmedMethods collect: [ :scenarioMethod | 
+		| qtdScenarios |
 		
-	Also, for Tome, the test parameters are actually proto parameters, because they will be used later, when instances of test 
-	case are created, to generate concrete test parameters used to create concrete scenarios, see `TomeScenarioBuilderProtoParameter` 
-	for details. This is necessary because one of the actual parameters is a block clojure that must enclose the test case instance 
-	context to work properly and, for example, be able to access prepared instance variables of the test case."
-	
-   | protoParameters |
+		qtdScenarios := (scenarioMethod valueWithReceiver: instanceOfMe arguments: #()) size.
+		(1 to: qtdScenarios) collect: [ :index | scenarioMethod selector, VIRTUAL_SCENARIO_INDEX_SEPARATOR , index asString ]
+	]) flattened.
 
-	protoParameters := self calculateProtoParameters.
-	protoParameters ifEmpty: [ Error signal: 'No scenarios found. The feature classe must have at least one method annotated with the <senario> pragma' ].
-
-   ^ protoParameters inject: ParametrizedTestMatrix new
-			       			into: [ :testMatrix :protoParameter | testMatrix addCase: {#concreteScenario -> protoParameter} ]
 ]
 
-{ #category : #accessing }
-TomeFeature >> concreteScenario [
+{ #category : #'reflective operations' }
+TomeFeature >> doesNotUnderstand: aMessage [
 
-	^ concreteScenario ifNil: [ (parametersToUse at: 1) valuable ].
+	"Features Scenarios are Virtual Tests, i.e., methods are created dynamically dependending on the 
+	scenarios definition — they actually do not exists. The testSelector selector defines the name of 
+	the message for the virtual scenario, and scenarioToRun stores the sceario itself, then the DNU is 
+	just used to dynamically link the message resolve to the scenario running — for a TestCase point 
+	of view, it works just as expected."
+	
+	(aMessage selector ~= testSelector) ifTrue: [ super doesNotUnderstand: aMessage ].
+	scenarioToRun run.
 ]
 
-{ #category : #accessing }
-TomeFeature >> concreteScenario: anObject [
-
-	concreteScenario := anObject
-]
-
-{ #category : #accessing }
-TomeFeature >> parametersToUse: aCase [
-
-	"Convert ProtoParameter into actual TomeScenario parameter used by this concrete test case to 
-	run the scenario. This guarantees that the execution block closure of the scenario encloses 
-	correctly the context of this test case. "
-	
-	| m |
-	
-	m := (aCase at: 1).
-	m valuable: (m valuable convertInScenarioFor: self).
-	
-	parametersToUse := aCase.
+{ #category : #private }
+TomeFeature >> instanceVariablesToKeep [
+	^ super instanceVariablesToKeep , #('scenarioToRun')
 ]
 
 { #category : #printing }
 TomeFeature >> printOn: aStream [
 
-	parametersToUse ifNotNil: [ 
-		(parametersToUse collect: #valuable) printOn: aStream delimiter: $ 
-	]
+	scenarioToRun printOn: aStream.
 ]
 
 { #category : #'scenario builder' }
 TomeFeature >> scenario: aString def: aStringDefinition run: aBlock [
 
-	^ {TomeScenario withName: aString 
+	<TODO: 'test the case where a scenario was already created.'>
+	
+	^ { [ TomeScenario withName: aString 
 	 	            definition: aStringDefinition 
-				      executionBlock: aBlock}
+				      executionBlock: aBlock ] }
 
+]
+
+{ #category : #'scenario builder' }
+TomeFeature >> scenarioDerivedFromSelector: aMessageSelector [
+
+	<TODO: 'Add tests for this method'>
+	| splitedMessage scenarioBuilderMethod scenarios scenarioIndex |
+	
+	splitedMessage := aMessageSelector splitOn: VIRTUAL_SCENARIO_INDEX_SEPARATOR.
+	splitedMessage size ~= 2 ifTrue: [	Error signal: 'Cannot find the scenario with the povided selector' ].
+
+	scenarioBuilderMethod := self class compiledMethodAt: (splitedMessage at: 1) asSymbol.
+	scenarios := scenarioBuilderMethod valueWithReceiver: self arguments: #(  ).
+	
+	scenarioIndex := (splitedMessage at: 2) asNumber.
+	^ (scenarios at: scenarioIndex) value
 ]
 
 { #category : #'scenario builder' }
 TomeFeature >> scenarioOutline: aString def: aStringDescription examples: examples run: aBlock [
 
 	^ (examples collect: [ :example | 
-				  		self scenario: aString 
+				  		(self scenario: aString 
 						     def: (example applyAsExampleTo: aStringDescription)
-						     run: aBlock
+						     run: aBlock) 
 				  ]) flattened.
 ]
 
-{ #category : #running }
-TomeFeature >> setUp [
-	<deprecated:  'Fix for parametrized tests. Wait until fix in the image.'>
-	
-	self initialize.
-	self parametersToUse do: [ :aParameter | aParameter applyTo: self ].
-	
-	"If I am executed without calling buildSuite in the class. I will use the first set of options.
-	This is a workaround to work when running from Calypso"
-	(self parametersToUse isEmpty and: [self class testParameters expandMatrix isNotEmpty]) 
-		ifTrue: [ 
-				self class 
-						testParameters expandMatrix first 
-						do: [ :aParameter | aParameter applyTo: self ] ]
+{ #category : #accessing }
+TomeFeature >> scenarioToRun [
+
+	^ scenarioToRun.
 ]
 
-{ #category : #'parameterized tests' }
-TomeFeature >> testScenario [
+{ #category : #private }
+TomeFeature >> setTestSelector: aSymbol [
 
-	^ concreteScenario run.
-
-
+	testSelector := aSymbol.
+	scenarioToRun := self scenarioDerivedFromSelector: aSymbol
 ]
 
-{ #category : #running }
+{ #category : #'scenario builder' }
 TomeFeature >> when: aBlock [
 
-	"Returns a WhenClause created in the context of the concreteScenario (TomeScenario) execution"
+	"Returns a WhenClause created in the context of the scenarioToRun (TomeScenario) execution"
 
-	^ concreteScenario when: aBlock.
+	^ scenarioToRun when: aBlock.
 ]

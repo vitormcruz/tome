@@ -75,6 +75,11 @@ TomeExampleTable >> collect: aBlockClosure [
 	^ examples collect: aBlockClosure .
 ]
 
+{ #category : #enumerating }
+TomeExampleTable >> collectWithIndex: aBlockClosure [ 
+	^ examples collectWithIndex: aBlockClosure .
+]
+
 { #category : #initialization }
 TomeExampleTable >> initialize [ 
 

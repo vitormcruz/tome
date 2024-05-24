@@ -29,13 +29,13 @@ TomeFeatureView >> renderContentOn: html [
 	html div class: 'feature-scenario-splitter'.	
 		
 	html div class: 'feature-content'; with: [
-		self renderFailedScenarios: (testResult failures collect: [ :test | test concreteScenario asScenarioHtml]) on: html.
+		self renderFailedScenarios: (testResult failures collect: [ :test | test scenarioToRun asScenarioHtml]) on: html.
 		html div class: 'scenario-section-splitter'.
 		
-		self renderErrorScenarios: (testResult errors collect: [ :test | test concreteScenario asErrorScenarioHtml])  on: html.
+		self renderErrorScenarios: (testResult errors collect: [ :test | test scenarioToRun asErrorScenarioHtml errorTestCase: test]) on: html.
 		html div class: 'scenario-section-splitter'.
 		
-		self renderPassedScenarios: (testResult passed collect: [ :test | test concreteScenario asScenarioHtml]) on: html.
+		self renderPassedScenarios: (testResult passed collect: [ :test | test scenarioToRun asScenarioHtml]) on: html.
 	].
 
 	html div class: 'end-page-space'.	
