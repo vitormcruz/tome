@@ -210,8 +210,31 @@ TomeScenarioTest >> test_scenario_with_no_parameters [
 		            executionBlock: [  ].
 
 	self	should: [ scenario run ] 
-			raise: TestFailure withExceptionDo: [ :ex |
+			raise: TestFailure 
+			withExceptionDo: [ :ex |
 				self assert: ex messageText
-						equals: 'Feature without params. This means the feature is not linked to the test code which trumps the runnable specification objective'
+						equals: 'Feature without params. This means the feature is not linked to the test code',
+									' which trumps the runnable specification objective'
 			]
+]
+
+{ #category : #tests }
+TomeScenarioTest >> test_testSelectors_empty_feature [
+
+	self assert: TomeDummyEmptyFeature testSelectors isEmpty.
+]
+
+{ #category : #tests }
+TomeScenarioTest >> test_testSelectors_non_empty_feature [
+
+	self assertCollection: TomeDummyFeature testSelectors 
+	     hasSameElements: { 'scenario1', TomeFeature VIRTUAL_SCENARIO_INDEX_SEPARATOR, '1'. 
+	                        'scenario2', TomeFeature VIRTUAL_SCENARIO_INDEX_SEPARATOR, '1'.
+	                        'scenarioOutline1', TomeFeature VIRTUAL_SCENARIO_INDEX_SEPARATOR, '1'.
+	                        'scenarioOutline2', TomeFeature VIRTUAL_SCENARIO_INDEX_SEPARATOR, '1'.
+	                        'scenarioOutline2', TomeFeature VIRTUAL_SCENARIO_INDEX_SEPARATOR, '2'.
+	                        'scenarioOutline3', TomeFeature VIRTUAL_SCENARIO_INDEX_SEPARATOR, '1'.
+	                        'scenarioOutline3', TomeFeature VIRTUAL_SCENARIO_INDEX_SEPARATOR, '2'.
+	                        'scenarioOutline3', TomeFeature VIRTUAL_SCENARIO_INDEX_SEPARATOR, '3'.
+			                 }.
 ]

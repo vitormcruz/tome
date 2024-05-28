@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'scenarioLine'
 	],
-	#category : #'Tome-Tools-WebApp'
+	#category : #'Tome-Tools-WebApp-ViewFragment'
 }
 
 { #category : #'instance creation' }

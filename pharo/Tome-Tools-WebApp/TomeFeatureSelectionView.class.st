@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'featureFilter'
 	],
-	#category : #'Tome-Tools-WebApp'
+	#category : #'Tome-Tools-WebApp-Core'
 }
 
 { #category : #rendering }

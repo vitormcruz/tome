@@ -8,16 +8,16 @@ Class {
 TomeSequenceableCollectionTest >> test_asFormatParametersOf_empty [
 
 	self should: [ (#( name  age ) asFormatParametersOf: #()) ] 
-		  raise: Error 
-		  withMessageText: 'There should be 2 parameters but found 0'.
+	     raise: Error 
+	     withMessageText: 'There should be 2 parameters but found 0'.
 ]
 
 { #category : #tests }
 TomeSequenceableCollectionTest >> test_asFormatParametersOf_nil [
 
 	self should: [ (#( name  age ) asFormatParametersOf: nil) ] 
-		  raise: Error 
-		  withMessageText: 'There should be 2 parameters but found 0'.
+	     raise: Error 
+	     withMessageText: 'There should be 2 parameters but found 0'.
 ]
 
 { #category : #tests }

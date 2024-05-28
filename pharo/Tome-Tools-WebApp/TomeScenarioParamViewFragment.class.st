@@ -6,7 +6,7 @@ Class {
 		'title',
 		'param'
 	],
-	#category : #'Tome-Tools-WebApp'
+	#category : #'Tome-Tools-WebApp-ViewFragment'
 }
 
 { #category : #'instance creation' }

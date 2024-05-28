@@ -74,6 +74,12 @@ Class {
 	#category : #'Tome-Core'
 }
 
+{ #category : #constant }
+TomeFeature class >> VIRTUAL_SCENARIO_INDEX_SEPARATOR [
+
+	^VIRTUAL_SCENARIO_INDEX_SEPARATOR.
+]
+
 { #category : #documentation }
 TomeFeature class >> buildMicroDownUsing: aBuilder withComment: aString [
 
@@ -113,7 +119,6 @@ TomeFeature class >> scenarioPragmedMethods [
 { #category : #accessing }
 TomeFeature class >> testSelectors [
 	
-	<TODO: 'make testes validating this method'>
 	| instanceOfMe |
 	
 	instanceOfMe := self new.
@@ -154,18 +159,18 @@ TomeFeature >> printOn: aStream [
 { #category : #'scenario builder' }
 TomeFeature >> scenario: aString def: aStringDefinition run: aBlock [
 
-	<TODO: 'test the case where a scenario was already created.'>
+	"Create a new scenario to be build by a block. Calling the block #value actually 
+	creates a new scenario. Return a collection since all method test calls are indexed 
+	based, see #doesNotUnderstand: and #scenarioDerivedFromSelector: for more details about this."
 	
 	^ { [ TomeScenario withName: aString 
-	 	            definition: aStringDefinition 
-				      executionBlock: aBlock ] }
-
+	                   definition: aStringDefinition 
+	                   executionBlock: aBlock ] }
 ]
 
 { #category : #'scenario builder' }
 TomeFeature >> scenarioDerivedFromSelector: aMessageSelector [
 
-	<TODO: 'Add tests for this method'>
 	| splitedMessage scenarioBuilderMethod scenarios scenarioIndex |
 	
 	splitedMessage := aMessageSelector splitOn: VIRTUAL_SCENARIO_INDEX_SEPARATOR.
@@ -180,6 +185,8 @@ TomeFeature >> scenarioDerivedFromSelector: aMessageSelector [
 
 { #category : #'scenario builder' }
 TomeFeature >> scenarioOutline: aString def: aStringDescription examples: examples run: aBlock [
+
+	"Prepare N scenarios to be builded based on the examples provided. See #scenario:def:run for more details"
 
 	^ (examples collect: [ :example | 
 				  		(self scenario: aString 
