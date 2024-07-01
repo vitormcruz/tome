@@ -2,27 +2,34 @@ Class {
 	#name : #TomeFeatureView,
 	#superclass : #WAComponent,
 	#instVars : [
-		'selectedFeatureClass'
+		'selectedFeatureClass',
+		'testResult'
 	],
 	#category : #'Tome-Tools-WebApp-Core'
 }
 
-{ #category : #exporting }
-TomeFeatureView >> generateSinplePage [
+{ #category : #public }
+TomeFeatureView >> clear [
 
+	selectedFeatureClass := nil.
+	testResult := nil.
+]
+
+{ #category : #exporting }
+TomeFeatureView >> generateSimplePageOnStream: aFileStream [
+	
 ^  WAHtmlCanvas builder 
 		documentClass: WAHtmlDocument ;
 		rootClass: WAHtmlRoot;
 		fullDocument: true;
-		rootBlock: [ :root | root style: TomeFeatureView new style ];
-		render: TomeFeatureView new.
+		rootBlock: [ :root | root style: self style ];
+		render: self on: aFileStream.
 ]
 
 { #category : #rendering }
 TomeFeatureView >> renderContentOn: html [
 
-	| testResult |
-	testResult := selectedFeatureClass suite run.
+	testResult := testResult ifNil: [ selectedFeatureClass suite run ].
 	
 	html heading level1 with: 'Feature: ' , selectedFeatureClass featureName.
 	self renderSumaryOf: testResult on: html.	
@@ -202,4 +209,10 @@ TomeFeatureView >> style [
 	
 
 '
+]
+
+{ #category : #accessing }
+TomeFeatureView >> testResult: aTestResult [
+
+	testResult := aTestResult.
 ]

@@ -37,6 +37,7 @@ TomeReportingWebApp >> initialize [
 	
 	featuresSelectionView := TomeFeatureSelectionView new.
 	featuresSelectionView onAnswer: [ :selectedFeatureClass | 
+		featureView clear.
 		featureView selectedFeatureClass: selectedFeatureClass.
 		viewToShow := featureView
 	].

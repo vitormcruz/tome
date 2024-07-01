@@ -24,9 +24,10 @@ BaselineOfTome >> baseline: spec [
 		package: 'Tome-Tests' with: [ spec requires: #('Tome-Core' 'Buoy-Tests') ];   
 		package: 'Tome-Examples' with: [ spec requires: #('Tome-Core' 'Buoy-Tests') ];
 		package: 'Tome-Tools-WebApp' with: [ spec requires: #('Tome-Core') ];
+		package: 'Tome-Config' with: [ spec requires: #('Tome-Tools-WebApp' 'Tome-Core') ];
 		
 		group: 'default' with: #('dev');
-		group: 'core' with: #('Tome-Core' 'Tome-Examples' 'Tome-Tools-WebApp' 'Seaside3-Prod');
+		group: 'core' with: #('Tome-Config' 'Tome-Examples' 'Seaside3-Prod');
 		group: 'test' with: #(core 'Tome-Tests');
 		group: 'dev' with: #(core test 'Seaside3-Dev')
 	].

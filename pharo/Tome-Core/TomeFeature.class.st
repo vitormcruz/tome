@@ -77,7 +77,7 @@ Class {
 { #category : #constant }
 TomeFeature class >> VIRTUAL_SCENARIO_INDEX_SEPARATOR [
 
-	^VIRTUAL_SCENARIO_INDEX_SEPARATOR.
+	^ VIRTUAL_SCENARIO_INDEX_SEPARATOR
 ]
 
 { #category : #documentation }
@@ -86,28 +86,52 @@ TomeFeature class >> buildMicroDownUsing: aBuilder withComment: aString [
 	Class buildMicroDownUsing: aBuilder withComment: aString
 ]
 
+{ #category : #'building suites' }
+TomeFeature class >> buildSuite [
+
+	| suite |
+	^self isAbstract
+		ifTrue:
+			[suite := self suiteClass forClass: self.
+			self allSubclasses
+				do: [:each | each isAbstract ifFalse: [suite addTest: each buildSuiteFromSelectors]].
+			suite]
+		ifFalse: [self buildSuiteFromSelectors]
+]
+
+{ #category : #'building suites' }
+TomeFeature class >> buildSuiteFromMethods: testMethods [
+
+	^testMethods
+		inject: (self suiteClass forClass: self)
+		into: [:suite :selector |
+			suite
+				addTest: (self selector: selector);
+				yourself]
+]
+
 { #category : #infos }
 TomeFeature class >> featureName [
 
-	^ self name.
+	^ self name
 ]
 
 { #category : #'class initialization' }
-TomeFeature class >> initialize [ 
+TomeFeature class >> initialize [
 
-	VIRTUAL_SCENARIO_INDEX_SEPARATOR := '__index__'.
+	VIRTUAL_SCENARIO_INDEX_SEPARATOR := '__index__'
 ]
 
 { #category : #private }
 TomeFeature class >> isAbstract [
 
-	^ self name = #TomeFeature.
+	^ self name = #TomeFeature
 ]
 
 { #category : #infos }
 TomeFeature class >> isFeature [
 
-	^ true.
+	^ true
 ]
 
 { #category : #'building suites' }
@@ -116,9 +140,15 @@ TomeFeature class >> scenarioPragmedMethods [
 	^ self methods select: [ :method | (method pragmas collect: #selector) includes: 'scenario' ]
 ]
 
+{ #category : #factory }
+TomeFeature class >> suiteClass [
+
+	^ TomeFeatureSuite.
+]
+
 { #category : #accessing }
 TomeFeature class >> testSelectors [
-	
+
 	| instanceOfMe |
 	
 	instanceOfMe := self new.
@@ -129,7 +159,6 @@ TomeFeature class >> testSelectors [
 		qtdScenarios := (scenarioMethod valueWithReceiver: instanceOfMe arguments: #()) size.
 		(1 to: qtdScenarios) collect: [ :index | scenarioMethod selector, VIRTUAL_SCENARIO_INDEX_SEPARATOR , index asString ]
 	]) flattened.
-
 ]
 
 { #category : #'reflective operations' }
@@ -143,11 +172,13 @@ TomeFeature >> doesNotUnderstand: aMessage [
 	
 	(aMessage selector ~= testSelector) ifTrue: [ super doesNotUnderstand: aMessage ].
 	scenarioToRun run.
+
 ]
 
 { #category : #private }
 TomeFeature >> instanceVariablesToKeep [
-	^ super instanceVariablesToKeep , #('scenarioToRun')
+
+	^ super instanceVariablesToKeep , #( 'scenarioToRun' )
 ]
 
 { #category : #printing }
@@ -198,7 +229,7 @@ TomeFeature >> scenarioOutline: aString def: aStringDescription examples: exampl
 { #category : #accessing }
 TomeFeature >> scenarioToRun [
 
-	^ scenarioToRun.
+	^ scenarioToRun
 ]
 
 { #category : #private }

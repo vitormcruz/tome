@@ -18,9 +18,9 @@ TomeParamFeatureAssertion class >> canBeCreatedFrom: aStringParam [
 ]
 
 { #category : #converting }
-TomeParamFeatureAssertion >> asString [ 
+TomeParamFeatureAssertion >> asString [
 
-	^ 'Assertion parameter ("', self stringParam , '")'
+	^ 'Assertion parameter ("' , self stringParam , '")'
 ]
 
 { #category : #'validate asserting' }
