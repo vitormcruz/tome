@@ -21,8 +21,8 @@ TomeHTMLReportingChain >> handle: aTestResult [
 		
 	featureClass := aTestResult classesTested asOrderedCollection first.
 	
-	reportingFolder ensureDeleteAll. 
 	featureFile := reportingFolder / (featureClass name, '.html').
+	featureFile ensureDelete.
 	featureFile ensureCreateFile.
 	featureFile writeStreamDo: [ :stream |
 		TomeFeatureView new 

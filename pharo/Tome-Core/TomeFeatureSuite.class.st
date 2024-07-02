@@ -46,10 +46,14 @@ TomeFeatureSuite >> featureClass: aFeatureClass [
 ]
 
 { #category : #running }
-TomeFeatureSuite >> run [
+TomeFeatureSuite >> run: aResult [
 
-	| testResult |
-	testResult := super run.
-	reportingChainObject handle: testResult.
-	^ testResult 
+	[ super run: aResult ] ensure: [ reportingChainObject handle: aResult ].
+]
+
+{ #category : #running }
+TomeFeatureSuite >> runUnmanaged: aResult [
+
+	[ super runUnmanaged: aResult ] ensure: [ reportingChainObject handle: aResult ].
+	
 ]
