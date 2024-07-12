@@ -13,7 +13,7 @@ TomeParameter class >> createParameterFor: aStringParam [
 
 	"maybe apply chain of responsability?"
 	(TomeParamFeatureAssertion canBeCreatedFrom: aStringParam) ifTrue: [ ^ TomeParamFeatureAssertion newForDef: aStringParam ].
-	^ TomeDelegatedParam newForDef: aStringParam.
+	^ TomeDelegatedParamHandler newForDef: aStringParam.
 ]
 
 { #category : #'instance creation' }

@@ -8,13 +8,13 @@ Class {
 	#category : #'Tome-Config'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #configuration }
 TomeConfig class >> htmlReportingFolder [
 
 	^ htmlReportingFolder.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #configuration }
 TomeConfig class >> htmlReportingFolder: aPathString [
 
 	htmlReportingFolder := aPathString
@@ -55,12 +55,25 @@ TomeConfig class >> reportExecutionAsHtml [
 
 { #category : #configuration }
 TomeConfig class >> reportExecutionAsHtml: anObject [
-	
-	<todo: 'Test TomeFeature Suite reporting implementation'>	
 
+	<todo: 'Test TomeFeature Suite reporting implementation'>
 	reportExecutionAsHtml := anObject.
-	
-	reportExecutionAsHtml 
-		ifTrue: [ TomeFeatureSuite addReporting: (TomeHTMLReportingChain new reportingFolder: htmlReportingFolder) ]
-		ifFalse: [ TomeFeatureSuite clearReporting ].
+
+	reportExecutionAsHtml
+		ifTrue: [ self turnHtmlReportingOn ]
+		ifFalse: [ self turnHtmlReportingOff ]
+]
+
+{ #category : #configuration }
+TomeConfig class >> turnHtmlReportingOff [
+
+	TomeFeatureSuite clearReporting.
+	TomeFeatureHtmlConsolidatedTestHandler active: false.
+]
+
+{ #category : #configuration }
+TomeConfig class >> turnHtmlReportingOn [
+
+	TomeFeatureSuite addReporting: (TomeHTMLReportingChain new reportingFolder: htmlReportingFolder).
+	TomeFeatureHtmlConsolidatedTestHandler active: true.
 ]

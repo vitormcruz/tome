@@ -10,7 +10,7 @@ Class {
 	#category : #'Tome-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #reporting }
 TomeFeatureSuite class >> addReporting: aTomeScenarioReportingChain [
 
 	reportingChainObject addNewHandler: aTomeScenarioReportingChain.
@@ -18,7 +18,7 @@ TomeFeatureSuite class >> addReporting: aTomeScenarioReportingChain [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #reporting }
 TomeFeatureSuite class >> clearReporting [
 
 	reportingChainObject clear.
@@ -32,7 +32,7 @@ TomeFeatureSuite class >> forClass: aFeatureClass [
 		name: aFeatureClass name.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 TomeFeatureSuite class >> initialize [
 
 	reportingChainObject := TomeScenarioReportingChain new.
@@ -48,12 +48,12 @@ TomeFeatureSuite >> featureClass: aFeatureClass [
 { #category : #running }
 TomeFeatureSuite >> run: aResult [
 
-	[ super run: aResult ] ensure: [ reportingChainObject handle: aResult ].
+	[ super run: aResult ] ensure: [ reportingChainObject startChainFor: aResult ].
 ]
 
 { #category : #running }
 TomeFeatureSuite >> runUnmanaged: aResult [
 
-	[ super runUnmanaged: aResult ] ensure: [ reportingChainObject handle: aResult ].
+	[ super runUnmanaged: aResult ] ensure: [ reportingChainObject startChainFor: aResult ].
 	
 ]

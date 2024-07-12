@@ -165,10 +165,11 @@ TomeFeature class >> testSelectors [
 TomeFeature >> doesNotUnderstand: aMessage [
 
 	"Features Scenarios are Virtual Tests, i.e., methods are created dynamically dependending on the 
-	scenarios definition — they actually do not exists. The testSelector selector defines the name of 
-	the message for the virtual scenario, and scenarioToRun stores the sceario itself, then the DNU is 
-	just used to dynamically link the message resolve to the scenario running — for a TestCase point 
-	of view, it works just as expected."
+	scenarios definition — they do not exist until test execution. The #testSelector defines the virtual 
+	name of the message for the virtual scenario and scenarioToRun stores the sceario itself, then the DNU is 
+	used to dynamically link the vistual message resolve to the concrete scenario — for a TestCase point 
+	of view, it works just as expected. See #scenarioDerivedFromSelector: for details on how scenarioToRun 
+	is created."
 	
 	(aMessage selector ~= testSelector) ifTrue: [ super doesNotUnderstand: aMessage ].
 	scenarioToRun run.
@@ -190,9 +191,10 @@ TomeFeature >> printOn: aStream [
 { #category : #'scenario builder' }
 TomeFeature >> scenario: aString def: aStringDefinition run: aBlock [
 
-	"Create a new scenario to be build by a block. Calling the block #value actually 
-	creates a new scenario. Return a collection since all method test calls are indexed 
-	based, see #doesNotUnderstand: and #scenarioDerivedFromSelector: for more details about this."
+	"Create a new scenario to be build by a block. Calling the block #value function as a factory 
+	and creates a new scenario. Return a collection since all method test calls are indexed because of 
+	the scenarioOutline variant of the scenario definition based, see #doesNotUnderstand: and #scenarioDerivedFromSelector: 
+	for more details about this."
 	
 	^ { [ TomeScenario withName: aString 
 	                   definition: aStringDefinition 
