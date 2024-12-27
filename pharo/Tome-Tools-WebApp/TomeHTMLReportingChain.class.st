@@ -7,19 +7,13 @@ Class {
 { #category : #accessing }
 TomeHTMLReportingChain >> handle: aTestResult [
 
-	<todo: 'add tests to this' >
-
-	| featureClass featureFile |
-		
-	featureClass := self extractFeatureClassFrom: aTestResult.
-	featureFile := reportingFolder / (featureClass name, '.html').
-	featureFile ensureDelete.
-	featureFile ensureCreateFile.
-	featureFile writeStreamDo: [ :stream |
-		TomeFeatureView new 
-			testResult: aTestResult; 
-			selectedFeatureClass: featureClass; 
-			generateSimplePageOnStream: stream 
-	].
+	<todo: 'add tests to this'>
 	
+	(self extractFeatureClassesFrom: aTestResult)
+		do: [ :featureClass |
+			TomeFeatureView new
+				testResult: aTestResult;
+				selectedFeatureClass: featureClass;
+				generateSimplePageOnStream: (self reportingFileFor: featureClass)
+		]
 ]

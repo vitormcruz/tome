@@ -16,20 +16,27 @@ TomeFeatureView >> clear [
 ]
 
 { #category : #exporting }
-TomeFeatureView >> generateSimplePageOnStream: aFileStream [
+TomeFeatureView >> generateSimplePageOnStream: aFile [
+
+	aFile writeStreamDo: [ :aFileStream |
+		WAHtmlCanvas builder 
+			documentClass: WAHtmlDocument ;
+			rootClass: WAHtmlRoot;
+			fullDocument: true;
+			rootBlock: [ :root | root style: self style ];
+			render: self on: aFileStream.		
+	]
 	
-^  WAHtmlCanvas builder 
-		documentClass: WAHtmlDocument ;
-		rootClass: WAHtmlRoot;
-		fullDocument: true;
-		rootBlock: [ :root | root style: self style ];
-		render: self on: aFileStream.
+
 ]
 
 { #category : #rendering }
 TomeFeatureView >> renderContentOn: html [
 
-	testResult := testResult ifNil: [ selectedFeatureClass suite run ].
+	selectedFeatureClass ifNil: [ Error signal: 'TomeFeatureView can render only if a feature class is provided.' ].
+	
+	testResult := testResult ifNil: [ selectedFeatureClass suite run ]
+										 ifNotNil: [ testResult filterForClass: selectedFeatureClass ].
 	
 	html heading level1 with: 'Feature: ' , selectedFeatureClass featureName.
 	self renderSumaryOf: testResult on: html.	

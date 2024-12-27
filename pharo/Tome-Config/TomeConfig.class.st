@@ -68,12 +68,10 @@ TomeConfig class >> reportExecutionAsHtml: anObject [
 TomeConfig class >> turnHtmlReportingOff [
 
 	TomeFeatureSuite clearReporting.
-	TomeFeatureHtmlConsolidatedTestHandler active: false.
 ]
 
 { #category : #configuration }
 TomeConfig class >> turnHtmlReportingOn [
 
 	TomeFeatureSuite addReporting: (TomeHTMLReportingChain new reportingFolder: htmlReportingFolder).
-	TomeFeatureHtmlConsolidatedTestHandler active: true.
 ]

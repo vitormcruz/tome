@@ -23,21 +23,17 @@ TomeScenarioReportingChain >> addNewHandler: aScenarioReportingChain [
 	currentHandler nextHandler: aScenarioReportingChain.
 ]
 
-{ #category : #public }
+{ #category : #chaining }
 TomeScenarioReportingChain >> clear [ 
 
 	nextHandler := nil.
 ]
 
 { #category : #utils }
-TomeScenarioReportingChain >> extractFeatureClassFrom: aTestResult [
+TomeScenarioReportingChain >> extractFeatureClassesFrom: aTestResult [
 
 	aTestResult classesTested ifEmpty: [ ^ self ]. "nothing to do"
-	aTestResult classesTested size > 1
-		ifTrue: [ Error signal: 'Feature reporting handling should process a test result ',
-					                'with only one Class Tested, which is the class that represents the Feature' ].
-		
-	^ aTestResult classesTested asOrderedCollection first.
+	^ aTestResult classesTested asOrderedCollection select: #isFeature.
 ]
 
 { #category : #chaining }
@@ -65,6 +61,16 @@ TomeScenarioReportingChain >> nextHandler [
 TomeScenarioReportingChain >> nextHandler: anObject [
 
 	nextHandler := anObject
+]
+
+{ #category : #accessing }
+TomeScenarioReportingChain >> reportingFileFor: featureClass [
+
+	| featureFile |
+	featureFile := reportingFolder / (featureClass featureName , '.html').
+	featureFile ensureDelete.
+	featureFile ensureCreateFile.
+	^ featureFile
 ]
 
 { #category : #accessing }
