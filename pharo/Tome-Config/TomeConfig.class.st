@@ -11,7 +11,7 @@ Class {
 { #category : #configuration }
 TomeConfig class >> htmlReportingFolder [
 
-	^ htmlReportingFolder.
+	^ htmlReportingFolder ifNil: [ ^ htmlReportingFolder := './target/specificationTestResult' ].
 ]
 
 { #category : #configuration }
