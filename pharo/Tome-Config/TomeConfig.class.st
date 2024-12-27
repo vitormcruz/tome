@@ -73,5 +73,5 @@ TomeConfig class >> turnHtmlReportingOff [
 { #category : #configuration }
 TomeConfig class >> turnHtmlReportingOn [
 
-	TomeFeatureSuite addReporting: (TomeHTMLReportingChain new reportingFolder: htmlReportingFolder).
+	TomeFeatureSuite addReporting: (TomeHTMLReportingChain new reportingFolder: self htmlReportingFolder).
 ]
