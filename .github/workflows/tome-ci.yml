@@ -12,6 +12,6 @@ jobs:
         run: |
           pharo /opt/pharo/Pharo.image st --save --quit loadForTesting.st
           pharo /opt/pharo/Pharo.image test Tome-Tests Tome-Examples --junit-xml-output --fail-on-failure --fail-on-error
-          ls -la /opt/pharo/
+          ls -la
 
 
