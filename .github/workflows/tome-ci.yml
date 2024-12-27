@@ -11,7 +11,7 @@ jobs:
       - name: Load Tome and Test it
         run: |
           ls -la
-          pharo /opt/pharo/Pharo.image eval --save "Metacello new repository: 'tonel://pharo'; baseline: 'Tome'; load: #(test)"
+          pharo /opt/pharo/Pharo.image st --save --quit loadForTesting.st;
           pharo /opt/pharo/Pharo.image test Tome-Tests Tome-Examples --junit-xml-output --fail-on-failure --fail-on-error
 
 
