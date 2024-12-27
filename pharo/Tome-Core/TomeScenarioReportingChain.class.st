@@ -70,6 +70,7 @@ TomeScenarioReportingChain >> reportingFileFor: featureClass [
 	featureFile := reportingFolder / (featureClass featureName , '.html').
 	featureFile ensureDelete.
 	featureFile ensureCreateFile.
+	self traceCr: 'Generated Reporting File for class ', featureClass name, 'at: ', featureFile fullName.
 	^ featureFile
 ]
 
