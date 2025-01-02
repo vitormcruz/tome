@@ -46,12 +46,6 @@ TomeFeatureSuite >> featureClass: aFeatureClass [
 ]
 
 { #category : #running }
-TomeFeatureSuite >> run: aResult [
-
-	[ super run: aResult ] ensure: [ reportingChainObject startChainFor: aResult ].
-]
-
-{ #category : #running }
 TomeFeatureSuite >> runUnmanaged: aResult [
 
 	[ super runUnmanaged: aResult ] ensure: [ reportingChainObject startChainFor: aResult ].

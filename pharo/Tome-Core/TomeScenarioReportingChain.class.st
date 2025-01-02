@@ -32,7 +32,6 @@ TomeScenarioReportingChain >> clear [
 { #category : #utils }
 TomeScenarioReportingChain >> extractFeatureClassesFrom: aTestResult [
 
-	aTestResult classesTested ifEmpty: [ ^ self ]. "nothing to do"
 	^ aTestResult classesTested asOrderedCollection select: #isFeature.
 ]
 
@@ -70,7 +69,7 @@ TomeScenarioReportingChain >> reportingFileFor: featureClass [
 	featureFile := reportingFolder / (featureClass featureName , '.html').
 	featureFile ensureDelete.
 	featureFile ensureCreateFile.
-	self traceCr: 'Generated Reporting File for class ', featureClass name, 'at: ', featureFile fullName.
+	self traceCr: 'Generated Reporting File for class ', featureClass name, ' at: ', featureFile fullName.
 	^ featureFile
 ]
 
