@@ -36,5 +36,7 @@ TomeFeatureRunCmdHandler >> activate [
 	].
 
 	features := (packagesMatched collect: [ :package | package asPackage classes select: [ :class | class isFeature & class isAbstract not] ]) flattened.
-	features do: [ :feature | feature buildSuite run ]
+	features do: [ :feature | feature buildSuite run ].
+	
+	Smalltalk snapshot: false andQuit: false.
 ]
