@@ -33,38 +33,26 @@ TomeFeatureView >> generateSimplePageOnStream: aFile [
 { #category : #rendering }
 TomeFeatureView >> renderContentOn: html [
 
-	<todo: 'use a proper logging api'>
-	
-	self traceCr: 'Starting content rendering'.
-		
 	selectedFeatureClass ifNil: [ Error signal: 'TomeFeatureView can render only if a feature class is provided.' ].
 	
-	self traceCr: 'Getting test result'.
 	testResult := testResult ifNil: [ selectedFeatureClass suite run ]
 										 ifNotNil: [ testResult filterForClass: selectedFeatureClass ].
 	
-	self traceCr: 'Drawing heading'.
 	html heading level1 with: 'Feature: ' , selectedFeatureClass featureName.
 	self renderSumaryOf: testResult on: html.	
 	html div class: 'feature-scenario-splitter'.	
 		
-	self traceCr: 'Drawing Content'.
 	html div class: 'feature-content'; with: [
-		self traceCr: 'Drawing Failures'.
 		self renderFailedScenarios: (testResult failures collect: [ :test | test scenarioToRun asScenarioHtml]) on: html.
 		html div class: 'scenario-section-splitter'.
 		
-		self traceCr: 'Drawing Errors'.
 		self renderErrorScenarios: (testResult errors collect: [ :test | test scenarioToRun asErrorScenarioHtml errorTestCase: test]) on: html.
 		html div class: 'scenario-section-splitter'.
 		
-		self traceCr: 'Drawing Passed'.
 		self renderPassedScenarios: (testResult passed collect: [ :test | test scenarioToRun asScenarioHtml]) on: html.
 	].
 
 	html div class: 'end-page-space'.	
-	self traceCr: 'Finish Content Rendering'.
-
 ]
 
 { #category : #'rendering-scenarios' }
