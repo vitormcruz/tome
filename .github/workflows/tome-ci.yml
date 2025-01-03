@@ -13,9 +13,11 @@ jobs:
           pharo /opt/pharo/Pharo.image st --save --quit loadForTesting.st
           # pharo /opt/pharo/Pharo.image test Tome-Tests Tome-Examples --junit-xml-output --fail-on-failure --fail-on-error
           pharo /opt/pharo/Pharo.image featureRun Tome.*
-          ls -la ${{ github.workspace }}
-          ls -la ${{ github.workspace }}/tome
-          ls -la ${{ github.workspace }}/ls -la tome/tome/
-          ls -la ${{ github.workspace }}/ls -la tome/tome/target
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage-report
+          path: target/specificationTestResult/*
 
 
