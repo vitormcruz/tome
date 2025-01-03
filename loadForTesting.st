@@ -1,6 +1,6 @@
  Metacello new
 	repository: 'tonel://pharo';
 	baseline: 'Tome';
-	load: #(dev).
+	load: #(test).
 
 TomeConfig turnHtmlReportingOn.
