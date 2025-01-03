@@ -66,7 +66,8 @@ TomeScenarioReportingChain >> nextHandler: anObject [
 TomeScenarioReportingChain >> reportingFileFor: featureClass [
 
 	| featureFile |
-	featureFile := reportingFolder / (featureClass featureName , '.html').
+"	featureFile := reportingFolder / (featureClass featureName , '.html')."
+	featureFile := reportingFolder / (UUID new asString36, '.html').
 	featureFile ensureDelete.
 	featureFile ensureCreateFile.
 	self traceCr: 'Generated Reporting File for class ', featureClass name, ' at: ', featureFile fullName.
