@@ -9,7 +9,8 @@ Class {
 		'definition',
 		'parameters',
 		'whenClauses',
-		'runBlock'
+		'runBlock',
+		'testFailureError'
 	],
 	#category : #'Tome-Core'
 }
@@ -41,10 +42,22 @@ TomeScenario >> definition: anObject [
 ]
 
 { #category : #running }
+TomeScenario >> executeHandlingErrors: aBlock [
+
+	aBlock
+		on: Error, TestFailure 
+		do: [ :ex | 
+				testFailureError := TomeScenarioError newFrom: ex. 
+				ex pass.
+			 ] 
+
+]
+
+{ #category : #running }
 TomeScenario >> extractParameters [
 
 	| paramRegexMatches rawParameters |
-	paramRegexMatches := (definition allRegexMatches: TomeScenario tomeParamRegex) flattened.
+	paramRegexMatches := (definition allRegexMatches: self class tomeParamRegex) flattened.
 	rawParameters := paramRegexMatches collect: [ :param | param copyWithoutAll: '"' ].
 
 	rawParameters ifEmpty: [
@@ -54,6 +67,12 @@ TomeScenario >> extractParameters [
 		].
 
 	^ rawParameters collect: [ :param | TomeParameter createParameterFor: param ]
+]
+
+{ #category : #'accessing - testing' }
+TomeScenario >> hasFailed [
+
+	^ testFailureError isNil not & testFailureError isTestFailure.
 ]
 
 { #category : #initialization }
@@ -86,6 +105,12 @@ TomeScenario >> parameters [
 	^ parameters clone.
 ]
 
+{ #category : #'accessing - testing' }
+TomeScenario >> passed [
+
+ ^ testFailureError isNil
+]
+
 { #category : #printing }
 TomeScenario >> printOn: aStream [
 	"Append to the argument, aStream, a sequence of characters that
@@ -103,18 +128,16 @@ TomeScenario >> printOn: aStream [
 { #category : #running }
 TomeScenario >> run [
 
-	self validateScenario.
+   self validateScenario.
+   parameters := self extractParameters.
 
-	parameters := self extractParameters.
-	runBlock valueWithPossibleArgs: parameters.
-	whenClauses do: [ :whenClause | whenClause execute ].
-	
-	parameters do: [ :param | 
-		param wasUsed ifFalse: [ 
-			TestFailure signal: param asString, ' should be used so that scenario execution pass.' 
-		]
+   self executeHandlingErrors: [ 
+		runBlock valueWithPossibleArgs: parameters.
+		whenClauses do: [ :whenClause | whenClause execute ] 
 	].
 
+		
+   self validateParametersAfterExecution.
 ]
 
 { #category : #accessing }
@@ -134,7 +157,23 @@ TomeScenario >> scenarioDescription [
 
 ]
 
-{ #category : #running }
+{ #category : #accessing }
+TomeScenario >> testFailureError [
+
+	^ testFailureError
+]
+
+{ #category : #validating }
+TomeScenario >> validateParametersAfterExecution [
+
+   parameters do: [ :param |
+      param wasUsed ifFalse: [
+         TestFailure signal:
+            param asString
+            , ' should be used so that scenario execution pass.' ] ]
+]
+
+{ #category : #validating }
 TomeScenario >> validateScenario [
 	| errors |
 	
@@ -149,7 +188,7 @@ TomeScenario >> validateScenario [
 	].
 ]
 
-{ #category : #running }
+{ #category : #configuring }
 TomeScenario >> when: aBlock [
 
 	^ whenClauses add: (WhenClause newFor: aBlock). 

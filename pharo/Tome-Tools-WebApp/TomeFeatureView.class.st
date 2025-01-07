@@ -191,13 +191,12 @@ TomeFeatureView >> style [
 	  padding-bottom: 0.5rem;
 	}
 	
-	div.definition-body-error-container{
+	div.definition-body-with-message-container{
 
 	}
 	
 	div.scenario-text-body{
 	}
-
 	
 	div.error-body{
 	  font-size: 0.9rem;
@@ -207,6 +206,17 @@ TomeFeatureView >> style [
 	  overflow-x: scroll; 
 	  overflow-y: scroll; 
  	  background-color: #FFCCCC; 
+	}
+	
+	div.failure-body{
+	  font-size: 0.9rem;
+	  margin-top: 0.5rem;
+	  max-height: 15rem;
+	  max-width: 85%;
+	  overflow-x: scroll; 
+	  overflow-y: scroll; 
+	  padding-left: 0.5rem;
+ 	  background-color: #ffe7a9; 
 	}
 	
 	div.end-page-space{
