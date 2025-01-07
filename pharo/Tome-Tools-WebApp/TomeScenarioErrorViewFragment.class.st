@@ -1,44 +1,27 @@
 Class {
 	#name : #TomeScenarioErrorViewFragment,
-	#superclass : #TomeScenarioViewFragment,
-	#instVars : [
-		'testCaseInError'
-	],
+	#superclass : #TomeScenarioWithMessageViewFragment,
 	#category : #'Tome-Tools-WebApp-ViewFragment'
 }
 
 { #category : #rendering }
-TomeScenarioErrorViewFragment >> body: html [
+TomeScenarioErrorViewFragment >> extractErrorStackTrace [
 
-	html div
-		class: 'definition-body-error-container';
-		with: [
-			html div
-				class: 'scenario-text-body';
-				with: [ super body: html ].
-
-			html div
-				class: 'error-body';
-				with: [ html preformatted: self extractErrorStackTrace ]
-			]
-]
-
-{ #category : #accessing }
-TomeScenarioErrorViewFragment >> errorTestCase: aTestCaseInError [
-
-	testCaseInError := aTestCaseInError.
+	^ String streamContents: [ :s | 
+		scenario testFailureError messageError printOn: s. 
+		s cr. 
+		scenario testFailureError debugStackTraceText printOn: s 
+	]			
 ]
 
 { #category : #rendering }
-TomeScenarioErrorViewFragment >> extractErrorStackTrace [
+TomeScenarioErrorViewFragment >> messageCssBody [
 
-	^ [ testCaseInError runCase ]
-			on: Error
-			do: [ :err | 
-				String streamContents: [ :s | 
-					err messageText printOn: s. 
-					s cr. 
-					err signalerContext printDebugStackOn: s 
-				] 
-			]
+	^ 'error-body'.
+]
+
+{ #category : #accessing }
+TomeScenarioErrorViewFragment >> preformatedMessageText [
+
+	^  self extractErrorStackTrace.
 ]

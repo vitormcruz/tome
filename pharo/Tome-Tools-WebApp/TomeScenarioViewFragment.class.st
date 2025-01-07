@@ -2,27 +2,25 @@ Class {
 	#name : #TomeScenarioViewFragment,
 	#superclass : #Object,
 	#instVars : [
-		'scenario'
+		'scenario',
+		'testCase'
 	],
 	#category : #'Tome-Tools-WebApp-ViewFragment'
 }
 
 { #category : #'instance creation' }
-TomeScenarioViewFragment class >> failedFrom: aScenario [
+TomeScenarioViewFragment class >> buildClassFrom: aTomeScenario [
 
-	^ self new scenario: aScenario.
+	aTomeScenario passed ifTrue: [ ^ TomeScenarioViewFragment ].
+	aTomeScenario hasFailed ifTrue: [ ^ TomeScenarioFailureViewFragment ].
+	^ TomeScenarioErrorViewFragment.
+
 ]
 
 { #category : #'instance creation' }
-TomeScenarioViewFragment class >> passedFrom: aScenario [
+TomeScenarioViewFragment class >> newFrom: aTomeScenario [
 
-	^ self new scenario: aScenario.
-]
-
-{ #category : #'instance creation' }
-TomeScenarioViewFragment class >> withErrorFrom: aScenario [
-
-	^ TomeScenarioErrorViewFragment new scenario: aScenario.
+	^ (self buildClassFrom: aTomeScenario) new scenario: aTomeScenario.
 ]
 
 { #category : #'rendering-scenarios' }
@@ -56,4 +54,10 @@ TomeScenarioViewFragment >> renderOn: html [
 TomeScenarioViewFragment >> scenario: aScenario [
 
 	scenario := aScenario.
+]
+
+{ #category : #accessing }
+TomeScenarioViewFragment >> testCase: aTestCase [
+
+	testCase := aTestCase.
 ]
