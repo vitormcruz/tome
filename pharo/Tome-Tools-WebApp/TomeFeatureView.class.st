@@ -46,7 +46,7 @@ TomeFeatureView >> renderContentOn: html [
 		self renderFailedScenarios: (testResult failures collect: [ :test | test scenarioToRun asScenarioHtml]) on: html.
 		html div class: 'scenario-section-splitter'.
 		
-		self renderErrorScenarios: (testResult errors collect: [ :test | test scenarioToRun asErrorScenarioHtml errorTestCase: test]) on: html.
+		self renderErrorScenarios: (testResult errors collect: [ :test | test scenarioToRun asScenarioHtml]) on: html.
 		html div class: 'scenario-section-splitter'.
 		
 		self renderPassedScenarios: (testResult passed collect: [ :test | test scenarioToRun asScenarioHtml]) on: html.
