@@ -7,9 +7,9 @@ Class {
 { #category : #'instance creation' }
 TomeScenarioAssertionParamViewFragment >> configureUsed [
 
-	param assertionError ifNotNil: [ :error |
+	param assertionErrorMessage ifNotNil: [ :errorMessage |
 		spanClass := 'scenario-param-assertion-failed'.
-		title := error messageText.
+		title := errorMessage.
 		^ self.
 	].
 

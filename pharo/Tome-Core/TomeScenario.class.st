@@ -47,7 +47,7 @@ TomeScenario >> executeHandlingErrors: aBlock [
 	aBlock
 		on: Error, TestFailure 
 		do: [ :ex | 
-				testFailureError := TomeScenarioError newFrom: ex. 
+				ex isParameterException ifFalse: [ testFailureError := TomeScenarioError newFrom: ex ].
 				ex pass.
 			 ] 
 

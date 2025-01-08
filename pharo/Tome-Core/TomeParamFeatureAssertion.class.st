@@ -6,7 +6,7 @@ Class {
 	#instVars : [
 		'assertBlock',
 		'assertionActualValue',
-		'assertionError'
+		'assertionErrorMessage'
 	],
 	#category : #'Tome-Core'
 }
@@ -33,8 +33,10 @@ TomeParamFeatureAssertion >> assertSuccess [
 	[ assertBlock value: self value: (assertionActualValue value) ] 
 		on: TestFailure 
 		do: [ :exception | 
-			assertionError := exception.
-			exception signal.
+			"resignalAs: is causing an infinite loop, I had to add this guard to stop it, but it shouldn't be needed."
+			(exception isKindOf: TomeParameterTestFail) ifTrue: [ ^ exception ].
+			assertionErrorMessage := exception messageText.
+			exception resignalAs: TomeParameterTestFail.
 		].
 
 ]
@@ -61,9 +63,9 @@ TomeParamFeatureAssertion >> assertionActualValue: aValueOrBlock [
 ]
 
 { #category : #accessing }
-TomeParamFeatureAssertion >> assertionError [
+TomeParamFeatureAssertion >> assertionErrorMessage [
 
-	^ assertionError
+	^ assertionErrorMessage
 ]
 
 { #category : #printing }
