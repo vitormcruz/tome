@@ -18,16 +18,18 @@ TomeFeatureView >> clear [
 { #category : #exporting }
 TomeFeatureView >> generateSimplePageOnStream: aFile [
 
-	aFile writeStreamDo: [ :aFileStream |
+	| html |
+
+	html := String streamContents: [ :s |
 		WAHtmlCanvas builder 
 			documentClass: WAHtmlDocument ;
 			rootClass: WAHtmlRoot;
 			fullDocument: true;
 			rootBlock: [ :root | root style: self style ];
-			render: self on: aFileStream.		
-	]
-	
+			render: self on: s.	
+	].
 
+	aFile writeStreamDo: [ :aFileStream | 	aFileStream nextPutAll: html ].
 ]
 
 { #category : #rendering }

@@ -34,7 +34,7 @@ TomeParamFeatureAssertion >> assertSuccess [
 		on: TestFailure 
 		do: [ :exception | 
 			"resignalAs: is causing an infinite loop, I had to add this guard to stop it, but it shouldn't be needed."
-			(exception isKindOf: TomeParameterTestFail) ifTrue: [ ^ exception ].
+			(exception isKindOf: TomeParameterTestFail) ifTrue: [ ^ exception pass ].
 			assertionErrorMessage := exception messageText.
 			exception resignalAs: TomeParameterTestFail.
 		].
