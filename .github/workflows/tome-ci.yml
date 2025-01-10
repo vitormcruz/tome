@@ -11,8 +11,8 @@ jobs:
       - name: Load Tome and Test it
         run: |
           pharo /opt/pharo/Pharo.image st --save --quit loadForTesting.st
-          # pharo /opt/pharo/Pharo.image test Tome-Tests Tome-Examples --junit-xml-output --fail-on-failure --fail-on-error
-          pharo /opt/pharo/Pharo.image featureRun Tome.*
+          pharo /opt/pharo/Pharo.image test Tome-Tests --junit-xml-output --fail-on-failure --fail-on-error
+          pharo /opt/pharo/Pharo.image featureRun Tome-Examples
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v4
