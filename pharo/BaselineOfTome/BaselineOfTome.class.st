@@ -20,7 +20,7 @@ BaselineOfTome >> baseline: spec [
 			project: 'Seaside3-Prod' copyFrom: 'Seaside3' with: [ spec loads: #('Core' 'Zinc') ];
 			project: 'Seaside3-Dev' copyFrom: 'Seaside3' with: [ spec loads: #(default) ];
 			
-		package: 'Mocketry' with: [ spec repository: 'github://dionisiydk/Mocketry'; load ];
+		baseline: 'Mocketry' with: [ spec repository: 'github://dionisiydk/Mocketry:v7.0.2' ];
 		
 		package: 'Tome-Core' with: [ spec requires: #('Avatar') ];
 		package: 'Tome-Tests' with: [ spec requires: #('Tome-Core' 'Buoy-Tests') ];   
