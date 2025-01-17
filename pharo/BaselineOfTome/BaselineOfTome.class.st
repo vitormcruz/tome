@@ -19,17 +19,21 @@ BaselineOfTome >> baseline: spec [
 		baseline:'Seaside3' with: [ spec repository: 'github://SeasideSt/Seaside:v3.5.5/repository' ];
 			project: 'Seaside3-Prod' copyFrom: 'Seaside3' with: [ spec loads: #('Core' 'Zinc') ];
 			project: 'Seaside3-Dev' copyFrom: 'Seaside3' with: [ spec loads: #(default) ];
+			
+		package: 'Mocketry' with: [ spec repository: 'github://dionisiydk/Mocketry'; load ];
 		
 		package: 'Tome-Core' with: [ spec requires: #('Avatar') ];
 		package: 'Tome-Tests' with: [ spec requires: #('Tome-Core' 'Buoy-Tests') ];   
 		package: 'Tome-Examples' with: [ spec requires: #('Tome-Core' 'Buoy-Tests') ];
-		package: 'Tome-Adapter' with: [ spec requires: #('Tome-Core') ];
+		package: 'Tome-Adapter-cmd' with: [ spec requires: #('Tome-Core') ];
+		package: 'Tome-Adapter-cmd-Tests-DummyFeatures' with: [ spec requires: #('Tome-Core') ];
+		package: 'Tome-Adapter-cmd-Tests' with: [ spec requires: #('Tome-Core' 'Tome-Adapter-cmd-Tests-DummyFeatures' 'Mocketry') ];
 		package: 'Tome-Tools-WebApp' with: [ spec requires: #('Tome-Core') ];
 		package: 'Tome-Config' with: [ spec requires: #('Tome-Tools-WebApp' 'Tome-Core') ];
 		
 		group: 'default' with: #('dev');
-		group: 'core' with: #('Tome-Config' 'Tome-Adapter' 'Tome-Examples' 'Seaside3-Prod');
-		group: 'test' with: #(core 'Tome-Tests');
+		group: 'core' with: #('Tome-Config' 'Tome-Adapter-cmd' 'Tome-Examples' 'Seaside3-Prod');
+		group: 'test' with: #(core 'Tome-Tests' 'Tome-Adapter-cmd-Tests' 'Mocketry');
 		group: 'dev' with: #(core test 'Seaside3-Dev')
 	].
 		
