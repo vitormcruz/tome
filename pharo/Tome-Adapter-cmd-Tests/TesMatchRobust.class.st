@@ -54,3 +54,9 @@ TesMatchRobust >> testNoMatch [
 
 	self deny: ('Package1' matchRobust: 'NoMatch').
 ]
+
+{ #category : #tests }
+TesMatchRobust >> testNoMatchSimilar [
+
+	self deny: ('Package1' matchRobust: 'Package1Xpto').
+]

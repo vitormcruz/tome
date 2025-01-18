@@ -43,6 +43,8 @@ TomeFeatureRunCmdHandler >> activate [
 
 	| features packagesMatched featureExecResult |
 	
+	self traceCr: 'Initiating Feature Execution Command'.
+	
 	self hasArguments ifFalse: [ ^ self traceCr: 'You must provide a list of packages (may be a regex) with features to run' ].
 
 	packagesMatched := self matchPackagesUsingArgs: self arguments.

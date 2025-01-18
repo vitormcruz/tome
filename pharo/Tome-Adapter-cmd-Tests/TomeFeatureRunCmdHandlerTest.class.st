@@ -16,7 +16,7 @@ TomeFeatureRunCmdHandlerTest >> cmdHandleWithArgs: args [
 	| transcriptMock |
 	
 	transcriptMock := Mock new.
-	transcriptMock stub show: [ :arg | debugList add: arg ].
+	transcriptMock stub show: [ :arg | arg = 'Initiating Feature Execution Command' ifFalse: [ debugList add: arg ] ]. 
 	transcriptMock stub cr. 
 	^ (TomeFeatureRunCmdHandler commandLine: (CommandLineArguments withArguments: args)) 
 			quit: false; 
