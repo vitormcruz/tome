@@ -52,11 +52,11 @@ TesMatchRobust >> testMatchWithRegex [
 { #category : #tests }
 TesMatchRobust >> testNoMatch [
 
-	self deny: ('Package1' matchRobust: 'NoMatch').
+	self deny: ('Package-1' matchRobust: 'NoMatch').
 ]
 
 { #category : #tests }
 TesMatchRobust >> testNoMatchSimilar [
 
-	self deny: ('Package1' matchRobust: 'Package1Xpto').
+	self deny: ('Package-1' matchRobust: 'Package-11').
 ]

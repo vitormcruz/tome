@@ -51,9 +51,6 @@ TomeFeatureExamples >> a_Change_User_Salary_More_Terse_Implementation_1 [
 	"Instead of putting the validation of the state before changes on the scenario, doing it only on the 
 	implementation. The advantage is the terseness of the Scenario, but the link to the code will
 	be weaker, meaning that changes to the scenario may not reflect on it's execution.
-	
-	(Disclaimer: I think this one is better in this case. Scenarios been readble and expressive trumps 
-	detailed linkage to the code).
 	"
 
 	<scenario>
@@ -80,7 +77,9 @@ TomeFeatureExamples >> a_Change_User_Salary_More_Terse_Implementation_1 [
 { #category : #scenario }
 TomeFeatureExamples >> a_Change_User_Salary_More_Terse_Implementation_2 [
 
-	"Same as the other, but using assertions provided by Tome."
+	"Same as the other, but using assertions provided by Tome. Using this makes linkage  to 
+	the specification more explicity and also a minor advantage on the readability of the 
+	implementation."
 
 	<scenario>
 	^ self	
@@ -132,7 +131,7 @@ TomeFeatureExamples >> a_Change_User_Salary_More_Terse_Implementation_3 [
 			user := self legalAgeDummyUser name: 'User1'; monthlyWage: currentMonthlyWage.
 			
 			(self when: [ user monthlyWage: newMonthlyWage  ])
-			      actualValue: [ user yearlyWage ] forAssertion: assertNewYearlyWage.
+			      takeValue: [ user yearlyWage ] andAssertWith: assertNewYearlyWage.
 		]
 ]
 
@@ -193,7 +192,7 @@ TomeFeatureExamples >> b_Add_a_New_User_3_Implementation_2 [
 		run: [ :userName :assertSofiaFound |
 			
 			(self when: [ userRepository add: (self legalAgeDummyUser name: userName) ])
-				actualValue: [ self findNameOnRepository: userName ] forAssertion: assertSofiaFound.
+					takeValue: [ self findNameOnRepository: userName ] andAssertWith: assertSofiaFound.
 	  ]
 ]
 
@@ -219,7 +218,7 @@ TomeFeatureExamples >> c_User_Must_Be_Major_Feature [
 		run: [ :userAge :assertResultExpected |
 			| result |
 			(self when: [ result := self resultFrom: [ userRepository add: (TomeDummyUser new age: userAge) ] ])
-				actualValue: [ result ] forAssertion: assertResultExpected.
+					takeValue: [ result ] andAssertWith: assertResultExpected.
 		].
 ]
 
@@ -242,7 +241,7 @@ TomeFeatureExamples >> d_User_Must_Be_Unique_by_CPF [
 			| result |
 			userRepository add: (self legalAgeDummyUser cpf: johnCPF; name: 'John').
 			(self when: [ result := self resultFrom: [ userRepository add: (self legalAgeDummyUser cpf: newUserCPF; name: 'Darla') ]])
-				actualValue: [ result ] forAssertion: assertionResult.
+					takeValue: [ result ] andAssertWith: assertionResult.
 
 	 	].
 ]

@@ -62,12 +62,6 @@ TomeParamFeatureAssertion >> assertionActualValue: aValueOrBlock [
 	
 ]
 
-{ #category : #accessing }
-TomeParamFeatureAssertion >> assertionErrorMessage [
-
-	^ assertionErrorMessage
-]
-
 { #category : #printing }
 TomeParamFeatureAssertion >> printOn: aStream [
 

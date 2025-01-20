@@ -1,3 +1,17 @@
+"
+I am a parameter in a Tome Scenario implementation. For example:
+
+```
+	scenario: 'Some Scenario'
+	     def: 'defines a ""parameter"" delimited by quotation marks, wich will be passed into the implemention block 
+	     run: [ :param | self assert: param = 'parameter' ]
+	
+```
+
+The `param` will be an instance of myself with the contents enclosed by the quatation marks from the scenario definition.
+
+I am a superclass to common behavior used by my subclasses, see them for details on how parameters are managed on Tome.
+"
 Class {
 	#name : #TomeParameter,
 	#superclass : #Object,

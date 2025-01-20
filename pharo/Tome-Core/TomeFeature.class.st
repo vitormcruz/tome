@@ -83,7 +83,7 @@ TomeFeature class >> VIRTUAL_SCENARIO_INDEX_SEPARATOR [
 { #category : #documentation }
 TomeFeature class >> buildMicroDownUsing: aBuilder withComment: aString [
 
-	Class buildMicroDownUsing: aBuilder withComment: aString
+	super buildMicroDownUsing: aBuilder withComment: aString
 ]
 
 { #category : #'building suites' }
@@ -149,6 +149,29 @@ TomeFeature class >> suiteClass [
 { #category : #accessing }
 TomeFeature class >> testSelectors [
 
+	"This method adapts the SUnit implementation to the TomeFeature. 
+	
+	Features have 1..N scenarios, which can be defined by the messages inside the 'scenario builder' protocol, 
+	and they can create, each, 1..N scenarios. Each scenario is a test, but SUnit consider that each method 
+	generates one test which is not the case for features. To fix this gap, testSelectors creates 'virtual'
+	methods using the name of the scenario builder message as prefix and an index sufix for each generated scenario.
+	Each virtual method represents, then, one scenario and can be run by SUnit, and then TomeFeature will resolve it
+	throught #doesNotUnderstand: . See the example: "
+	
+	" TomeFeatureExamples testSelectors >>> 
+					#(#d_User_Must_Be_Unique_by_CPF__index__1
+						#d_User_Must_Be_Unique_by_CPF__index__2
+						#b_Add_a_New_User_1_Ill_Conceived__index__1
+						#a_Change_User_Salary_More_Terse_Implementation_3__index__1
+						#a_Change_User_Salary__index__1
+						#a_Change_User_Salary_More_Terse_Implementation_2__index__1
+						#b_Add_a_New_User_2_Implementation_1__index__1
+						#b_Add_a_New_User_3_Implementation_2__index__1
+						#c_User_Must_Be_Major_Feature__index__1 #c_User_Must_Be_Major_Feature__index__2
+						#c_User_Must_Be_Major_Feature__index__3 #c_User_Must_Be_Major_Feature__index__4
+						#a_Change_User_Salary_More_Terse_Implementation_1__index__1) 
+	"
+
 	| instanceOfMe |
 	
 	instanceOfMe := self new.
@@ -201,7 +224,7 @@ TomeFeature >> scenario: aString def: aStringDefinition run: aBlock [
 	                   executionBlock: aBlock ] }
 ]
 
-{ #category : #'scenario builder' }
+{ #category : #running }
 TomeFeature >> scenarioDerivedFromSelector: aMessageSelector [
 
 	| splitedMessage scenarioBuilderMethod scenarios scenarioIndex |
