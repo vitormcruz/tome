@@ -2,7 +2,7 @@
 
 ![Tests](https://github.com/vitormcruz/tome/actions/workflows/tome-ci.yml/badge.svg)
 
-Tome is a Pharo framework that enables creation of Executable Specifications (not implemented yet) allowing the adoption of [BDD](https://dannorth.net/introducing-bdd/) or, more generally, the [ATDD](https://en.wikipedia.org/wiki/Acceptance_test-driven_development) discipline.
+Tome is a Pharo framework that enables creation of Executable Specifications allowing the adoption of [BDD](https://dannorth.net/introducing-bdd/) or, more generally, the [ATDD](https://en.wikipedia.org/wiki/Acceptance_test-driven_development) discipline.
 
 ## Creating a BDD Feature
 
@@ -63,7 +63,7 @@ MyFeature >> A_User_Age_20_Cannot_be_Registered
 
 Rules are:
  1. All strings enclosed by quotation marks (") are considered parameters of the scenario and will be used as arguments to the `run` block parameter in the order they were defined in the text;
- 2. Enclosed strings starting with `equals:` are considered assertions with special behavior. `assertSuccessFor:`, for example, is a message answered by that kind of assertion that validate if the argument is equals to the defined value in the specification definition;
+ 2. Enclosed strings starting with `equals:` are considered assertions parameters with special behavior. `assertSuccessFor:`, for example, is a message answered by that kind of assertion that validate if the argument is equals to the defined value in the specification definition;
  3. All parameters **must** be used, otherwise the scenario execution fails. This is a reinforcement of the link between the specification definition and its execution.
 
 ### Multiple Similar Scenarios
@@ -133,6 +133,89 @@ Given a new user named "John Smith" with "30" years old
 When I try to do it's registation
 Then the new user "equals: can" be found on the system
 ```
+
+#Verifying Preconditions and the When clause
+
+In the "Users Must be at Major Age to be registered", suppose we want to verify the state of the system before the test executions, i.e. that the assertion defined in the specification fails:
+
+```smalltalk
+MyFeature >> Users_Must_be_Major
+    <scenario>
+
+  self
+    scenarioOutline: 'Users Must be at Major Age to be registered'
+    def: 'Given a new user named "John Smith" with "{age}" years old
+          When I try to do it's registation
+          Then the new user "equals: {findResult}" be found on the system
+         '
+	  examples: #(    'age'   'findResult'  ) asHeaderFor 
+	            - #(   20       'cannot'    )
+	            - #(   21       'can'       )
+	            - #(   30       'can'       )
+					
+    run: [ :newUserName :userAge :assertFindResult |
+      | findResult |
+
+      
+      findResult := (userRepo select: [ :usr| usr name = newUserName ])
+	                    ifEmpty [ 'cannot' ]
+	                    ifNotEmpty [ 'can' ].
+
+      "verify assertion fail"
+      self shouldFix: [ assertFindResult assertSuccessFor: findResult ].
+
+      "Execute system changing action"
+      userRepo add: (User newNamed: newUserName; age: userAge asNumber).
+
+      findResult := (userRepo select: [ :usr| usr name = newUserName ])
+	                    ifEmpty [ 'cannot' ]
+	                    ifNotEmpty [ 'can' ].
+
+      "verify that now the assertion pass"
+      assertFindResult assertSuccessFor: findResult. 
+    ]
+```
+
+This is better because we garantee that the assertion is successfull in result of the action made in the test (the When definition), but it leaves us with a code duplication. There are many alternatives to remove it, but Tome Parameter Assertions can store the verification as a block execution so that it executes both the verification fail and success:
+
+```
+    "..."
+    run: [ :newUserName :userAge :assertFindResult |
+
+      "Actual Value stored as a block will be evaluated lazilly during fail and sucess verification. "
+      assertFindResult assertionActualValue: [
+          (userRepo select: [ :usr| usr name = newUserName ])
+	      ifEmpty [ 'cannot' ]
+	      ifNotEmpty [ 'can' ]
+      ].
+
+      "Get value from block and test fail"
+      assertFindResult testFail.
+
+      userRepo add: (User newNamed: newUserName; age: userAge asNumber).
+
+      "Get value from block and test sucess"
+      assertFindResult assertSuccess. 
+    ]
+```
+
+Another way to improve even further is to use the **When** clause:
+
+```
+    "..."
+    run: [ :newUserName :userAge :assertFindResult |
+
+      self when: [ userRepo add: (User newNamed: newUserName; age: userAge asNumber)]
+          takeValue: [
+              (userRepo select: [ :usr| usr name = newUserName ])
+	          ifEmpty [ 'cannot' ]
+	          ifNotEmpty [ 'can' ]
+          ]
+          andAssertWith: assertNewYearlyWage.
+    ]
+```
+
+By the end of the scenario execution the when clause is evaluated so that every assertion
 
 Note how differently scenario can be written and asserted. Ideally, it must be linked as much as possible to the code through parameters and assertions so that changes to it or to the code are reflected in both ways and its execution passes or fail accordingly. For more examples and considerations about specification writting and implementation, look at the [`Tome-Tests-Examples`](https://github.com/vitormcruz/tome/tree/develop/pharo/Tome-Tests-Examples) package.
 
