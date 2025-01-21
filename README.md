@@ -178,46 +178,44 @@ MyFeature >> Users_Must_be_Major
 
 This is better because we garantee that the assertion is successfull in result of the action made in the test (the When definition), but it leaves us with a code duplication. There are many alternatives to remove it, but Tome Parameter Assertions can store the verification as a block execution so that it executes both the verification fail and success:
 
-```
-    "..."
-    run: [ :newUserName :userAge :assertFindResult |
+```smalltalk
+run: [ :newUserName :userAge :assertFindResult |
 
-      "Actual Value stored as a block will be evaluated lazilly during fail and sucess verification. "
-      assertFindResult assertionActualValue: [
-          (userRepo select: [ :usr| usr name = newUserName ])
-	      ifEmpty [ 'cannot' ]
-	      ifNotEmpty [ 'can' ]
-      ].
+  "Actual Value stored as a block will be evaluated lazilly during fail and sucess verification. "
+  assertFindResult assertionActualValue: [
+      (userRepo select: [ :usr| usr name = newUserName ])
+          ifEmpty [ 'cannot' ]
+	  ifNotEmpty [ 'can' ]
+  ].
 
-      "Get value from block and test fail"
-      assertFindResult testFail.
+  "Get value from block and test fail"
+  assertFindResult testFail.
 
-      userRepo add: (User newNamed: newUserName; age: userAge asNumber).
+  userRepo add: (User newNamed: newUserName; age: userAge asNumber).
 
-      "Get value from block and test sucess"
-      assertFindResult assertSuccess. 
-    ]
+  "Get value from block and test sucess"
+   assertFindResult assertSuccess. 
+]
 ```
 
 Another way to improve even further is to use the **When** clause:
 
+```smalltalk
+run: [ :newUserName :userAge :assertFindResult |
+
+  self when: [ userRepo add: (User newNamed: newUserName; age: userAge asNumber)]
+       takeValue: [
+          (userRepo select: [ :usr| usr name = newUserName ])
+	      ifEmpty [ 'cannot' ]
+	      ifNotEmpty [ 'can' ]
+       ]
+       andAssertWith: assertNewYearlyWage.
+]
 ```
-    "..."
-    run: [ :newUserName :userAge :assertFindResult |
 
-      self when: [ userRepo add: (User newNamed: newUserName; age: userAge asNumber)]
-          takeValue: [
-              (userRepo select: [ :usr| usr name = newUserName ])
-	          ifEmpty [ 'cannot' ]
-	          ifNotEmpty [ 'can' ]
-          ]
-          andAssertWith: assertNewYearlyWage.
-    ]
-```
+By the end of the scenario execution, the when clause is evaluated so that every assertion configured with the "takeValue" is tested for failing before it and for success after. You can configure as many assertions as needed for a when cause, and also more than one when clause — but this may be considered a code smell, since there shouldn't be more than one when clause per specification.
 
-By the end of the scenario execution the when clause is evaluated so that every assertion
-
-Note how differently scenario can be written and asserted. Ideally, it must be linked as much as possible to the code through parameters and assertions so that changes to it or to the code are reflected in both ways and its execution passes or fail accordingly. For more examples and considerations about specification writting and implementation, look at the [`Tome-Tests-Examples`](https://github.com/vitormcruz/tome/tree/develop/pharo/Tome-Tests-Examples) package.
+All those mechanisms are provideded by Tome as a convenience, use if you see value on them. You can use them interchangeably with normal assertions, even mixed — what is more important about scenarios is that they **must be linked as much as possible to the code through parameters and assertions so that changes to it or to the code are reflected in both ways and its execution passes or fail accordingly**. For more examples and considerations about specification writting and implementation, look at the [`Tome-Tests-Examples`](https://github.com/vitormcruz/tome/tree/develop/pharo/Tome-Tests-Examples) package.
 
 
 ## Executable Specification 
@@ -242,4 +240,27 @@ True!, and the BDD practice, for example, emerged so that tests were described u
 Instead of using, for example, Use Cases, let's decribe the requirements as Acceptance Criterias and then create examples that can be used to validate those Criterias — remember, automated testes use examples of things that pass and things that do not pass to verify the system. There is already an argably advantage of describing requirements like this, because examples are much more concrete and simple to describe and understand than another techniques such as Use Cases that look like programming. When our Specification by Example (acceptance criteria + examples) for a functionality is done — which can be stored in a text file for example — let's link them with the system by executing them as tests in any CI or pipeline employed, making then effectivelly Executable Specifications. From now on, any change in the system that breaks the documented requirements expectations will break the Executable Specification execution as well, forcing them to be updated or the system to be fixed. The Executable Specification becomes the source for team communication, and modifications made to it will need to be reflected in the system or they will break.
 
 From that point, ATDD discipline really shines: every development can be clearly anchored by Acceptance Criteria that was previously discussed by the whole team, bringing a clear north to the development process anchored to the business and more transparent to everyone. 
+
+
+## Reporting
+
+Tome is shipped with simple web reporting tool. It uses Seaside, so you can open it's Control panel to start the webserver:
+
+![image](https://github.com/user-attachments/assets/2c84ee1d-39c0-4c93-8ccc-ae60a42cf7e8)
+
+![image](https://github.com/user-attachments/assets/a2e899da-a959-496c-b073-a098ea656062)
+
+Onde the server is up, Tome reporting can be reached at localhost:8080/Tome (change port accordingly), and it will look for any Features inside the image:
+
+![image](https://github.com/user-attachments/assets/de12f1d4-b8ac-4dd3-8dd4-2a04acda47d2)
+
+Selecting the ferature will make it run the scenarios and show the result:
+
+![image](https://github.com/user-attachments/assets/2b05af4b-4912-4221-818c-5e5d8aa69224)
+
+It will alsop show errors in red showing the stacktrace, fails in yellow with the assertion parameter in red, and problems with parameter linkage in yellow with the parameter in the same colour. All parameters have tooltips explaining what happens:
+
+![image](https://github.com/user-attachments/assets/ebd887f4-1a9d-4a9d-aa3f-a480920d4457)
+
+### Reporting In CMD for Pipelines
 
