@@ -262,5 +262,20 @@ It will also shows errors in red with it's stacktrace, fails in yellow with the 
 
 ![image](https://github.com/user-attachments/assets/ebd887f4-1a9d-4a9d-aa3f-a480920d4457)
 
+### Reporting In HTML Files
+
+Tome can also report Feature Execution into html files just like the ones from the Tome Webapp. This can be configured in the Settings Browser:
+
+![image](https://github.com/user-attachments/assets/7f81daf1-217a-43ab-836a-ac237b4d8d13)
+
+or it can be done programatically:
+
+`TomeConfig htmlReportingFolder: aPathString`
+
+`TomeConfig turnHtmlReportingOn`
+
+`TomeConfig turnHtmlReportingOff`
+
+
 ### Reporting In CMD for Pipelines
 
