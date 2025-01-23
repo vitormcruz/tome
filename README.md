@@ -116,7 +116,7 @@ MyFeature >> Users_Must_be_Major
     ]
 ```
 
-Each example will instantiate a new scenario execution switching the examples header by it's value. The header is referenced by it's name enclosed by curly braces ({}), usually it should also be enclosed by quotation marks (") to be used as parameters of the scenario execution. In the example, we will instantiate three scenarios:
+Each example will instantiate a new scenario execution switching the examples values. The values from the examples are referenced by it's header name enclosed by curly braces ({}), usually it should also be enclosed by quotation marks (") to be used as parameters of the scenario execution. In the scenario outline above, three scenarios will be run, one for each example:
 
 ```
 Given a new user named "John Smith" with "20" years old
@@ -134,9 +134,9 @@ When I try to do it's registation
 Then the new user "equals: can" be found on the system
 ```
 
-#Verifying Preconditions and the When clause
+# Verifying Preconditions and the When clause
 
-In the "Users Must be at Major Age to be registered", suppose we want to verify the state of the system before the test executions, i.e. that the assertion defined in the specification fails:
+In the "Users Must be at Major Age to be registered", suppose we want to verify the state of the system before the test executions, i.e. that the assertion defined in the specification fails before any action is made:
 
 ```smalltalk
 MyFeature >> Users_Must_be_Major
@@ -176,7 +176,7 @@ MyFeature >> Users_Must_be_Major
     ]
 ```
 
-This is better because we garantee that the assertion is successfull in result of the action made in the test (the When definition), but it leaves us with a code duplication. There are many alternatives to remove it, but Tome Parameter Assertions can store the verification as a block execution so that it executes both the verification fail and success:
+This is better because we garantee that the assertion is successfull in result of the action made in the test (the When definition), but it leaves us with a code duplication. There are many alternatives to remove it, but Tome Parameter Assertions can store the verification as a block execution so that it executes both of the fail and success verifications:
 
 ```smalltalk
 run: [ :newUserName :userAge :assertFindResult |
@@ -213,9 +213,9 @@ run: [ :newUserName :userAge :assertFindResult |
 ]
 ```
 
-By the end of the scenario execution, the when clause is evaluated so that every assertion configured with the "takeValue" is tested for failing before it and for success after. You can configure as many assertions as needed for a when cause, and also more than one when clause — but this may be considered a code smell, since there shouldn't be more than one when clause per specification.
+By the end of the scenario execution, the when clause is evaluated so that every assertion configured with the "takeValue" is tested for failing before and success after is't execution. You can configure as many assertions as needed for a when cause, and also more than one when clause — but this may be considered a code smell, since there shouldn't be more than one when clause per specification.
 
-All those mechanisms are provideded by Tome as a convenience, use if you see value on them. You can use them interchangeably with normal assertions, even mixed — what is more important about scenarios is that they **must be linked as much as possible to the code through parameters and assertions so that changes to it or to the code are reflected in both ways and its execution passes or fail accordingly**. For more examples and considerations about specification writting and implementation, look at the [`Tome-Tests-Examples`](https://github.com/vitormcruz/tome/tree/develop/pharo/Tome-Tests-Examples) package.
+All those mechanisms are provideded by Tome as a convenience, use if you see value on them. You can use them interchangeably with normal assertions, even mixed — what is more important about scenarios is that they **must be linked as much as possible to the code through parameters and assertions so that changes to it, or to the code, are reflected in both ways and its execution passes or fail accordingly**. For more examples and considerations about specification writting and implementation, look at the [`Tome-Tests-Examples`](https://github.com/vitormcruz/tome/tree/develop/pharo/Tome-Tests-Examples) package.
 
 
 ## Executable Specification 
@@ -244,13 +244,13 @@ From that point, ATDD discipline really shines: every development can be clearly
 
 ## Reporting
 
-Tome is shipped with simple web reporting tool. It uses Seaside, so you can open it's Control panel to start the webserver:
+Tome is shipped with simple web reporting tool, It uses Seaside, so you can open it's Control Panel to start the webserver:
 
 ![image](https://github.com/user-attachments/assets/2c84ee1d-39c0-4c93-8ccc-ae60a42cf7e8)
 
 ![image](https://github.com/user-attachments/assets/a2e899da-a959-496c-b073-a098ea656062)
 
-Onde the server is up, Tome reporting can be reached at localhost:8080/Tome (change port accordingly), and it will look for any Features inside the image:
+Once the server is up, Tome reporting can be reached at localhost:8080/Tome (change port accordingly), and it will look for any Features inside the image:
 
 ![image](https://github.com/user-attachments/assets/de12f1d4-b8ac-4dd3-8dd4-2a04acda47d2)
 
@@ -258,7 +258,7 @@ Selecting the ferature will make it run the scenarios and show the result:
 
 ![image](https://github.com/user-attachments/assets/2b05af4b-4912-4221-818c-5e5d8aa69224)
 
-It will alsop show errors in red showing the stacktrace, fails in yellow with the assertion parameter in red, and problems with parameter linkage in yellow with the parameter in the same colour. All parameters have tooltips explaining what happens:
+It will also shows errors in red with it's stacktrace, fails in yellow with the assertion parameter in red, and problems with parameter linkage in yellow with the parameter also in yellow. All parameters have tooltips explaining what happened:
 
 ![image](https://github.com/user-attachments/assets/ebd887f4-1a9d-4a9d-aa3f-a480920d4457)
 
