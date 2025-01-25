@@ -198,7 +198,7 @@ run: [ :newUserName :userAge :assertFindResult |
 ]
 ```
 
-Another way to improve even further is to use the **When** clause:
+Another way to improve even further is to use the **When** message configuration:
 
 ```smalltalk
 run: [ :newUserName :userAge :assertFindResult |
@@ -213,7 +213,7 @@ run: [ :newUserName :userAge :assertFindResult |
 ]
 ```
 
-By the end of the scenario execution, the when clause is evaluated so that every assertion configured with the "takeValue" is tested for failing before and success after is't execution. You can configure as many assertions as needed for a when cause, and also more than one when clause — but this may be considered a code smell, since there shouldn't be more than one when clause per specification.
+By the end of the scenario execution, the when clause is evaluated so that every assertion configured with the "takeValue" is tested for failing before and success after it's execution. You can configure as many assertions as needed for a when cause, and also more than one when clause — but this may be considered a code smell, since there shouldn't be more than one when clause per specification.
 
 All those mechanisms are provideded by Tome as a convenience, use if you see value on them. You can use them interchangeably with normal assertions, even mixed — what is more important about scenarios is that they **must be linked as much as possible to the code through parameters and assertions so that changes to it, or to the code, are reflected in both ways and its execution passes or fail accordingly**. For more examples and considerations about specification writting and implementation, look at the [`Tome-Tests-Examples`](https://github.com/vitormcruz/tome/tree/develop/pharo/Tome-Tests-Examples) package.
 
@@ -283,7 +283,7 @@ Tome provides the `featureRun` command to execute features:
 
 `pharo featureRun <list of packages>`
 
-where <list of packages> can be literal packages names or regex, for example:
+where `<list of packages>` can be literal packages names or regex, for example:
 
 `pharo featureRun PackageA PackageB.*`
 
