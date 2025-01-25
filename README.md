@@ -258,7 +258,7 @@ Selecting the ferature will make it run the scenarios and show the result:
 
 ![image](https://github.com/user-attachments/assets/2b05af4b-4912-4221-818c-5e5d8aa69224)
 
-It will also shows errors in red with it's stacktrace, fails in yellow with the assertion parameter in red, and problems with parameter linkage in yellow with the parameter also in yellow. All parameters have tooltips explaining what happened:
+It will also shows errors in red with it's stacktrace, fails in yellow with the assertion parameter in red, and problems with parameter linkage as fails but with the parameter also in yellow. All parameters have tooltips explaining what happened:
 
 ![image](https://github.com/user-attachments/assets/ebd887f4-1a9d-4a9d-aa3f-a480920d4457)
 
@@ -279,3 +279,15 @@ or it can be done programatically:
 
 ### Reporting In CMD for Pipelines
 
+Tome provides the `featureRun` command to execute features:
+
+`pharo featureRun <list of packages>`
+
+where <list of packages> can be literal packages names or regex, for example:
+
+`pharo featureRun PackageA PackageB.*`
+
+This will tell Tome to look for features on PackageA and in any package that
+maches the PackageB.* regex.
+
+Tome Features can also be run with the `test` command, but using `featureRun` executes only Features and it is a reliable way to run them and generate html reports for the pipeline, as the `test` may not generate them. Therefore, it is recomended, in the current version of Tome, to use `featureRun` to run Features if you care about reports. In order to generate them, execute the command `TomeConfig turnHtmlReportingOn` saving the image before the `featureRun` (Tome code itself has this implemented in tome-ci.yml, so you can look it for an example).
